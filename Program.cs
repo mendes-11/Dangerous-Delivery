@@ -1,14 +1,28 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 ApplicationConfiguration.Initialize();
 
 Bitmap bmp = null;
 Graphics g = null;
+List<string> caminhosCasas = new List<string>
+{
+    "Image/CASA1B.png",
+    "Image/CASA2B.png",
+    "Image/CASA3B.png",
+    "Image/CASA4B.png",
+    "Image/CASA5B.png",
+    "Image/CASA6B.png",
+    "Image/CASA7B.png",
+    "Image/CASA8B.png"
+};
 
-Fundo fundo = new Fundo();
-Moto moto = new Moto();
+IPlano[] planos = {
+    new Rua("Image/RUA.png", 720, 2000, 300, 5),
+    new Moto("Image/moto1.png", 200, 600, 500, 500),
+};
 
 var pb = new PictureBox
 {
@@ -23,7 +37,7 @@ var timer = new Timer
 var form = new Form
 {
     WindowState = FormWindowState.Maximized,
-    Text = "Delivery",
+    Text = "Dangerous Delivery",
     Controls = { pb }
 };
 
@@ -40,9 +54,10 @@ timer.Tick += (o, e) =>
 {
     g.Clear(Color.SkyBlue);
 
-    fundo.Draw(g, pb.Width, pb.Height);
-    moto.Draw(g, pb.Width, pb.Height);
-    
+    foreach (var plano in planos)
+    {
+        plano.Draw(g);
+    }
 
     pb.Refresh();
 };
@@ -57,81 +72,6 @@ form.KeyDown += (o, e) =>
     }
 };
 
-form.KeyUp += (o, e) =>
-{
-    // Adicione aqui qualquer lógica necessária para eventos de teclado quando a tecla é liberada
-};
-
 Application.Run(form);
 
 
-public class Fundo
-{
-    private int X { get; set; }
-    private int Y { get; set; }
-    private float Size { get; set; }
-    private Image img;
-    private Image img2;
-    private Image img3;
-    private Image img4;
-    private Image img5;
-    private Image img6;
-    private Image img7;
-    private Image img8;
-    private Image rua;
-    
-
-    private DateTime lastDamage = DateTime.MinValue;
-
-    public Fundo()
-    {
-        this.img = Bitmap.FromFile("Image/CASA1B.png");
-        this.img2 = Bitmap.FromFile("Image/CASA2B.png");
-        this.img3 = Bitmap.FromFile("Image/CASA3B.png");
-        this.img4 = Bitmap.FromFile("Image/CASA4B.png");
-        this.img5 = Bitmap.FromFile("Image/CASA5B.png");
-        this.img6 = Bitmap.FromFile("Image/CASA6B.png");
-        this.img7 = Bitmap.FromFile("Image/CASA7B.png");
-        this.img8 = Bitmap.FromFile("Image/CASA8B.png");
-        this.rua = Bitmap.FromFile("Image/RUA.png");
-
-    }
-
-    public void Draw(Graphics g, int width, int height)
-    {
-        // g.DrawImage(img, 0 , 500, 2000, 400);
-        g.DrawImage(img, 0 - X, 100);
-        g.DrawImage(img2, 350 - X, 100);
-        g.DrawImage(img3, 700 - X, 100);
-        g.DrawImage(img4, 1050 - X, 100);
-        g.DrawImage(img5, 1400 - X, 100);
-        g.DrawImage(img6, 1750 - X, 100);
-        g.DrawImage(img7, 2000 - X, 100);
-        g.DrawImage(img8, 2350 - X, 100);
-        g.DrawImage(rua, 0 - X , 700, 2000, 300);
-
-
-        X += 2; 
-        if (X > img.Width) X = 0;
-    }
-    
-}
-
-public class Moto
-{
-    private int X { get; set; }
-    private int Y { get; set; }
-    private float Size { get; set; }
-    private Image img;
-    private DateTime lastDamage = DateTime.MinValue;
-
-    public Moto()
-    {
-        this.img = Bitmap.FromFile("moto1.png");
-    }
-
-    public void Draw(Graphics g, int width, int height)
-    {
-        g.DrawImage(img, 300, 600, 500, 500);
-    }
-}

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\disrct\\Desktop\\Renato\\2024\\jogo\\jogo.csproj": {}
+    "C:\\Users\\disrct\\Desktop\\DD - game\\Dangerous-Delivery\\jogo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\disrct\\Desktop\\Renato\\2024\\jogo\\jogo.csproj": {
+    "C:\\Users\\disrct\\Desktop\\DD - game\\Dangerous-Delivery\\jogo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\disrct\\Desktop\\Renato\\2024\\jogo\\jogo.csproj",
+        "projectUniqueName": "C:\\Users\\disrct\\Desktop\\DD - game\\Dangerous-Delivery\\jogo.csproj",
         "projectName": "jogo",
-        "projectPath": "C:\\Users\\disrct\\Desktop\\Renato\\2024\\jogo\\jogo.csproj",
+        "projectPath": "C:\\Users\\disrct\\Desktop\\DD - game\\Dangerous-Delivery\\jogo.csproj",
         "packagesPath": "C:\\Users\\disrct\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\disrct\\Desktop\\Renato\\2024\\jogo\\obj\\",
+        "outputPath": "C:\\Users\\disrct\\Desktop\\DD - game\\Dangerous-Delivery\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\disrct\\AppData\\Roaming\\NuGet\\NuGet.Config"
