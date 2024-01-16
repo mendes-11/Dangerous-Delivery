@@ -7,7 +7,28 @@ ApplicationConfiguration.Initialize();
 
 Bitmap bmp = null;
 Graphics g = null;
-List<string> caminhosCasas = new List<string>
+List<IPlano> planosList = new List<IPlano>();
+List<string> sidewalkPath = new List<string>
+{
+    "Image/SideWalk/calcada.png",
+    "Image/SideWalk/calcada.png",
+    "Image/SideWalk/calcada.png",
+};
+
+int spacingSidewalk = 950;
+List<Calcada> calcadas = new List<Calcada>();
+int widthCalcadas = sidewalkPath.Count * (330 + 400);
+
+for (int i = 0; i < sidewalkPath.Count; i++)
+{
+    string caminho = sidewalkPath[i];
+    int posX = i * spacingSidewalk;
+    calcadas.Add(new Calcada(caminho, 426, 1000, 300, 5, posX, widthCalcadas));
+}
+
+
+
+List<string> homePath = new List<string>
 {
     "Image/Casas/CASA1B.png",
     "Image/Casas/CASA2B.png",
@@ -19,23 +40,26 @@ List<string> caminhosCasas = new List<string>
     "Image/Casas/CASA8B.png"
 };
 
-List<IPlano> planosList = new List<IPlano>();
 
-int espacamento = 400;
+int spacingHome = 400;
 List<Casa> casas = new List<Casa>();
-int totalWidth = caminhosCasas.Count * (330 + 400);
+int widthHome = homePath.Count * (330 + 400);
 
-for (int i = 0; i < caminhosCasas.Count; i++)
+for (int i = 0; i < homePath.Count; i++)
 {
-    string caminho = caminhosCasas[i];
-    int posX = i * espacamento;
-    casas.Add(new Casa(caminho, 320, 330, 400, 5, posX, totalWidth));
+    string caminho = homePath[i];
+    int posX = i * spacingHome;
+    casas.Add(new Casa(caminho, 264, 330, 400, 5, posX, widthHome));
 }
-planosList.AddRange(casas);
 
 Moto moto = new Moto("Image/Entregador/moto1.png", 200, 700, 400, 400);
-Rua rua = new Rua("Image/Street/Rua1.png", 720, 2000, 300, 40);
+Rua rua = new Rua("Image/Street/Rua1.png", 720, 2000, 300, 20);
+
+
+
+planosList.AddRange(casas);
 planosList.Add(rua);
+planosList.AddRange(calcadas);
 planosList.Add(moto);
 
 IPlano[] planos = planosList.ToArray();

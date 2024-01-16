@@ -9,7 +9,7 @@ public class Casa : IPlano
     private int Height;
     private int Velocidade;
 
-    private int totalWidth;
+    private int TotalWidth;
 
     public Casa(string imagePath, int y, int width, int height, int velocidade, int startX, int totalWidth)
     {
@@ -19,7 +19,7 @@ public class Casa : IPlano
         this.Height = height;
         this.Velocidade = velocidade;
         this.X = startX;
-        this.totalWidth = totalWidth;
+        this.TotalWidth = totalWidth;
     }
 
     public void Draw(Graphics g)
@@ -29,7 +29,7 @@ public class Casa : IPlano
 
         if (X + Width < 0)
         {
-            X += totalWidth; 
+            X += TotalWidth; 
         }
     }
 }
