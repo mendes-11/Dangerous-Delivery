@@ -36,5 +36,3 @@ DIA 19/01
 - [ ]
 - [ ]
 
-
-![Texto Alternativo](https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Solid_red.svg/768px-Solid_red.svg.png)
