@@ -2,7 +2,7 @@ using System.Drawing;
 
 public class Calcada : IPlano
 {
-    private int X { get; set; }
+    private int X;
     private Image img;
     private int velocidade;
 

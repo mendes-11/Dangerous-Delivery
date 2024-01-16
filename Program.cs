@@ -9,14 +9,14 @@ Bitmap bmp = null;
 Graphics g = null;
 List<string> caminhosCasas = new List<string>
 {
-    "Image/CASA1B.png",
-    "Image/CASA2B.png",
-    "Image/CASA3B.png",
-    "Image/CASA4B.png",
-    "Image/CASA5B.png",
-    "Image/CASA6B.png",
-    "Image/CASA7B.png",
-    "Image/CASA8B.png"
+    "Image/Casas/CASA1B.png",
+    "Image/Casas/CASA2B.png",
+    "Image/Casas/CASA3B.png",
+    "Image/Casas/CASA4B.png",
+    "Image/Casas/CASA5B.png",
+    "Image/Casas/CASA6B.png",
+    "Image/Casas/CASA7B.png",
+    "Image/Casas/CASA8B.png"
 };
 
 List<IPlano> planosList = new List<IPlano>();
@@ -29,12 +29,12 @@ for (int i = 0; i < caminhosCasas.Count; i++)
 {
     string caminho = caminhosCasas[i];
     int posX = i * espacamento;
-    casas.Add(new Casa(caminho, 320, 330, 400, 50, posX, totalWidth));
+    casas.Add(new Casa(caminho, 320, 330, 400, 5, posX, totalWidth));
 }
 planosList.AddRange(casas);
 
-Moto moto = new Moto("Image/moto1.png", 200, 700, 400, 400);
-Rua rua = new Rua("Image/Rua1.png", 720, 2000, 300, 40);
+Moto moto = new Moto("Image/Entregador/moto1.png", 200, 700, 400, 400);
+Rua rua = new Rua("Image/Street/Rua1.png", 720, 2000, 300, 40);
 planosList.Add(rua);
 planosList.Add(moto);
 

@@ -2,34 +2,34 @@ using System.Drawing;
 
 public class Casa : IPlano
 {
-    private Image img { get; set; }
-    private int x { get; set; }
-    private int y { get; set; }
-    private int width { get; set; }
-    private int height { get; set; }
-    private int velocidade { get; set; }
+    private Image Img;
+    private int X;
+    private int Y;
+    private int Width;
+    private int Height;
+    private int Velocidade;
 
-    private int totalWidth { get; set; }
+    private int totalWidth;
 
-    public Casa(string imagePath, int Y, int width, int height, int velocidade, int startX, int totalWidth)
+    public Casa(string imagePath, int y, int width, int height, int velocidade, int startX, int totalWidth)
     {
-        this.img = Image.FromFile(imagePath);
-        this.y = Y;
-        this.width = width;
-        this.height = height;
-        this.velocidade = velocidade;
-        this.x = startX;
+        this.Img = Image.FromFile(imagePath);
+        this.Y = y;
+        this.Width = width;
+        this.Height = height;
+        this.Velocidade = velocidade;
+        this.X = startX;
         this.totalWidth = totalWidth;
     }
 
     public void Draw(Graphics g)
     {
-        g.DrawImage(img, x, y, width, height);
-        x -= velocidade;
+        g.DrawImage(Img, X, Y, Width, Height);
+        X -= Velocidade;
 
-        if (x + width < 0)
+        if (X + Width < 0)
         {
-            x += totalWidth; 
+            X += totalWidth; 
         }
     }
 }

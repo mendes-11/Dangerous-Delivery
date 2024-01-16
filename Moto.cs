@@ -2,23 +2,23 @@ using System.Drawing;
 
 public class Moto : IPlano
 {
-    private Image img { get; set; }  
-    private int x { get; set; }  
-    private int y { get; set; }  
-    private int width { get; set; }  
-    private int height { get; set; }  
+    private Image Img;  
+    private int X; 
+    private int Y; 
+    private int Width; 
+    private int Height; 
 
-    public Moto(string imagePath, int X, int Y, int width, int height)
+    public Moto(string imagePath, int x, int y, int width, int height)
     {
-        this.img = Image.FromFile(imagePath);
-        this.x = X;
-        this.y = Y;
-        this.width = width;
-        this.height = height;
+        this.Img = Image.FromFile(imagePath);
+        this.X = x;
+        this.Y = y;
+        this.Width = width;
+        this.Height = height;
     }
 
     public void Draw(Graphics g)
     {
-        g.DrawImage(img, x, y, width, height);
+        g.DrawImage(Img, X, Y, Width, Height);
     }
 }
