@@ -21,9 +21,7 @@ List<string> caminhosCasas = new List<string>
 
 List<IPlano> planosList = new List<IPlano>();
 
-
 int espacamento = 400;
-int width = 330;
 List<Casa> casas = new List<Casa>();
 int totalWidth = caminhosCasas.Count * (330 + 400);
 
@@ -31,19 +29,16 @@ for (int i = 0; i < caminhosCasas.Count; i++)
 {
     string caminho = caminhosCasas[i];
     int posX = i * espacamento;
-    casas.Add(new Casa(caminho, 320, width, 400, 50, posX, totalWidth));
+    casas.Add(new Casa(caminho, 320, 330, 400, 50, posX, totalWidth));
 }
 planosList.AddRange(casas);
 
-
 Moto moto = new Moto("Image/moto1.png", 200, 700, 400, 400);
-Rua rua = new Rua("Image/RUA.png", 720, 2000, 300, 20);
+Rua rua = new Rua("Image/Rua1.png", 720, 2000, 300, 40);
 planosList.Add(rua);
 planosList.Add(moto);
 
 IPlano[] planos = planosList.ToArray();
-
-
 
 var pb = new PictureBox
 {
