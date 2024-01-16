@@ -17,7 +17,7 @@ public class Moto : IPlano
         this.Height = height;
     }
 
-    public void Draw(Graphics g)
+    public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
         g.DrawImage(Img, X, Y, Width, Height);
     }

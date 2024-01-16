@@ -21,10 +21,10 @@ public class Rua : IPlano
         this.X2 = Width;
     }
 
-    public void Draw(Graphics g)
+    public void Draw(Graphics g, float x)
     {
-        g.DrawImage(Img, X1, Y, Width, Height);
-        g.DrawImage(Img, X2, Y, Width, Height);
+        g.DrawImage(Img, x, Y, Width, Height);
+        g.DrawImage(Img, x + Width, Y, Width, Height);
 
         X1 -= Velocidade;
         X2 -= Velocidade;
@@ -39,5 +39,10 @@ public class Rua : IPlano
         {
             X2 = Width;
         }
+    }
+
+    public void Draw(Graphics g, DrawPlanoParameters parameters)
+    {
+        throw new System.NotImplementedException();
     }
 }

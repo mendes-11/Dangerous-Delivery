@@ -11,7 +11,6 @@ public class Casa : IPlano
     private int Velocidade;
 
     private int TotalWidth;
-    private int aleatorio;
 
     public Casa(string imagePath, int y, int width, int height, int velocidade, int startX, int totalWidth)
     {
@@ -24,15 +23,9 @@ public class Casa : IPlano
         this.TotalWidth = totalWidth;
     }
 
-    public void Draw(Graphics g)
+    public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
+        g.DrawImage(Img, parameters.X, Y, Width, Height);
         
-        g.DrawImage(Img, X, Y, Width, Height);
-        X -= Velocidade;
-
-        if (X + Width < 0)
-        {
-            X += TotalWidth; 
-        }
     }
 }
