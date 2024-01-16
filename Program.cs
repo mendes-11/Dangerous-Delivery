@@ -21,13 +21,17 @@ List<string> caminhosCasas = new List<string>
 
 List<IPlano> planosList = new List<IPlano>();
 
-int espacamento = 400; 
+
+int espacamento = 400;
+int width = 330;
 List<Casa> casas = new List<Casa>();
+int totalWidth = caminhosCasas.Count * (330 + 400);
+
 for (int i = 0; i < caminhosCasas.Count; i++)
 {
     string caminho = caminhosCasas[i];
     int posX = i * espacamento;
-    casas.Add(new Casa(caminho, 320, 330, 400, 5, posX));
+    casas.Add(new Casa(caminho, 320, width, 400, 50, posX, totalWidth));
 }
 planosList.AddRange(casas);
 

@@ -9,7 +9,9 @@ public class Casa : IPlano
     private int height { get; set; }
     private int velocidade { get; set; }
 
-    public Casa(string imagePath, int Y, int width, int height, int velocidade, int startX)
+    private int totalWidth { get; set; }
+
+    public Casa(string imagePath, int Y, int width, int height, int velocidade, int startX, int totalWidth)
     {
         this.img = Image.FromFile(imagePath);
         this.y = Y;
@@ -17,17 +19,17 @@ public class Casa : IPlano
         this.height = height;
         this.velocidade = velocidade;
         this.x = startX;
+        this.totalWidth = totalWidth;
     }
 
     public void Draw(Graphics g)
     {
         g.DrawImage(img, x, y, width, height);
-        x -= velocidade; // Move a casa para a esquerda
+        x -= velocidade;
 
-        // Se a casa sair completamente da tela, reposiciona no lado direito
         if (x + width < 0)
         {
-            x = (int)g.VisibleClipBounds.Width;
+            x += totalWidth; 
         }
     }
 }
