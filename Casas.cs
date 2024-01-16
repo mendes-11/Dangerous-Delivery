@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 
 public class Casa : IPlano
@@ -10,6 +11,7 @@ public class Casa : IPlano
     private int Velocidade;
 
     private int TotalWidth;
+    private int aleatorio;
 
     public Casa(string imagePath, int y, int width, int height, int velocidade, int startX, int totalWidth)
     {
@@ -24,6 +26,7 @@ public class Casa : IPlano
 
     public void Draw(Graphics g)
     {
+        
         g.DrawImage(Img, X, Y, Width, Height);
         X -= Velocidade;
 

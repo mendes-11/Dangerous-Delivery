@@ -7,26 +7,36 @@ ApplicationConfiguration.Initialize();
 
 Bitmap bmp = null;
 Graphics g = null;
+Random random = new Random();
 List<IPlano> planosList = new List<IPlano>();
 List<string> sidewalkPath = new List<string>
 {
-    "Image/SideWalk/calcada.png",
-    "Image/SideWalk/calcada.png",
-    "Image/SideWalk/calcada.png",
+    "Image/SideWalk/calcada0.png",
+    "Image/SideWalk/calcada1.png",
+    "Image/SideWalk/calcada2.png",
+    "Image/SideWalk/calcada3.png",
+    "Image/SideWalk/calcada4.png",
+    "Image/SideWalk/calcada5.png",
 };
 
+
+int lastRandomSide = -1;
 int spacingSidewalk = 950;
 List<Calcada> calcadas = new List<Calcada>();
-int widthCalcadas = sidewalkPath.Count * (330 + 400);
-
+int widthCalcadas = sidewalkPath.Count * 980;
+int randomIndexSide;
 for (int i = 0; i < sidewalkPath.Count; i++)
 {
-    string caminho = sidewalkPath[i];
-    int posX = i * spacingSidewalk;
-    calcadas.Add(new Calcada(caminho, 426, 1000, 300, 5, posX, widthCalcadas));
+    do
+    {
+        randomIndexSide = random.Next(sidewalkPath.Count);
+    } while (randomIndexSide == lastRandomSide);
+
+    lastRandomSide = randomIndexSide;
+    string caminho = sidewalkPath[randomIndexSide];
+    int posX = i * 980;
+    calcadas.Add(new Calcada(caminho, 426, 1000, 300, 40, posX, widthCalcadas));
 }
-
-
 
 List<string> homePath = new List<string>
 {
@@ -40,22 +50,27 @@ List<string> homePath = new List<string>
     "Image/Casas/CASA8B.png"
 };
 
-
-int spacingHome = 400;
+int lastRandom = -1;
+int spacingHome = 420;
 List<Casa> casas = new List<Casa>();
-int widthHome = homePath.Count * (330 + 400);
+int widthHome = homePath.Count * spacingHome;
 
 for (int i = 0; i < homePath.Count; i++)
 {
-    string caminho = homePath[i];
+    int randomIndex;
+    do
+    {
+        randomIndex = random.Next(homePath.Count);
+    } while (randomIndex == lastRandom);
+
+    lastRandom = randomIndex;
+    string caminho = homePath[randomIndex];
     int posX = i * spacingHome;
-    casas.Add(new Casa(caminho, 264, 330, 400, 5, posX, widthHome));
+    casas.Add(new Casa(caminho, 264, 330, 400, 20, posX, widthHome));
 }
 
 Moto moto = new Moto("Image/Entregador/moto1.png", 200, 700, 400, 400);
-Rua rua = new Rua("Image/Street/Rua1.png", 720, 2000, 300, 20);
-
-
+Rua rua = new Rua("Image/Street/Rua1.png", 720, 2000, 300, 30);
 
 planosList.AddRange(casas);
 planosList.Add(rua);
@@ -64,41 +79,40 @@ planosList.Add(moto);
 
 IPlano[] planos = planosList.ToArray();
 
-var pb = new PictureBox
-{
-    Dock = DockStyle.Fill,
-};
+var pb = new PictureBox { Dock = DockStyle.Fill, };
 
-var timer = new Timer
-{
-    Interval = 20,
-};
+var timer = new Timer { Interval = 10, };
 
 var form = new Form
 {
     WindowState = FormWindowState.Maximized,
     Text = "Dangerous Delivery",
-    Controls = { pb }
+    Controls = { pb },
 };
 
 form.Load += (o, e) =>
 {
     bmp = new Bitmap(pb.Width, pb.Height);
+    using (var gTemp = Graphics.FromImage(bmp))
+    {
+        gTemp.Clear(Color.Black);
+    }
     g = Graphics.FromImage(bmp);
-    g.Clear(Color.Black);
     pb.Image = bmp;
     timer.Start();
 };
 
 timer.Tick += (o, e) =>
 {
-    g.Clear(Color.SkyBlue);
-
-    foreach (var plano in planos)
+    using (var bufferGraphics = Graphics.FromImage(bmp)) 
     {
-        plano.Draw(g);
-    }
+        bufferGraphics.Clear(Color.SkyBlue);
 
+        foreach (var plano in planos)
+        {
+            plano.Draw(bufferGraphics);
+        }
+    }
     pb.Refresh();
 };
 
@@ -113,5 +127,3 @@ form.KeyDown += (o, e) =>
 };
 
 Application.Run(form);
-
-
