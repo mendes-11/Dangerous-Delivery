@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 
 public class Calcada : IPlano
 {
@@ -6,16 +10,14 @@ public class Calcada : IPlano
     private int Y;
     private int Width;
     private int Height;
+ 
 
-    private int TotalWidth;
-
-    public Calcada(string imagePath, int y, int width, int height, int totalWidth)
+    public Calcada(string path, int y, int width, int height)
     {
-        this.Img = Image.FromFile(imagePath);
+        this.Img = Image.FromFile(path);
         this.Y = y;
         this.Width = width;
         this.Height = height;
-        this.TotalWidth = totalWidth;
     }
 
     public void Draw(Graphics g, DrawPlanoParameters parameters)

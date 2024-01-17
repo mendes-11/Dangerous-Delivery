@@ -8,18 +8,15 @@ public class Casa : IPlano
     private int Y;
     private int Width;
     private int Height;
-    private int Velocidade;
 
     private int TotalWidth;
 
-    public Casa(string imagePath, int y, int width, int height, int velocidade, int startX, int totalWidth)
+    public Casa(string imagePath, int y, int width, int height, int totalWidth)
     {
         this.Img = Image.FromFile(imagePath);
         this.Y = y;
         this.Width = width;
         this.Height = height;
-        this.Velocidade = velocidade;
-        this.X = startX;
         this.TotalWidth = totalWidth;
     }
 

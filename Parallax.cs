@@ -3,7 +3,7 @@ using System.Drawing;
 
 public class Parallax
 {
-    public List<Layer> Layers { get; set; } = new();
+    public List<BaseLayer> Layers { get; set; } = new();
 
     public void Draw(Graphics g)
     {
