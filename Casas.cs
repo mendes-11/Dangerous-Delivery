@@ -4,7 +4,7 @@ using System.Drawing;
 public class Casa : IPlano
 {
     private Image Img;
-    private int X;
+
     private int Y;
     private int Width;
     private int Height;
