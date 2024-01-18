@@ -7,7 +7,7 @@ public class CasasLayer : Layer
     {
         this.Planos.AddRange(
             Directory.GetFiles("./Image/Casas")
-            .Select(path => new Calcada(path, 264, 330, 400))
+            .Select(path => new Casa(path, 264, 330, 400))
         );
     }
 }

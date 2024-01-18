@@ -9,12 +9,13 @@ Graphics g = null;
 
 Parallax parallax = new Parallax();
 
-parallax.Layers.Add(new CasasLayer(5));
-parallax.Layers.Add(new CalcadasLayer(10));
-parallax.Layers.Add(new RuasLayer(15));
+parallax.Layers.Add(new CityLayer(180));
+parallax.Layers.Add(new CasasLayer(200));
+parallax.Layers.Add(new RuasLayer());
+parallax.Layers.Add(new CalcadasLayer(260));
 
 var pb = new PictureBox { Dock = DockStyle.Fill, };
-var timer = new Timer { Interval = 20, };
+var timer = new Timer { Interval = 5, };
 
 var form = new Form
 {

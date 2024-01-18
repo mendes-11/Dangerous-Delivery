@@ -6,41 +6,42 @@ using System.Collections.Generic;
 public class Layer : BaseLayer
 {
     public List<IPlano> Planos { get; set; } = new List<IPlano>();
-
     private Queue<IPlano> nextQueue = new();
     private Queue<IPlano> queue = new();
+    private DateTime lastFrame = DateTime.Now;
     public float Velocidade { get; set; }
 
     private DrawPlanoParameters parameters = new DrawPlanoParameters { X = 0 };
 
     public Layer(float velocidade)
         => this.Velocidade = velocidade;
-
     public override void Draw(Graphics g)
     {
         refillQueue();
 
+        parameters.X -= Velocidade * deltaTime();
         float currentX = parameters.X;
 
-        foreach (var plano in queue.ToList()) 
+        foreach (var plano in queue) 
         {
             plano.Draw(g, new DrawPlanoParameters { X = currentX });
-            currentX += 900 - Velocidade;
-
-    
-            if (parameters.X + 900 < 0) // Arrumar, está excluindo e adiantando as imagens 
-            {
-                queue.Dequeue();
-            }
+            currentX += plano.Width;
         }
 
-        parameters.X -= Velocidade; 
-
-        if (queue.Count == 0)
+        if (parameters.X + queue.Peek().Width < 0)
         {
-            parameters.X = 0;
+            parameters.X += queue.Peek().Width;
+            queue.Dequeue();
         }
-        
+    }
+
+    private float deltaTime()
+    {
+        var newFrame = DateTime.Now;
+        var time = newFrame - lastFrame;
+        lastFrame = newFrame;
+
+        return (float)time.TotalSeconds;
     }
 
     private void refillQueue()
@@ -53,7 +54,6 @@ public class Layer : BaseLayer
 
             var next = nextQueue.Dequeue();
             queue.Enqueue(next);
-
         }
     }
 

@@ -17,6 +17,8 @@ public class Moto : IPlano
         this.Height = height;
     }
 
+    float IPlano.Width { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
     public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
         g.DrawImage(Img, X, Y, Width, Height);
