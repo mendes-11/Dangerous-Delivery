@@ -9,7 +9,7 @@ Graphics g = null;
 
 Parallax parallax = new Parallax();
 
-parallax.Layers.Add(new calcadasLayer(1));
+parallax.Layers.Add(new calcadasLayer(10));
 
 
 var pb = new PictureBox { Dock = DockStyle.Fill, };

@@ -13,7 +13,7 @@ public class Layer : BaseLayer
     public float Velocidade { get; set; }
 
     private DrawPlanoParameters parameters = new DrawPlanoParameters { X = 0 };
-    
+
     public Layer(float velocidade)
         => this.Velocidade = velocidade;
 
@@ -21,14 +21,26 @@ public class Layer : BaseLayer
     {
         refillQueue();
 
-        foreach (var plano in queue)
-        { 
-            parameters.X -= Velocidade;
-            plano.Draw(g, parameters);
+        float currentX = parameters.X;
+
+        foreach (var plano in queue.ToList()) 
+        {
+            plano.Draw(g, new DrawPlanoParameters { X = currentX });
+            currentX += 900 - Velocidade;
+
+    
+            if (parameters.X + 900 < 0)
+            {
+                queue.Dequeue();
+            }
         }
 
-        // if (false)
-        //     queue.Dequeue();
+        parameters.X -= Velocidade; 
+
+        if (queue.Count == 0)
+        {
+            parameters.X = 0;
+        }
     }
 
     private void refillQueue()
@@ -41,8 +53,6 @@ public class Layer : BaseLayer
 
             var next = nextQueue.Dequeue();
             queue.Enqueue(next);
-
-
 
         }
     }
