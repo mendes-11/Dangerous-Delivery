@@ -7,7 +7,7 @@ public class  CityLayer: Layer
     {
         this.Planos.AddRange(
             Directory.GetFiles("./Image/City")
-            .Select(path => new City(path, 264, 330, 400))
+            .Select(path => new City(path, 240, 330, 500))
         );
     }
 }
