@@ -8,19 +8,19 @@
     "net7.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\MateusLeite\\.nuget\\packages\\": {}
+    "C:\\Users\\renato\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MateusLeite\\Desktop\\IFOOD\\Dangerous-Delivery\\jogo.csproj",
+      "projectUniqueName": "C:\\Users\\renato\\Desktop\\fdsa\\Dangerous-Delivery\\jogo.csproj",
       "projectName": "jogo",
-      "projectPath": "C:\\Users\\MateusLeite\\Desktop\\IFOOD\\Dangerous-Delivery\\jogo.csproj",
-      "packagesPath": "C:\\Users\\MateusLeite\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MateusLeite\\Desktop\\IFOOD\\Dangerous-Delivery\\obj\\",
+      "projectPath": "C:\\Users\\renato\\Desktop\\fdsa\\Dangerous-Delivery\\jogo.csproj",
+      "packagesPath": "C:\\Users\\renato\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\renato\\Desktop\\fdsa\\Dangerous-Delivery\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\MateusLeite\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\renato\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0-windows"
@@ -62,7 +62,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

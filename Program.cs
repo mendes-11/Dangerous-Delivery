@@ -9,8 +9,9 @@ Graphics g = null;
 
 Parallax parallax = new Parallax();
 
-parallax.Layers.Add(new calcadasLayer(10));
-
+parallax.Layers.Add(new CasasLayer(5));
+parallax.Layers.Add(new CalcadasLayer(10));
+parallax.Layers.Add(new RuasLayer(15));
 
 var pb = new PictureBox { Dock = DockStyle.Fill, };
 var timer = new Timer { Interval = 20, };

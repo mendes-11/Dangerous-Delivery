@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
 using System.Linq;
+using System.Drawing;
+using System.Collections.Generic;
 
 public class Layer : BaseLayer
 {
@@ -29,7 +28,7 @@ public class Layer : BaseLayer
             currentX += 900 - Velocidade;
 
     
-            if (parameters.X + 900 < 0)
+            if (parameters.X + 900 < 0) // Arrumar, está excluindo e adiantando as imagens 
             {
                 queue.Dequeue();
             }
@@ -41,6 +40,7 @@ public class Layer : BaseLayer
         {
             parameters.X = 0;
         }
+        
     }
 
     private void refillQueue()

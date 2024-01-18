@@ -1,9 +1,9 @@
 using System.IO;
 using System.Linq;
 
-public class calcadasLayer : Layer
+public class CalcadasLayer : Layer
 {
-    public calcadasLayer(float velocidade) : base(velocidade)
+    public CalcadasLayer(float velocidade) : base(velocidade)
     {
         this.Planos.AddRange(
             Directory.GetFiles("./Image/Sidewalk")
