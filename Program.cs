@@ -9,7 +9,7 @@ Graphics g = null;
 
 Parallax parallax = new Parallax();
 
-parallax.Layers.Add(new LandscapeLayer(40));
+// parallax.Layers.Add(new LandscapeLayer(40));
 parallax.Layers.Add(new CityLayer(80));
 parallax.Layers.Add(new CasasLayer(130));
 parallax.Layers.Add(new RuasLayer());
