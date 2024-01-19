@@ -9,15 +9,16 @@ Graphics g = null;
 
 Parallax parallax = new Parallax();
 
-parallax.Layers.Add(new LandscapeLayer(20));
+// parallax.Layers.Add(new SkyLayer(180));
+// parallax.Layers.Add(new LandscapeLayer(120));
 parallax.Layers.Add(new CityLayer(40));
 parallax.Layers.Add(new SlumLayer(80));
 parallax.Layers.Add(new CasasLayer(130));
-parallax.Layers.Add(new RuasLayer());
+parallax.Layers.Add(new RuasLayer(220));
 parallax.Layers.Add(new CalcadasLayer(190));
 
 var pb = new PictureBox { Dock = DockStyle.Fill, };
-var timer = new Timer { Interval = 5, };
+var timer = new Timer { Interval = 1, };
 
 var form = new Form
 {
