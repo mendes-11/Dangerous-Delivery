@@ -1,13 +1,12 @@
 using System.Drawing;
 
-public class Rua : IPlano
+public class Slum : IPlano
 {
-     private Image Img;
+    private Image Img;
     private float Y;
-
     private float Height;
 
-    public Rua(string imagePath, float y, float width, float height)
+    public Slum(string imagePath, float y, float width, float height)
     {
         this.Img = Image.FromFile(imagePath)
             .GetThumbnailImage((int)width, (int)height, null, nint.Zero);
@@ -20,6 +19,6 @@ public class Rua : IPlano
 
     public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
-         g.DrawImage(Img, parameters.X, Y, Width, Height);
+        g.DrawImage(Img, parameters.X, Y, Width, Height);
     }
 }
