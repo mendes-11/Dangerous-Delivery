@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 
@@ -7,7 +8,12 @@ public class  SlumLayer: Layer
     {
         this.Planos.AddRange(
             Directory.GetFiles("./Image/Favelas")
-            .Select(path => new Slum(path, 330, 330, 500))
+            .Select(path => 
+            {
+                int height = Random.Shared.Next(270, 340 + 1);
+                int y = (300 - height) + 373;
+                return new Casa(path, y, 270, height);
+            })
         );
     }
 }

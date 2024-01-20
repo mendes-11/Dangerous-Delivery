@@ -1,13 +1,21 @@
+using System;
 using System.IO;
 using System.Linq;
 
 public class CasasLayer : Layer
 {
+    private Random random = new Random();
+
     public CasasLayer(float velocidade) : base(velocidade)
     {
         this.Planos.AddRange(
             Directory.GetFiles("./Image/Casas")
-            .Select(path => new Casa(path, 266, 330, 400))
+            .Select(path => 
+            {
+                int height = Random.Shared.Next(370, 500 + 1);
+                int y = (400 - height) + 266;
+                return new Casa(path, y, 330, height);
+            })
         );
     }
 }
