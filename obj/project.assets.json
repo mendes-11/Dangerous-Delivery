@@ -8,19 +8,19 @@
     "net7.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\MateusLeite\\.nuget\\packages\\": {}
+    "C:\\Users\\G3MEOS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\MateusLeite\\desktop\\IFOOD\\Dangerous-Delivery\\jogo.csproj",
+      "projectUniqueName": "c:\\Users\\G3MEOS\\Desktop\\ifood\\Dangerous-Delivery\\jogo.csproj",
       "projectName": "jogo",
-      "projectPath": "c:\\Users\\MateusLeite\\desktop\\IFOOD\\Dangerous-Delivery\\jogo.csproj",
-      "packagesPath": "C:\\Users\\MateusLeite\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\MateusLeite\\desktop\\IFOOD\\Dangerous-Delivery\\obj\\",
+      "projectPath": "c:\\Users\\G3MEOS\\Desktop\\ifood\\Dangerous-Delivery\\jogo.csproj",
+      "packagesPath": "C:\\Users\\G3MEOS\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\G3MEOS\\Desktop\\ifood\\Dangerous-Delivery\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\MateusLeite\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\G3MEOS\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0-windows"
@@ -62,7 +62,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
