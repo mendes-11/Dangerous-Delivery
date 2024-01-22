@@ -10,7 +10,7 @@ Graphics g = null;
 Parallax parallax = new Parallax();
 Player player = new Player();
 
-Moto moto = new Moto("Image/Entregador/moto.png", 300, 650, 300, 300);
+// Moto moto = new Moto("Image/Entregador/moto.png", 300, 650, 300, 300);
 
 parallax.Layers.Add(new SkyLayer(40));
 parallax.Layers.Add(new CityLayer(70));
@@ -43,7 +43,6 @@ timer.Tick += (o, e) =>
     g.Clear(Color.SkyBlue);
     parallax.Draw(g);
     player.Draw(g);
-    moto.Draw(g);
     pb.Refresh();
 };
 
