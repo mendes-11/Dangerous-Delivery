@@ -11,8 +11,8 @@ public class  SkyLayer: Layer
             .Select(path => 
             {
                 int y = Random.Shared.Next(30, 70 + 1);
-                int height = (50 - y) + 600;
-                return new Sky(path, y, 1000, height);
+                int height = (50 - y) + 400;
+                return new Sky(path, y, 1300, height);
             })
         );
     }
