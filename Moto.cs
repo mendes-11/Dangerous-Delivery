@@ -1,6 +1,6 @@
 using System.Drawing;
 
-public class Moto : IPlano
+public class Moto
 {
     private Image Img;  
     private int X; 
@@ -17,9 +17,7 @@ public class Moto : IPlano
         this.Height = height;
     }
 
-    float IPlano.Width { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-    public void Draw(Graphics g, DrawPlanoParameters parameters)
+    public void Draw(Graphics g)
     {
         g.DrawImage(Img, X, Y, Width, Height);
     }

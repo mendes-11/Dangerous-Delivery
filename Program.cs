@@ -8,13 +8,15 @@ Bitmap bmp = null;
 Graphics g = null;
 
 Parallax parallax = new Parallax();
+Moto moto = new Moto("./Image/moto1.png", 100, 200, 50, 50);
 
-parallax.Layers.Add(new SkyLayer(100));
-parallax.Layers.Add(new CityLayer(30));
-parallax.Layers.Add(new SlumLayer(70));
-parallax.Layers.Add(new CasasLayer(110));
-parallax.Layers.Add(new RuasLayer(190));
-parallax.Layers.Add(new CalcadasLayer(150));
+
+parallax.Layers.Add(new SkyLayer(40));
+parallax.Layers.Add(new CityLayer(70));
+parallax.Layers.Add(new SlumLayer(110));
+parallax.Layers.Add(new CasasLayer(150));
+parallax.Layers.Add(new RuasLayer(210));
+parallax.Layers.Add(new CalcadasLayer(180));
 
 var pb = new PictureBox { Dock = DockStyle.Fill, };
 var timer = new Timer { Interval = 20, };
