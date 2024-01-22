@@ -8,6 +8,8 @@ Bitmap bmp = null;
 Graphics g = null;
 
 Parallax parallax = new Parallax();
+Player player = new Player();
+
 Moto moto = new Moto("Image/Entregador/moto.png", 300, 650, 300, 300);
 
 parallax.Layers.Add(new SkyLayer(40));
@@ -40,6 +42,7 @@ timer.Tick += (o, e) =>
 {
     g.Clear(Color.SkyBlue);
     parallax.Draw(g);
+    player.Draw(g);
     moto.Draw(g);
     pb.Refresh();
 };
@@ -50,6 +53,18 @@ form.KeyDown += (o, e) =>
     {
         case Keys.Escape:
             Application.Exit();
+            break;
+        case Keys.Left:
+            player.MoveLeft();
+            break;
+        case Keys.Right:
+            player.MoveRight();
+            break;
+        case Keys.Up:
+            player.MoveUp();
+            break;
+        case Keys.Down:
+            player.MoveDown();
             break;
     }
 };

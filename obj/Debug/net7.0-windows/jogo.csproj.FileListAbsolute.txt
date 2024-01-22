@@ -130,3 +130,17 @@ C:\Users\G3MEOS\desktop\IFOOD\Dangerous-Delivery\obj\Debug\net7.0-windows\refint
 C:\Users\G3MEOS\desktop\IFOOD\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.pdb
 C:\Users\G3MEOS\desktop\IFOOD\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.genruntimeconfig.cache
 C:\Users\G3MEOS\desktop\IFOOD\Dangerous-Delivery\obj\Debug\net7.0-windows\ref\jogo.dll
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.exe
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.deps.json
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.runtimeconfig.json
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.dll
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.pdb
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.AssemblyInfoInputs.cache
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.AssemblyInfo.cs
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.csproj.CoreCompileInputs.cache
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.dll
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\obj\Debug\net7.0-windows\refint\jogo.dll
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.pdb
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.genruntimeconfig.cache
+C:\Users\disrct\Desktop\eats\Dangerous-Delivery\obj\Debug\net7.0-windows\ref\jogo.dll
