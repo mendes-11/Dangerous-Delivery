@@ -7,21 +7,20 @@ using System.Windows.Forms;
 
 public class Player
 {
-    private const int TamanhoJogador = 300;
+    private const int TamanhoJogador = 210;
     private int posX = 500;
     private int posY = 650;
     private int velocidade = 30;
     private int frameAtual = 0;
 
-    private const int LimiteSuperiorY = 100;
-    private const int LimiteInferiorY = 700;
-
-
+    private const int LimiteSuperiorY = 550;
+    private const int LimiteInferiorY = 800;
+    private const int LimiteDireitaX = 1450;
+    private const int LimiteEsquerdaX = 100;
     private int lastPosX;
     private int lastPosY;
 
     private List<Image> playerImages = new List<Image>();
-    private const int NumeroDeQuadros = 4;
 
     private Timer animationTimer;
 
@@ -38,13 +37,21 @@ public class Player
     public void MoveLeft()
     {
         lastPosX = posX;
-        posX -= velocidade;
+        int novaPosX = posX - velocidade;
+        if (novaPosX >= LimiteEsquerdaX)
+        {
+            posX = novaPosX;
+        }
     }
 
     public void MoveRight()
     {
         lastPosX = posX;
-        posX += velocidade;
+        int novaPosX = posX + velocidade;
+        if (novaPosX <= LimiteDireitaX)
+        {
+            posX = novaPosX;
+        }
     }
 
     public void MoveUp()
@@ -68,22 +75,6 @@ public class Player
             posY = novaPosY;
         }
     }
-
-
-    public bool CheckCollision(int x, int y, int width, int height)
-    {
-        Rectangle playerRect = new Rectangle(posX, posY, TamanhoJogador, TamanhoJogador);
-        Rectangle obstacleRect = new Rectangle(x, y, width, height);
-
-        return playerRect.IntersectsWith(obstacleRect);
-    }
-
-    public void ReverseLastMove()
-    {
-        posX = lastPosX;
-        posY = lastPosY;
-    }
-
 
     private void Animate()
     {
