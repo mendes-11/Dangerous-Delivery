@@ -13,6 +13,10 @@ public class Player
     private int velocidade = 30;
     private int frameAtual = 0;
 
+    private const int LimiteSuperiorY = 100;
+    private const int LimiteInferiorY = 700;
+
+
     private int lastPosX;
     private int lastPosY;
 
@@ -46,14 +50,25 @@ public class Player
     public void MoveUp()
     {
         lastPosY = posY;
-        posY -= velocidade;
+        int novaPosY = posY - velocidade;
+
+        if (novaPosY >= LimiteSuperiorY)
+        {
+            posY = novaPosY;
+        }
     }
 
     public void MoveDown()
     {
         lastPosY = posY;
-        posY += velocidade;
+        int novaPosY = posY + velocidade;
+
+        if (novaPosY <= LimiteInferiorY)
+        {
+            posY = novaPosY;
+        }
     }
+
 
     public bool CheckCollision(int x, int y, int width, int height)
     {

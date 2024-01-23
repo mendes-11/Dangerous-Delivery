@@ -10,8 +10,6 @@ Graphics g = null;
 Parallax parallax = new Parallax();
 Player player = new Player();
 
-// Moto moto = new Moto("Image/Entregador/moto.png", 300, 650, 300, 300);
-
 parallax.Layers.Add(new SkyLayer(40));
 parallax.Layers.Add(new CityLayer(70));
 parallax.Layers.Add(new SlumLayer(110));

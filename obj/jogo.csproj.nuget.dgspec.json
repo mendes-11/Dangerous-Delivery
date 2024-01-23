@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\MateusLeite\\Desktop\\ifood\\Dangerous-Delivery\\jogo.csproj": {}
+    "C:\\Users\\MateusLeite\\Desktop\\ifood\\Dangerous-Delivery\\jogo.csproj": {}
   },
   "projects": {
-    "c:\\Users\\MateusLeite\\Desktop\\ifood\\Dangerous-Delivery\\jogo.csproj": {
+    "C:\\Users\\MateusLeite\\Desktop\\ifood\\Dangerous-Delivery\\jogo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\MateusLeite\\Desktop\\ifood\\Dangerous-Delivery\\jogo.csproj",
+        "projectUniqueName": "C:\\Users\\MateusLeite\\Desktop\\ifood\\Dangerous-Delivery\\jogo.csproj",
         "projectName": "jogo",
-        "projectPath": "c:\\Users\\MateusLeite\\Desktop\\ifood\\Dangerous-Delivery\\jogo.csproj",
+        "projectPath": "C:\\Users\\MateusLeite\\Desktop\\ifood\\Dangerous-Delivery\\jogo.csproj",
         "packagesPath": "C:\\Users\\MateusLeite\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\MateusLeite\\Desktop\\ifood\\Dangerous-Delivery\\obj\\",
+        "outputPath": "C:\\Users\\MateusLeite\\Desktop\\ifood\\Dangerous-Delivery\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MateusLeite\\AppData\\Roaming\\NuGet\\NuGet.Config"
