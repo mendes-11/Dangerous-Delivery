@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -15,19 +16,26 @@ public class Menu : Form
         this.Text = "Dangerous Delivery";
 
         Game game = new Game();
-        var playButton = new Button();
-        playButton.Text = "Jogar";
-        playButton.Size = new Size(100, 50);
-        playButton.Location = new Point(500, 500);
-        this.Controls.Add(playButton);
 
-        this.Controls.Add(pb);
+        var playButton = CriarBotao("Jogar");
+        var opcoesButton = CriarBotao("Opções");
+        var exitButton = CriarBotao("Sair");
 
         playButton.Click += (o, e) =>
         {
             this.Hide();
             game.Show();
         };
+        opcoesButton.Click += (o, e) =>
+        {
+            // Abrir a tela de opções
+        };
+        exitButton.Click += (o, e) =>
+        {
+            Application.Exit();
+        };
+
+        this.Controls.Add(pb);
 
         this.Load += (o, e) =>
         {
@@ -36,6 +44,10 @@ public class Menu : Form
             pb.Image = bmp;
             g.Clear(Color.Black);
             timer.Start();
+
+            CentralizarBotao(playButton);
+            CentralizarBotao(opcoesButton);
+            CentralizarBotao(exitButton);
         };
 
         timer.Tick += (o, e) =>
@@ -43,13 +55,21 @@ public class Menu : Form
             g.Clear(Color.SkyBlue);
             pb.Refresh();
         };
+    }
 
-        this.KeyDown += (o, e) =>
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                Application.Exit();
-            }
-        };
+    private Button CriarBotao(string texto)
+    {
+        var botao = new Button();
+        botao.Text = texto;
+        botao.Size = new Size(100, 50);
+        this.Controls.Add(botao);
+        return botao;
+    }
+
+    private void CentralizarBotao(Button botao)
+    {
+        botao.Location = new Point(
+            (this.ClientSize.Width - botao.Width) / 2, 
+            (this.ClientSize.Height - botao.Height) / 2 + botao.TabIndex * 100);
     }
 }
