@@ -4,8 +4,6 @@ using System.Linq;
 
 public class CasasLayer : Layer
 {
-    private Random random = new Random();
-
     public CasasLayer(float velocidade) : base(velocidade)
     {
         this.Planos.AddRange(

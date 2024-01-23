@@ -1,40 +1,33 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-public class Game
+public class Game : Form
 {
     private Bitmap bmp;
     private Graphics g;
     private Parallax parallax;
     private Player player;
 
-    public void Initialize()
+    public Game()
     {
-        ApplicationConfiguration.Initialize();
+        this.WindowState = FormWindowState.Maximized; 
+        this.Text = "Dangerous Delivery";
+        
+        var pb = new PictureBox { Dock = DockStyle.Fill };
+        var timer = new Timer { Interval = 20 };
 
         parallax = new Parallax();
         player = new Player();
-
+        
         parallax.Layers.Add(new SkyLayer(40));
         parallax.Layers.Add(new CityLayer(70));
         parallax.Layers.Add(new SlumLayer(110));
         parallax.Layers.Add(new CasasLayer(150));
         parallax.Layers.Add(new RuasLayer(210));
         parallax.Layers.Add(new CalcadasLayer(180));
-    }
 
-    public void Run(Form form)
-    {
-        var pb = new PictureBox { Dock = DockStyle.Fill, };
-        var timer = new Timer { Interval = 20, };
 
-       
-        form.WindowState = FormWindowState.Maximized;
-        form.Text = "Dangerous Delivery";
-        form.Controls.Add(pb);
-       
-
-        form.Load += (o, e) =>
+        this.Load += (sender, e) =>
         {
             bmp = new Bitmap(pb.Width, pb.Height);
             g = Graphics.FromImage(bmp);
@@ -43,7 +36,7 @@ public class Game
             timer.Start();
         };
 
-        timer.Tick += (o, e) =>
+        timer.Tick += (sender, e) =>
         {
             g.Clear(Color.SkyBlue);
             parallax.Draw(g);
@@ -51,7 +44,7 @@ public class Game
             pb.Refresh();
         };
 
-        form.KeyDown += (o, e) =>
+        this.KeyDown += (sender, e) =>
         {
             switch (e.KeyCode)
             {
@@ -72,6 +65,7 @@ public class Game
                     break;
             }
         };
-        Application.Run(form);
+
+        this.Controls.Add(pb);
     }
 }
