@@ -9,11 +9,14 @@ public class Menu : Form
 
     public Menu()
     {
-        var pb = new PictureBox { Dock = DockStyle.Fill };
+        var pb = new PictureBox { Dock = DockStyle.Fill, BackColor = Color.Transparent };
         var timer = new Timer { Interval = 20 };
 
         this.WindowState = FormWindowState.Maximized;
         this.Text = "Dangerous Delivery";
+        this.BackgroundImage = Image.FromFile("./Image/Menu (2).jpg");
+
+        Game game = new Game();
 
         var playButton = CriarBotao("Jogar");
         var opcoesButton = CriarBotao("Opções");
@@ -21,13 +24,13 @@ public class Menu : Form
 
         playButton.Click += (o, e) =>
         {
-            Game game = new Game();
             this.Hide();
             game.Show();
         };
         opcoesButton.Click += (o, e) =>
         {
-            // Abrir a tela de opções
+            Opcoes opcoesForm = new Opcoes();
+            opcoesForm.Mostrar();
         };
         exitButton.Click += (o, e) =>
         {
@@ -41,7 +44,6 @@ public class Menu : Form
             bmp = new Bitmap(this.ClientSize.Width, this.ClientSize.Height);
             g = Graphics.FromImage(bmp);
             pb.Image = bmp;
-            g.Clear(Color.Black);
             timer.Start();
 
             CentralizarBotao(playButton);
@@ -51,7 +53,6 @@ public class Menu : Form
 
         timer.Tick += (o, e) =>
         {
-            g.Clear(Color.SkyBlue);
             pb.Refresh();
         };
     }
