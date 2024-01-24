@@ -1,6 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 public class Game : Form
 {
@@ -38,6 +39,11 @@ public class Game : Form
         {
             bmp = new Bitmap(pb.Width, pb.Height);
             g = Graphics.FromImage(bmp);
+            
+            g.SmoothingMode = SmoothingMode.HighSpeed;
+            g.CompositingQuality = CompositingQuality.AssumeLinear;
+            g.InterpolationMode = InterpolationMode.NearestNeighbor;
+
             g.Clear(Color.Black);
             pb.Image = bmp;
             timer.Start();
@@ -87,6 +93,11 @@ public class Game : Form
                         break;
                 }
             }
+        };
+
+        FormClosed += delegate
+        {
+            Application.Exit();
         };
 
         // this.FormBorderStyle = FormBorderStyle.None;

@@ -19,6 +19,6 @@ public class City : IPlano
 
     public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
-        g.DrawImage(Img, parameters.X, Y, Width, Height);
+        g.DrawImage(Img, parameters.X, Y);
     }
 }
