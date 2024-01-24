@@ -1,14 +1,15 @@
 using System.Drawing;
 
-public class Burguer : ILanche
+public class Lanche
 {
 
     private Image Img;
     private float Y;
-     private float Width;
     private float Height;
+    public float Width { get; set; }
+    public string Type { get; set; } 
 
-    public Burguer(string imagePath, float y)
+    public Lanche(string imagePath, float y)
     {
         this.Img = Image.FromFile(imagePath);
         this.Y = y;

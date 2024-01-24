@@ -15,14 +15,13 @@ public class Menu : Form
         this.WindowState = FormWindowState.Maximized;
         this.Text = "Dangerous Delivery";
 
-        Game game = new Game();
-
         var playButton = CriarBotao("Jogar");
         var opcoesButton = CriarBotao("Opções");
         var exitButton = CriarBotao("Sair");
 
         playButton.Click += (o, e) =>
         {
+            Game game = new Game();
             this.Hide();
             game.Show();
         };

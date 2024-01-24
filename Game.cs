@@ -7,6 +7,7 @@ public class Game : Form
     private Bitmap bmp;
     private Graphics g;
     private Parallax parallax;
+    private FoodLanche foodLanche;
     private Player player;
     private Pause pause;
 
@@ -18,9 +19,10 @@ public class Game : Form
         this.Text = "Dangerous Delivery";
 
         var pb = new PictureBox { Dock = DockStyle.Fill };
-        var timer = new Timer { Interval = 20 };
+        var timer = new Timer { Interval = 1000 / 60, };
 
         parallax = new Parallax();
+        foodLanche = new FoodLanche();
         player = new Player();
         pause = new Pause();
         pause.ResumeGame += (sender, e) => ResumeGame();
@@ -47,6 +49,7 @@ public class Game : Form
             {
                 g.Clear(Color.SkyBlue);
                 parallax.Draw(g);
+                foodLanche.Draw(g);
                 player.Draw(g);
                 pb.Refresh();
             }
@@ -70,16 +73,16 @@ public class Game : Form
             {
                 switch (e.KeyCode)
                 {
-                    case Keys.Left:
+                    case Keys.A:
                         player.MoveLeft();
                         break;
-                    case Keys.Right:
+                    case Keys.D:
                         player.MoveRight();
                         break;
-                    case Keys.Up:
+                    case Keys.W:
                         player.MoveUp();
                         break;
-                    case Keys.Down:
+                    case Keys.S:
                         player.MoveDown();
                         break;
                 }
@@ -90,11 +93,13 @@ public class Game : Form
 
         this.Controls.Add(pb);
     }
+
     private void ResumeGame()
     {
         isPaused = false;
         pause.HidePause();
     }
+
     private void TogglePause()
     {
         isPaused = !isPaused;
@@ -105,9 +110,7 @@ public class Game : Form
         }
         else
         {
-            
             ResumeGame();
         }
     }
-
 }
