@@ -24,6 +24,7 @@ public class Food : ObjBox {
             hitBox = new ObjBox();
             hitBox.CreateHitbox(currentX, lanche.Y, lanche.Width, lanche.Height);
             g.DrawRectangle(Pens.Red, hitBox.Box);
+            Collision.Current.AddObjBox(hitBox);
             currentX += lanche.Width - 2000;
         }
 
@@ -31,6 +32,7 @@ public class Food : ObjBox {
         {
             parameters.X += queue.Peek().Width + 1885;
             queue.Dequeue();
+            Collision.Current.RemoveObjBox(hitBox);
         }
     }
 
