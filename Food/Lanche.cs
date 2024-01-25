@@ -4,8 +4,8 @@ public class Lanche
 {
 
     private Image Img;
-    private float Y;
-    private float Height;
+    public float Y;
+    public float Height;
     public float Width { get; set; }
     public string Type { get; set; } 
 

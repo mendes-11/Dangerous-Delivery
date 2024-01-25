@@ -16,7 +16,6 @@ public class Menu : Form
         this.Text = "Dangerous Delivery";
         this.BackgroundImage = Image.FromFile("./Image/Menu (2).jpg");
 
-        Game game = new Game();
 
         var playButton = CriarBotao("Jogar");
         var opcoesButton = CriarBotao("Opções");
@@ -24,6 +23,7 @@ public class Menu : Form
 
         playButton.Click += (o, e) =>
         {
+            Game game = new Game();
             this.Hide();
             game.Show();
         };

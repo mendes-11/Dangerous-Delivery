@@ -11,6 +11,7 @@ public class Game : Form
     private FoodLanche foodLanche;
     private Player player;
     private Pause pause;
+    private bool moveLeft, moveRight, moveUp, moveDown;
 
     private bool isPaused = false;
 
@@ -53,6 +54,7 @@ public class Game : Form
         {
             if (!isPaused)
             {
+                UpdatePlayerMovement();
                 g.Clear(Color.SkyBlue);
                 parallax.Draw(g);
                 foodLanche.Draw(g);
@@ -80,18 +82,37 @@ public class Game : Form
                 switch (e.KeyCode)
                 {
                     case Keys.A:
-                        player.MoveLeft();
+                        moveLeft = true;
                         break;
                     case Keys.D:
-                        player.MoveRight();
+                        moveRight = true;
                         break;
                     case Keys.W:
-                        player.MoveUp();
+                        moveUp = true;
                         break;
                     case Keys.S:
-                        player.MoveDown();
+                        moveDown = true;
                         break;
                 }
+            }
+        };
+
+        this.KeyUp += (o, e) =>
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.A:
+                    moveLeft = false;
+                    break;
+                case Keys.D:
+                    moveRight = false;
+                    break;
+                case Keys.W:
+                    moveUp = false;
+                    break;
+                case Keys.S:
+                    moveDown = false;
+                    break;
             }
         };
 
@@ -100,11 +121,16 @@ public class Game : Form
             Application.Exit();
         };
 
-        // this.FormBorderStyle = FormBorderStyle.None;
-
         this.Controls.Add(pb);
     }
 
+    private void UpdatePlayerMovement()
+    {
+        if (moveLeft) player.MoveLeft();
+        if (moveRight) player.MoveRight();
+        if (moveUp) player.MoveUp();
+        if (moveDown) player.MoveDown();
+    }
     private void ResumeGame()
     {
         isPaused = false;
