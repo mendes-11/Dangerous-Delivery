@@ -1,10 +1,9 @@
 using System.Drawing;
 
-public class ObjBox {
+public abstract class ObjBox
+{
+    public abstract RectangleF Box { get; set; }
 
-    public RectangleF Box { get; set; }
-    
-    public void CreateHitbox(float x, float y, float width, float height)
-        => this.Box = new RectangleF(x, y, width, height);
-    
+    public virtual void CreateHitbox(float x, float y, float width, float height) =>
+        this.Box = new RectangleF(x, y, width, height);
 }

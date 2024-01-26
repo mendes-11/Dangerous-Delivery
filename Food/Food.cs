@@ -2,68 +2,71 @@ using System;
 using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
-public class Food : ObjBox {
+public class Food
+{
     public List<Lanche> Lanches { get; set; } = new List<Lanche>();
     private Queue<Lanche> nextQueue = new();
     private Queue<Lanche> queue = new();
     private DateTime lastFrame = DateTime.Now;
-    private ObjBox hitBox;
-    private DrawPlanoParameters parameters = new DrawPlanoParameters { X = 0};
+    private DateTime nextSpawnTime = DateTime.Now.AddSeconds(5);
+    private DrawPlanoParameters parameters = new DrawPlanoParameters { X = 2500 };
 
     public void Draw(Graphics g)
     {
         refillQueue();
-
-        parameters.X -= 300 * deltaTime();
         float currentX = parameters.X;
 
-        foreach (var lanche in queue) 
+        if (queue.Any())
         {
+            parameters.X -= 8;
+            var lanche = queue.Peek();
             lanche.Draw(g, new DrawPlanoParameters { X = currentX });
-            hitBox = new ObjBox();
-            hitBox.CreateHitbox(currentX, lanche.Y, lanche.Width, lanche.Height);
-            g.DrawRectangle(Pens.Red, hitBox.Box);
-            Collision.Current.AddObjBox(hitBox);
-            currentX += lanche.Width - 2000;
+            if (Collision.Current.CheckCollisions(lanche))
+            {
+                parameters.X = 2220; 
+                queue.Dequeue();
+                SetNextSpawnTime();
+                return;
+            }
+
+            if (parameters.X + queue.Peek().Width < 0)
+            {
+                parameters.X = 2220; 
+                queue.Dequeue();
+                SetNextSpawnTime();
+            }
         }
-
-        if (parameters.X + queue.Peek().Width < 0)
-        {
-            parameters.X += queue.Peek().Width + 1885;
-            queue.Dequeue();
-            Collision.Current.RemoveObjBox(hitBox);
-        }
-    }
-
-    private float deltaTime()
-    {
-        var newFrame = DateTime.Now;
-        var time = newFrame - lastFrame;
-        lastFrame = newFrame;
-
-        return (float)time.TotalSeconds;
     }
 
     private void refillQueue()
     {
-        int lanchesCount = Lanches.Count;
-        while (queue.Count < lanchesCount)
+        if (DateTime.Now >= nextSpawnTime)
         {
             if (nextQueue.Count == 0)
                 genNextQueue();
-
-            var next = nextQueue.Dequeue();
-            queue.Enqueue(next);
+            else
+            {
+                var next = nextQueue.Dequeue();
+                queue.Enqueue(next);
+                SetNextSpawnTime();
+            }
         }
+    }
+
+    private void SetNextSpawnTime()
+    {
+        int seconds = Random.Shared.Next(5, 15);
+        nextSpawnTime = DateTime.Now.AddSeconds(seconds);
     }
 
     private void genNextQueue()
     {
-        foreach (var lanche in Lanches.OrderBy(p => Random.Shared.Next()))
-            nextQueue.Enqueue(lanche);
+        int randomIndex = Random.Shared.Next(Lanches.Count);
+        var lanche = Lanches[randomIndex];
+        nextQueue.Enqueue(lanche);
     }
 
-    public void AddFood(Lanche lanche)
-        => this.Lanches.Add(lanche);
+    public void AddFood(Lanche lanche) => this.Lanches.Add(lanche);
 }

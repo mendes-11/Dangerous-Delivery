@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 public class Collision
 {
@@ -12,9 +13,26 @@ public class Collision
         ObjectsBox = new List<ObjBox>();
     }
 
-    public void AddObjBox(ObjBox boxObject)
-        => ObjectsBox.Add(boxObject);
+    public void AddObjBox(ObjBox boxObject) => ObjectsBox.Add(boxObject);
 
-    public void RemoveObjBox(ObjBox boxObject)
-        => ObjectsBox.Remove(boxObject);
+    public void RemoveObjBox(ObjBox boxObject) => ObjectsBox.Remove(boxObject);
+
+    public bool CheckCollisions(ObjBox obj)
+    {
+        for (int j = 0; j < ObjectsBox.Count; j++)
+        {
+            ObjBox other = ObjectsBox[j];
+
+            if (other == obj)
+                continue;
+
+            if (CollisionDetected(obj, other) && other is Player)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool CollisionDetected(ObjBox obj1, ObjBox obj2) => obj2.Box.IntersectsWith(obj1.Box);
 }

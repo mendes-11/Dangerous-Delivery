@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-public class Player : ObjBox
+public class Player:ObjBox
 {
     private const int TamanhoJogador = 210;
     private const int LimiteSuperiorY = 550;
@@ -21,7 +21,7 @@ public class Player : ObjBox
     private float velocidadeX = 0;
     private float velocidadeY = 0;
     private int frameAtual = 0;
-    public ObjBox hitBox;
+    public override RectangleF Box { get; set; }
 
     public Player()
     {
@@ -29,7 +29,7 @@ public class Player : ObjBox
         {
             playerImages.Add(Image.FromFile(filePath));
         }
-
+        Collision.Current.AddObjBox(this);
         animationTimer = new Timer { Interval = 100, Enabled = true };
         animationTimer.Tick += (sender, e) => Update();
     }
@@ -54,7 +54,7 @@ public class Player : ObjBox
         velocidadeY = Math.Min(velocidadeY + aceleracao, velocidadeMax);
     }
 
-    private void Update()
+    public void Update()
     {
         ApplyFriction();
         UpdatePosition();
@@ -89,9 +89,21 @@ public class Player : ObjBox
     {
         Image currentImage = playerImages[frameAtual];
         Rectangle destino = new Rectangle(posX, posY, TamanhoJogador, TamanhoJogador);
-        hitBox = new ObjBox();
-        hitBox.CreateHitbox(posX, posY+105, TamanhoJogador, TamanhoJogador/2);
-        g.DrawRectangle(Pens.White, hitBox.Box);
+        CreateHitbox(posX, posY + 105, TamanhoJogador, TamanhoJogador / 2);
+        g.DrawRectangle(Pens.White, Box);
         g.DrawImage(currentImage, destino);
+    }
+
+    public void CheckedCollision()
+    {
+        if (Collision.Current.CheckCollisions(this))
+        {
+            MessageBox.Show(
+                "Collision detected!",
+                "Collision Alert",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning
+            );
+        }
     }
 }

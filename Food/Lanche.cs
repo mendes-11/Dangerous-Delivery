@@ -1,13 +1,13 @@
 using System.Drawing;
 
-public class Lanche
+public class Lanche : ObjBox
 {
-
     private Image Img;
     public float Y;
     public float Height;
     public float Width { get; set; }
-    public string Type { get; set; } 
+    public string Type { get; set; }
+    public override RectangleF Box { get; set; }
 
     public Lanche(string imagePath, float y)
     {
@@ -19,6 +19,9 @@ public class Lanche
 
     public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
-         g.DrawImage(Img, parameters.X, Y, Width, Height);
+        g.DrawImage(Img, parameters.X, Y, Width, Height);
+        CreateHitbox(parameters.X, Y, this.Width, this.Height);
+        g.DrawRectangle(Pens.Red, Box);
+        Collision.Current.AddObjBox(this);
     }
 }
