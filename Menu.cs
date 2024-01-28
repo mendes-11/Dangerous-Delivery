@@ -10,6 +10,7 @@ public class Menu : Form
     public Menu()
     {
         WindowState = FormWindowState.Maximized;
+        Text = "Dangerous Delivery";
 
         pbBackground = new PictureBox
         {
@@ -22,23 +23,9 @@ public class Menu : Form
         opcoesButton = CriarBotao("./Image/Menu/opcoesButton.png");
         exitButton = CriarBotao("./Image/Menu/sairButton.png");
 
-        playButton.Click += (o, e) =>
-        {
-            Game game = new Game();
-            this.Hide();
-            game.Show();
-        };
-
-        opcoesButton.Click += (o, e) =>
-        {
-            Opcoes opcoesForm = new Opcoes();
-            opcoesForm.Mostrar();
-        };
-
-        exitButton.Click += (o, e) =>
-        {
-            Application.Exit();
-        };
+        playButton.Click += PlayButtonClick;
+        opcoesButton.Click += OpcoesButtonClick;
+        exitButton.Click += ExitButtonClick;
 
         this.Controls.Add(pbBackground);
 
@@ -48,9 +35,12 @@ public class Menu : Form
 
         this.Load += (o, e) =>
         {
-            CentralizarBotao(playButton, -250);
-            CentralizarBotao(opcoesButton, 0);
-            CentralizarBotao(exitButton, 250);
+            AjustarLayout();
+        };
+
+        this.SizeChanged += (o, e) =>
+        {
+            AjustarLayout();
         };
     }
 
@@ -58,14 +48,15 @@ public class Menu : Form
     {
         var botao = new Button
         {
-            Size = new Size(400, 150),
-            Image = new Bitmap(Image.FromFile(imagemPath), new Size(390, 150)),
-            ImageAlign = ContentAlignment.MiddleLeft,
             BackColor = Color.Transparent,
             FlatStyle = FlatStyle.Flat,
             FlatAppearance = { BorderSize = 0 },
             TextAlign = ContentAlignment.MiddleCenter
         };
+
+        var imagem = Image.FromFile(imagemPath);
+        botao.BackgroundImage = new Bitmap(imagem);
+        botao.BackgroundImageLayout = ImageLayout.Stretch;
 
         botao.FlatAppearance.MouseOverBackColor = Color.Transparent;
         botao.FlatAppearance.MouseDownBackColor = Color.Transparent;
@@ -73,11 +64,58 @@ public class Menu : Form
         return botao;
     }
 
-    private void CentralizarBotao(Button botao, int position)
+    private void AjustarLayout()
+    {
+        pbBackground.Size = this.ClientSize;
+        int larguraDisponivel = this.ClientSize.Width / 3;
+        double proporcaoEspacamento = -0.15;
+        int espacamentoEntreBotoes = (int)(larguraDisponivel * proporcaoEspacamento);
+
+        AjustarTamanhoBotao(playButton, larguraDisponivel, 450);
+        AjustarTamanhoBotao(opcoesButton, larguraDisponivel, 450);
+        AjustarTamanhoBotao(exitButton, larguraDisponivel, 450);
+
+        CentralizarBotao(playButton, -larguraDisponivel / 2 - espacamentoEntreBotoes);
+        CentralizarBotao(opcoesButton, 0);
+        CentralizarBotao(exitButton, larguraDisponivel / 2 + espacamentoEntreBotoes);
+    }
+
+    private void AjustarTamanhoBotao(Button botao, int larguraDisponivel, int tamanhoInicial)
+    {
+        double proporcaoImagem = (double)botao.BackgroundImage.Width / botao.BackgroundImage.Height;
+        botao.Width = tamanhoInicial;
+        botao.Height = (int)(tamanhoInicial / proporcaoImagem);
+
+        if (larguraDisponivel < tamanhoInicial)
+        {
+            botao.Width = larguraDisponivel;
+            botao.Height = (int)(larguraDisponivel / proporcaoImagem);
+        }
+    }
+
+    private void CentralizarBotao(Button botao, int posicaoVertical)
     {
         botao.Location = new Point(
             (pbBackground.ClientSize.Width - botao.Width) / 2,
-            (pbBackground.ClientSize.Height - botao.Height) / 2 + position
+            (pbBackground.ClientSize.Height - botao.Height) / 2 + posicaoVertical
         );
+    }
+
+    private void PlayButtonClick(object sender, EventArgs e)
+    {
+        Game game = new Game();
+        this.Hide();
+        game.Show();
+    }
+
+    private void OpcoesButtonClick(object sender, EventArgs e)
+    {
+        Opcoes opcoesForm = new Opcoes();
+        opcoesForm.Mostrar();
+    }
+
+    private void ExitButtonClick(object sender, EventArgs e)
+    {
+        Application.Exit();
     }
 }
