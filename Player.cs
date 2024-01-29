@@ -4,11 +4,11 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-public class Player:ObjBox
+public class Player : ObjBox
 {
     private const int TamanhoJogador = 210;
     private const int LimiteSuperiorY = 550;
-    private const int LimiteInferiorY = 800;
+    private const int LimiteInferiorY = 770;
     private const int LimiteDireitaX = 1450;
     private const int LimiteEsquerdaX = 100;
     private List<Image> playerImages = new List<Image>();
@@ -22,6 +22,8 @@ public class Player:ObjBox
     private float velocidadeY = 0;
     private int frameAtual = 0;
     public Queue<Lanche> BagLanche = new();
+    private float centerScreen;
+
     public override RectangleF Box { get; set; }
 
     public Player()
@@ -30,6 +32,8 @@ public class Player:ObjBox
         {
             playerImages.Add(Image.FromFile(filePath));
         }
+
+        centerScreen = Screen.PrimaryScreen.Bounds.Width / 2f;
         Collision.Current.AddObjBox(this);
         animationTimer = new Timer { Interval = 100, Enabled = true };
         animationTimer.Tick += (sender, e) => Update();
@@ -89,8 +93,15 @@ public class Player:ObjBox
     public void Draw(Graphics g)
     {
         Image currentImage = playerImages[frameAtual];
-        Rectangle destino = new Rectangle(posX, posY, TamanhoJogador, TamanhoJogador);
-        CreateHitbox(posX, posY + 105, TamanhoJogador, TamanhoJogador / 2);
+        float deltaY = -posY / 500f;
+        float scaleFactor = 0.2f - deltaY * 0.7f;
+
+        int adjustedSize = (int)(TamanhoJogador * scaleFactor);
+        int adjustedX = posX + (TamanhoJogador - adjustedSize) / 2;
+        int adjustedY = posY + (TamanhoJogador - adjustedSize) / 2;
+
+        Rectangle destino = new Rectangle(adjustedX, adjustedY, adjustedSize, adjustedSize);
+        CreateHitbox(adjustedX, posY + 143, adjustedSize, adjustedSize / 3f);
         g.DrawRectangle(Pens.White, Box);
         g.DrawImage(currentImage, destino);
     }
