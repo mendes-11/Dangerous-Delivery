@@ -101,12 +101,18 @@ public class Menu : Form
         );
     }
 
-    private void PlayButtonClick(object sender, EventArgs e)
+private void PlayButtonClick(object sender, EventArgs e)
+{
+    using (PlayerNameForm playerNameForm = new PlayerNameForm())
     {
-        Game game = new Game();
-        this.Hide();
-        game.Show();
+        if (playerNameForm.ShowDialog() == DialogResult.OK)
+        {
+            Game game = new Game(playerNameForm.PlayerName);
+            this.Hide();
+            game.Show();
+        }
     }
+}
 
     private void OpcoesButtonClick(object sender, EventArgs e)
     {

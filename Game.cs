@@ -12,17 +12,21 @@ public class Game : Form
     private Player player;
     private Pause pause;
     private bool moveLeft, moveRight, moveUp, moveDown;
-
     private bool isPaused = false;
+    public string PlayerName { get; }
+    private GameHUD gameHUD;
 
-    public Game()
+    public Game(string playerName)
     {
+        PlayerName = playerName;
+
         this.WindowState = FormWindowState.Maximized;
         this.Text = "Dangerous Delivery";
 
         var pb = new PictureBox { Dock = DockStyle.Fill };
         var timer = new Timer { Interval = 1000 / 60, };
 
+        gameHUD = new GameHUD(playerName);
         parallax = new Parallax();
         foodLanche = new FoodLanche();
         player = new Player();
@@ -59,6 +63,7 @@ public class Game : Form
                 parallax.Draw(g);
                 foodLanche.Draw(g);
                 player.Draw(g);
+                gameHUD.Draw(g);
                 pb.Refresh();
             }
         };
@@ -131,6 +136,7 @@ public class Game : Form
         if (moveUp) player.MoveUp();
         if (moveDown) player.MoveDown();
     }
+
     private void ResumeGame()
     {
         isPaused = false;
