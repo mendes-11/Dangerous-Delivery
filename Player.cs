@@ -21,6 +21,7 @@ public class Player:ObjBox
     private float velocidadeX = 0;
     private float velocidadeY = 0;
     private int frameAtual = 0;
+    public Queue<Lanche> BagLanche = new();
     public override RectangleF Box { get; set; }
 
     public Player()
@@ -105,5 +106,10 @@ public class Player:ObjBox
                 MessageBoxIcon.Warning
             );
         }
+    }
+
+    public void AddFoodBag(Lanche lanche)
+    {
+        BagLanche.Enqueue(lanche);
     }
 }

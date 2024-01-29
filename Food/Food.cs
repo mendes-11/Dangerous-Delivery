@@ -9,8 +9,8 @@ public class Food
     public List<Lanche> Lanches { get; set; } = new List<Lanche>();
     private Queue<Lanche> nextQueue = new();
     private Queue<Lanche> queue = new();
-    private DateTime lastFrame = DateTime.Now;
-    private DateTime nextSpawnTime = DateTime.Now.AddSeconds(5);
+    private Player player = new Player();
+    private DateTime nextSpawnTime = DateTime.Now.AddSeconds(0);
     private DrawPlanoParameters parameters = new DrawPlanoParameters { X = 2500 };
 
     public void Draw(Graphics g)
@@ -20,23 +20,24 @@ public class Food
 
         if (queue.Any())
         {
-            parameters.X -= 8;
-            var lanche = queue.Peek();
-            lanche.Draw(g, new DrawPlanoParameters { X = currentX });
-            if (Collision.Current.CheckCollisions(lanche))
+            parameters.X -= 15;
+            foreach (var lanche in queue.ToList())
             {
-                parameters.X = 2220; 
-                queue.Dequeue();
-                SetNextSpawnTime();
-                return;
+                lanche.Draw(g, new DrawPlanoParameters { X = currentX });
+                if (Collision.Current.CheckCollisions(lanche))
+                {
+                    parameters.X = 2220;
+                    player.AddFoodBag(lanche);
+                    queue.Dequeue();
+                }
+                else if (parameters.X + lanche.Width < 0)
+                {
+                    parameters.X = 2220;
+                    queue.Dequeue();
+                }
+                currentX += 600;
             }
-
-            if (parameters.X + queue.Peek().Width < 0)
-            {
-                parameters.X = 2220; 
-                queue.Dequeue();
-                SetNextSpawnTime();
-            }
+            SetNextSpawnTime();
         }
     }
 
@@ -48,24 +49,25 @@ public class Food
                 genNextQueue();
             else
             {
-                var next = nextQueue.Dequeue();
-                queue.Enqueue(next);
-                SetNextSpawnTime();
+                while (queue.Count < Lanches.Count)
+                {
+                    var next = nextQueue.Dequeue();
+                    queue.Enqueue(next);
+                }
             }
         }
     }
 
     private void SetNextSpawnTime()
     {
-        int seconds = Random.Shared.Next(5, 15);
+        int seconds = Random.Shared.Next(0, 1);
         nextSpawnTime = DateTime.Now.AddSeconds(seconds);
     }
 
     private void genNextQueue()
     {
-        int randomIndex = Random.Shared.Next(Lanches.Count);
-        var lanche = Lanches[randomIndex];
-        nextQueue.Enqueue(lanche);
+        foreach (var lanche in Lanches.OrderBy(p => Random.Shared.Next()))
+            nextQueue.Enqueue(lanche);
     }
 
     public void AddFood(Lanche lanche) => this.Lanches.Add(lanche);
