@@ -71,9 +71,9 @@ public class Menu : Form
         double proporcaoEspacamento = -0.15;
         int espacamentoEntreBotoes = (int)(larguraDisponivel * proporcaoEspacamento);
 
-        AjustarTamanhoBotao(playButton, larguraDisponivel, 450);
-        AjustarTamanhoBotao(opcoesButton, larguraDisponivel, 450);
-        AjustarTamanhoBotao(exitButton, larguraDisponivel, 450);
+        AjustarTamanhoBotao(playButton, larguraDisponivel, 400);
+        AjustarTamanhoBotao(opcoesButton, larguraDisponivel, 400);
+        AjustarTamanhoBotao(exitButton, larguraDisponivel, 400);
 
         CentralizarBotao(playButton, -larguraDisponivel / 2 - espacamentoEntreBotoes);
         CentralizarBotao(opcoesButton, 0);
