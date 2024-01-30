@@ -15,36 +15,39 @@ public class Food
     public void Draw(Graphics g)
     {
         Queue<Lanche> newQueue = new Queue<Lanche>();
-        
-        if(!newQueue.Any())
+
+        if (!newQueue.Any())
             refillQueue();
 
         if (queue.Any())
         {
             foreach (var lanche in queue)
             {
-                lanche.Draw(g);
-                lanche.X -= 20;
+                if (queue.Any())
+                {
+                    lanche.Draw(g);
+                    lanche.X -= 25;
 
-                if (Collision.Current.CheckCollisions(lanche))
-                {
-                    player.AddFoodBag(lanche);
-                    lanche.X = 2000;
-                }
-                else if (lanche.X + lanche.Width < 0)
-                {
-                    lanche.X = 2000;
-                }
-                else
-                {
-                    newQueue.Enqueue(lanche);
+                    if (Collision.Current.CheckCollisions(lanche))
+                    {
+                        player.AddFoodBag(lanche);
+                        lanche.X = 2000;
+                    }
+                    else if (lanche.X + lanche.Width < 0)
+                    {
+                        lanche.X = 2000;
+                    }
+                    else
+                    {
+                        newQueue.Enqueue(lanche);
+                    }
                 }
             }
             queue = newQueue;
-
             SetNextSpawnTime();
         }
     }
+
     private void refillQueue()
     {
         if (DateTime.Now >= nextSpawnTime)
@@ -57,16 +60,19 @@ public class Food
             {
                 while (queue.Count < Random.Shared.Next(1, 3))
                 {
-                    var next = nextQueue.Dequeue();
-                    queue.Enqueue(next);
+                    if (nextQueue.Any())
+                    {
+                        var next = nextQueue.Dequeue();
+                        queue.Enqueue(next);
+                    }
                 }
             }
         }
     }
-    
+
     private void SetNextSpawnTime()
     {
-        int seconds = Random.Shared.Next(0, 1);
+        int seconds = Random.Shared.Next(1, 3);
         nextSpawnTime = DateTime.Now.AddSeconds(seconds);
     }
 
@@ -78,7 +84,7 @@ public class Food
         {
             lanche.X = initialX;
             nextQueue.Enqueue(lanche);
-            initialX += (int)lanche.Width + Random.Shared.Next(300, 500);
+            initialX += Random.Shared.Next(300, 600);
         }
     }
 
