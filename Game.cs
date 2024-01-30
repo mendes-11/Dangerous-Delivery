@@ -26,7 +26,7 @@ public class Game : Form
         var pb = new PictureBox { Dock = DockStyle.Fill };
         var timer = new Timer { Interval = 1000 / 60, };
 
-        gameHUD = new GameHUD(playerName);
+        gameHUD = new GameHUD();
         parallax = new Parallax();
         foodLanche = new FoodLanche();
         player = new Player();
@@ -40,6 +40,7 @@ public class Game : Form
         parallax.Layers.Add(new CasasLayer(150));
         parallax.Layers.Add(new RuasLayer(210));
         parallax.Layers.Add(new CalcadasLayer(180));
+        gameHUD.Player(playerName);
 
         this.Load += (sender, e) =>
         {

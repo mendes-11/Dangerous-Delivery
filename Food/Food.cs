@@ -10,6 +10,7 @@ public class Food
     private Queue<Lanche> nextQueue = new();
     private Queue<Lanche> queue = new();
     private Player player = new Player();
+    private GameHUD gameHUD = new GameHUD();
     private DateTime nextSpawnTime = DateTime.Now.AddSeconds(1);
 
     public void Draw(Graphics g)
@@ -31,6 +32,7 @@ public class Food
                     if (Collision.Current.CheckCollisions(lanche))
                     {
                         player.AddFoodBag(lanche);
+                        HandleCollision(lanche);
                         lanche.X = 2000;
                     }
                     else if (lanche.X + lanche.Width < 0)
@@ -85,6 +87,19 @@ public class Food
             lanche.X = initialX;
             nextQueue.Enqueue(lanche);
             initialX += Random.Shared.Next(300, 600);
+        }
+    }
+
+    private void HandleCollision(Lanche lanche)
+    {
+        switch (lanche.Type)
+        {
+            case "pizza":
+                gameHUD.PizzaCount();
+                break;
+            case "sushi":
+                gameHUD.SushiCount();
+                break;
         }
     }
 
