@@ -55,7 +55,7 @@ public class Food
             }
             else
             {
-                while (queue.Count < Random.Shared.Next(1, 3))
+                while (queue.Count < Random.Shared.Next(0, 3))
                 {
                     var next = nextQueue.Dequeue();
                     queue.Enqueue(next);
@@ -66,7 +66,7 @@ public class Food
     
     private void SetNextSpawnTime()
     {
-        int seconds = Random.Shared.Next(0, 1);
+        int seconds = Random.Shared.Next(1, 3);
         nextSpawnTime = DateTime.Now.AddSeconds(seconds);
     }
 
@@ -78,7 +78,7 @@ public class Food
         {
             lanche.X = initialX;
             nextQueue.Enqueue(lanche);
-            initialX += (int)lanche.Width + Random.Shared.Next(300, 500);
+            initialX += Random.Shared.Next(300, 400);
         }
     }
 
