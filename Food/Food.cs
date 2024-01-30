@@ -14,15 +14,17 @@ public class Food
 
     public void Draw(Graphics g)
     {
-        refillQueue();
-
         Queue<Lanche> newQueue = new Queue<Lanche>();
+        
+        if(!newQueue.Any())
+            refillQueue();
+
         if (queue.Any())
         {
             foreach (var lanche in queue)
             {
                 lanche.Draw(g);
-                lanche.X -= 10;
+                lanche.X -= 20;
 
                 if (Collision.Current.CheckCollisions(lanche))
                 {
