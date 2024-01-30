@@ -95,10 +95,10 @@ public class Food
         switch (lanche.Type)
         {
             case "pizza":
-                gameHUD.PizzaCount();
+                gameHUD.IncrementPizzaCount();
                 break;
             case "sushi":
-                gameHUD.SushiCount();
+                gameHUD.IncrementSushiCount();
                 break;
         }
     }
