@@ -8,10 +8,21 @@ public class SkyLayer: BaseLayer
     {
         var time = DateTime.Now - start;
         var secs = (float)time.TotalSeconds;
-        var factor = (MathF.Cos(secs) + 1) / 2;
+        var factor = (MathF.Cos(secs * 0.2f) + 1) / 2;
 
-        float saturation = 31; // ??
-        float value = 95; // ??
+        float saturation = 92 + (31 - 92) * factor; 
+        float value = 19 + (95 - 19) * factor;
+
+    
+
+        // finalValue + (initialValue - finalValue) * factor;
+
+
+        // 31 initialSaturation
+        // 95 initialValue
+
+        // 92 finalSaturation
+        // 19 finalValue
 
         g.Clear(hsvToColor(255 * 200 / 360, (int)(255 * saturation / 100), (int)(255 * value / 100)));
     }
