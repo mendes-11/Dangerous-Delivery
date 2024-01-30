@@ -4,8 +4,10 @@ public class Lanche : ObjBox
 {
     private Image Img;
     public float Y;
+    public float X;
     public float Height;
     public float Width { get; set; }
+    public bool Remove { get; set; } = false;  
     public string Type { get; set; }
     public override RectangleF Box { get; set; }
 
@@ -17,10 +19,10 @@ public class Lanche : ObjBox
         this.Height = Img.Height;
     }
 
-    public void Draw(Graphics g, DrawPlanoParameters parameters)
+    public void Draw(Graphics g)
     {
-        g.DrawImage(Img, parameters.X, Y, Width, Height);
-        CreateHitbox(parameters.X, Y, this.Width, this.Height);
+        g.DrawImage(Img, X, Y, Width, Height);
+        CreateHitbox(X, Y, this.Width, this.Height);
         g.DrawRectangle(Pens.Red, Box);
         Collision.Current.AddObjBox(this);
     }
