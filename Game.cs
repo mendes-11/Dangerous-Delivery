@@ -33,7 +33,8 @@ public class Game : Form
         pause = new Pause();
         pause.ResumeGame += (sender, e) => ResumeGame();
 
-        parallax.Layers.Add(new SkyLayer(40));
+        parallax.Layers.Add(new SkyLayer());
+        parallax.Layers.Add(new CloudLayer(40));
         parallax.Layers.Add(new CityLayer(70));
         parallax.Layers.Add(new SlumLayer(110));
         parallax.Layers.Add(new CasasLayer(150));
@@ -59,7 +60,7 @@ public class Game : Form
             if (!isPaused)
             {
                 UpdatePlayerMovement();
-                g.Clear(Color.SkyBlue);
+
                 parallax.Draw(g);
                 foodLanche.Draw(g);
                 player.Draw(g);
