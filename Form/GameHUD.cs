@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Drawing;
+using System.Drawing.Text;
 
 public class GameHUD
 {
@@ -7,7 +9,6 @@ public class GameHUD
     private int sushiCount;
     private int hamburgerCount;
     private Font hudFont;
-
     public GameHUD(string playerName)
     {
         this.playerName = playerName;
@@ -15,7 +16,10 @@ public class GameHUD
         this.sushiCount = 0;
         this.hamburgerCount = 0;
 
-        hudFont = new Font("Broken Console", 14, FontStyle.Bold);
+        var pFontCollection= new PrivateFontCollection();
+        pFontCollection.AddFontFile("Fonts/BrokenConsole.ttf");
+        FontFamily family = pFontCollection.Families[0];
+        hudFont = new Font(family, 14f, FontStyle.Bold);
     }
 
     public void Draw(Graphics g)
@@ -29,7 +33,7 @@ public class GameHUD
         g.DrawString("Hambúrguer: " + hamburgerCount + "/5", hudFont, brush, 10, 100);
     }
 
-    public void IncrementPizzaCount()
+    public void PizzaCount()
     {
         if (pizzaCount < 5)
         {
@@ -37,7 +41,7 @@ public class GameHUD
         }
     }
 
-    public void IncrementSushiCount()
+    public void SushiCount()
     {
         if (sushiCount < 5)
         {
@@ -45,7 +49,7 @@ public class GameHUD
         }
     }
 
-    public void IncrementHamburgerCount()
+    public void HamburgerCount()
     {
         if (hamburgerCount < 5)
         {
