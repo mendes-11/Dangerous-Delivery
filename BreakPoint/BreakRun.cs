@@ -30,6 +30,7 @@ public class BreakRun
 
                     if (Collision.Current.CheckCollisions(breakP))
                     {
+                        
                         breakP.X = 2000;
                     }
                     else if (breakP.X + breakP.Width < 0)

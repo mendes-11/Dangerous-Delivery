@@ -25,25 +25,20 @@ public class Food
         {
             foreach (var lanche in queue)
             {
-                if (queue.Any())
-                {
-                    lanche.Draw(g);
-                    lanche.X -= 15;
+                lanche.Draw(g);
+                lanche.X -= 15;
 
-                    if (Collision.Current.CheckCollisions(lanche))
-                    {
-                        player.AddFoodBag(lanche);
-                        HandleCollision(lanche);
-                        lanche.X = 2000;
-                    }
-                    else if (lanche.X + lanche.Width < 0)
-                    {
-                        lanche.X = 2000;
-                    }
-                    else
-                    {
-                        newQueue.Enqueue(lanche);
-                    }
+                if (Collision.Current.CheckCollisions(lanche) && HandleCollision(lanche))
+                {
+                    lanche.X = 2000;
+                }
+                else if (lanche.X + lanche.Width < 0)
+                {
+                    lanche.X = 2000;
+                }
+                else
+                {
+                    newQueue.Enqueue(lanche);
                 }
             }
             queue = newQueue;
@@ -91,29 +86,72 @@ public class Food
         }
     }
 
-    private void HandleCollision(Lanche lanche)
+    private bool HandleCollision(Lanche lanche)
     {
         switch (lanche.Type)
         {
             case "pizza":
-                gameHUD.IncrementPizzaCount();
-                break;
+                if (gameHUD.pizzaCount < 5)
+                {
+                    gameHUD.IncrementPizzaCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             case "sushi":
-                gameHUD.IncrementSushiCount();
-                break;
+                if (gameHUD.sushiCount < 5)
+                {
+                    gameHUD.IncrementSushiCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             case "sorvete":
-                gameHUD.IncrementSorveteCount();
-                break;
+                if (gameHUD.sorveteCount < 5)
+                {
+                    gameHUD.IncrementSorveteCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             case "macarrao":
-                gameHUD.IncrementMacarraoCount();
-                break;
+                if (gameHUD.macarraoCount < 5)
+                {
+                    gameHUD.IncrementMacarraoCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             case "frango":
-                gameHUD.IncrementFrangoCount();
-                break;
+                if (gameHUD.frangoCount < 5)
+                {
+                    gameHUD.IncrementFrangoCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             case "bolo":
-                gameHUD.IncrementBoloCount();
-                break;
+                if (gameHUD.boloCount < 5)
+                {
+                    gameHUD.IncrementBoloCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
         }
+        return false;
     }
 
     public void AddFood(Lanche lanche) => this.Lanches.Add(lanche);

@@ -5,12 +5,12 @@ using System.Windows.Forms;
 public class GameHUD
 {
     private string playerName;
-    private int pizzaCount = 0;
-    private int sushiCount = 0;
-    private int sorveteCount = 0;
-    private int macarraoCount = 0;
-    private int boloCount = 0;
-    private int frangoCount = 0;
+    public int pizzaCount = 0;
+    public int sushiCount = 0;
+    public int sorveteCount = 0;
+    public int macarraoCount = 0;
+    public int boloCount = 0;
+    public int frangoCount = 0;
     private Font hudFont;
 
     public GameHUD()
