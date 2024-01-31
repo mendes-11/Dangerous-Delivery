@@ -1,6 +1,6 @@
 using System.Drawing;
 
-public class Lanche : ObjBox
+public class BreakPoint : ObjBox
 {
     private Image Img;
     public float Y;
@@ -10,7 +10,7 @@ public class Lanche : ObjBox
     public string Type { get; set; }
     public override RectangleF Box { get; set; }
 
-    public Lanche(string imagePath, float y)
+    public BreakPoint(string imagePath, float y)
     {
         this.Img = Image.FromFile(imagePath);
         this.Y = y;

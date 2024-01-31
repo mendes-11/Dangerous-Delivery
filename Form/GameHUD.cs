@@ -7,14 +7,14 @@ public class GameHUD
     private string playerName;
     private int pizzaCount = 0;
     private int sushiCount = 0;
-    private int hamburgerCount = 0;
+    private int sorveteCount = 0;
+    private int macarraoCount = 0;
+    private int boloCount = 0;
+    private int frangoCount = 0;
     private Font hudFont;
 
     public GameHUD()
     {
-        this.pizzaCount = 0;
-        this.sushiCount = 0;
-        this.hamburgerCount = 0;
         var pFontCollection = new PrivateFontCollection();
         pFontCollection.AddFontFile("Fonts/BrokenConsole.ttf");
         FontFamily family = pFontCollection.Families[0];
@@ -29,7 +29,10 @@ public class GameHUD
         g.DrawString("Jogador: " + playerName, hudFont, brush, 10, 10);
         g.DrawString("Pizza: " + pizzaCount + "/5", hudFont, brush, 10, 40);
         g.DrawString("Sushi: " + sushiCount + "/5", hudFont, brush, 10, 70);
-        g.DrawString("Hambúrguer: " + hamburgerCount + "/5", hudFont, brush, 10, 100);
+        g.DrawString("Frango: " + frangoCount + "/5", hudFont, brush, 10, 100);
+        g.DrawString("Macarrão: " + macarraoCount + "/5", hudFont, brush, 10, 130);
+        g.DrawString("Bolo: " + boloCount + "/5", hudFont, brush, 10, 160);
+        g.DrawString("Sorvete: " + sorveteCount + "/5", hudFont, brush, 10, 190);
     }
 
 
@@ -54,11 +57,35 @@ public class GameHUD
         }
     }
 
-    public void IncrementHamburgerCount()
+    public void IncrementFrangoCount()
     {
-        if (hamburgerCount < 5)
+        if (frangoCount < 5)
         {
-            hamburgerCount++;
+            frangoCount++;
+        }
+    }
+
+    public void IncrementBoloCount()
+    {
+        if (boloCount < 5)
+        {
+            boloCount++;
+        }
+    }
+
+    public void IncrementMacarraoCount()
+    {
+        if (macarraoCount < 5)
+        {
+            macarraoCount++;
+        }
+    }
+
+    public void IncrementSorveteCount()
+    {
+        if (sorveteCount < 5)
+        {
+            sorveteCount++;
         }
     }
 }

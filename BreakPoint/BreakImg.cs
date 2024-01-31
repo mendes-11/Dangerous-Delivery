@@ -2,18 +2,17 @@ using System;
 using System.IO;
 using System.Linq;
 
-public class  FoodLanche: Food
+public class  BreakImg: BreakRun
 {
-    public FoodLanche()
+    public BreakImg()
     {
-        this.Lanches.AddRange(
-            Directory.GetFiles("./Image/Food")
+        this.BreakPoints.AddRange(
+            Directory.GetFiles("./Image/BreakPoint")
             .Select(path => 
             {
-                int y = Random.Shared.Next(735, 950);
-                Lanche lanche = new Lanche(path, y);
-                lanche.Type = ExtractFoodTypeFromPath(path);
-                return lanche;
+                BreakPoint breakP = new BreakPoint(path, 560);
+                breakP.Type = ExtractFoodTypeFromPath(path);
+                return breakP;
             })
         );
     }

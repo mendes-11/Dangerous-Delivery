@@ -15,6 +15,7 @@ public class Food
 
     public void Draw(Graphics g)
     {
+        gameHUD.Draw(g);
         Queue<Lanche> newQueue = new Queue<Lanche>();
 
         if (!newQueue.Any())
@@ -27,7 +28,7 @@ public class Food
                 if (queue.Any())
                 {
                     lanche.Draw(g);
-                    lanche.X -= 25;
+                    lanche.X -= 15;
 
                     if (Collision.Current.CheckCollisions(lanche))
                     {
@@ -99,6 +100,18 @@ public class Food
                 break;
             case "sushi":
                 gameHUD.IncrementSushiCount();
+                break;
+            case "sorvete":
+                gameHUD.IncrementSorveteCount();
+                break;
+            case "macarrao":
+                gameHUD.IncrementMacarraoCount();
+                break;
+            case "frango":
+                gameHUD.IncrementFrangoCount();
+                break;
+            case "bolo":
+                gameHUD.IncrementBoloCount();
                 break;
         }
     }
