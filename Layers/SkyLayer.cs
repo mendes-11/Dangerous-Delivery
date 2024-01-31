@@ -11,28 +11,38 @@ public class SkyLayer : BaseLayer
         var secs = (float)time.TotalSeconds;
         var factor = (MathF.Cos(secs * 0.1f) + 1) / 2;
 
-        float initialSaturation = 50;
-        float initialValue = 95;
+        float[][] colors = new float[][]
+        {
+        new float[] {200, 50, 95},  
+        new float[] {199, 100, 3},
+        // new float[] {200, 94, 18},
+        // new float[] {240, 94, 10},
+        // new float[] {280, 50, 25}
+        };
 
-        float finalSaturation = 94;
-        float finalValue = 18;
+        int currentTransition = (int)(factor * (colors.Length - 1));
+        int nextTransition = (currentTransition + 1) % colors.Length;
 
-        float saturation = Interpolate(finalSaturation, initialSaturation, factor);
-        float value = Interpolate(finalValue, initialValue, factor);
+        float[] currentColor = colors[currentTransition];
+        float[] nextColor = colors[nextTransition];
+
+        float hue = Calc(nextColor[0], currentColor[0], factor);
+        float saturation = Calc(nextColor[1], currentColor[1], factor);
+        float value = Calc(nextColor[2], currentColor[2], factor);
 
         g.Clear(
-            hsvToColor(255 * 200 / 360, (int)(255 * saturation / 100), (int)(255 * value / 100))
+             hsvToColor(255 * 200 / 360, (int)(255 * saturation / 100), (int)(255 * value / 100))
         );
     }
 
-    private float Interpolate(float start, float end, float factor)
+    private float Calc(float start, float end, float factor)
     {
         return start + (end - start) * factor;
     }
 
     private Color hsvToColor(int h, int s, int v)
     {
-        // Garantindo que os valores de entrada estejam nos limites esperados
+
         h = Math.Max(0, Math.Min(360, h));
         s = Math.Max(0, Math.Min(255, s));
         v = Math.Max(0, Math.Min(255, v));
@@ -46,7 +56,7 @@ public class SkyLayer : BaseLayer
             r = v;
             g = v;
             b = v;
-            return Color.FromArgb(ClampToByte(r), ClampToByte(g), ClampToByte(b));
+            return Color.FromArgb(LimitColor(r), LimitColor(g), LimitColor(b));
         }
 
         int region = h / 43;
@@ -90,12 +100,10 @@ public class SkyLayer : BaseLayer
                 break;
         }
 
-        // Usando ClampToByte para garantir que os valores de r, g e b estejam entre 0 e 255
-        return Color.FromArgb(ClampToByte(r), ClampToByte(g), ClampToByte(b));
+        return Color.FromArgb(LimitColor(r), LimitColor(g), LimitColor(b));
     }
 
-    // Método auxiliar para garantir que os valores de cor estejam dentro do intervalo de byte (0-255)
-    private byte ClampToByte(int value)
+    private byte LimitColor(int value)
     {
         return (byte)Math.Max(0, Math.Min(255, value));
     }
