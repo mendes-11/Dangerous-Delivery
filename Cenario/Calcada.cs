@@ -4,7 +4,6 @@ public class Calcada : IPlano
 {
     private Image Img;
     private float Y;
-
     private float Height;
  
 
