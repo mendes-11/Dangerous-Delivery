@@ -25,13 +25,11 @@ public class Layer : BaseLayer
     {
         if (plano is Rain rainPlano)
         {
-            // Desenhe a chuva verticalmente
-            parameters.Y = rainPlano.Y; // Use a posição Y original da chuva
+            parameters.Y = rainPlano.Y;
             rainPlano.Draw(g, parameters);
         }
         else
         {
-            // Desenhe outros planos horizontalmente
             plano.Draw(g, new DrawPlanoParameters { X = currentX, Y = parameters.Y });
             currentX += plano.Width - 1;
         }
