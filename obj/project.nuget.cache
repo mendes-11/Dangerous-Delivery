@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GVp3fS6XAanvGDyXvAfQ8mn2kFDseHt46nWRPS/eojUUZrrnM0XvHqEUChsMY+5WXp9m2OfzgJ0LtIdZElRg4g==",
+  "dgSpecHash": "vFaftdINkHPyMaobX7JwLRq0ztyhHH2eIOeG268eH/ieP6PKDwtUKzpu6+4jO4EDzC8wiv4k13yzj9wthsHTwA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\G3MEOS\\Desktop\\Para\\Dangerous-Delivery\\jogo.csproj",
+  "projectFilePath": "C:\\Users\\renato\\Desktop\\rain\\Dangerous-Delivery\\jogo.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema ao ler o arquivo de cache C:\\Users\\G3MEOS\\Desktop\\Para\\Dangerous-Delivery\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

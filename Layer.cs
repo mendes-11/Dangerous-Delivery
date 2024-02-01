@@ -16,33 +16,33 @@ public class Layer : BaseLayer
         => this.Velocidade = velocidade;
 
     public override void Draw(Graphics g)
-{
-    refillQueue();
-
-    float currentX = parameters.X;
-
-    foreach (var plano in queue)
     {
-        if (plano is Rain rainPlano)
+        refillQueue();
+
+        float currentX = parameters.X;
+
+        foreach (var plano in queue)
         {
-            parameters.Y = rainPlano.Y;
-            rainPlano.Draw(g, parameters);
+            if (plano is Rain rainPlano)
+            {
+                parameters.Y = rainPlano.Y;
+                rainPlano.Draw(g, parameters);
+            }
+            else
+            {
+                plano.Draw(g, new DrawPlanoParameters { X = currentX, Y = parameters.Y });
+                currentX += plano.Width - 1;
+            }
         }
-        else
+
+        parameters.X -= Velocidade * deltaTime();
+
+        if (parameters.X + queue.Peek().Width < 0)
         {
-            plano.Draw(g, new DrawPlanoParameters { X = currentX, Y = parameters.Y });
-            currentX += plano.Width - 1;
+            parameters.X += queue.Peek().Width;
+            queue.Dequeue();
         }
     }
-
-    parameters.X -= Velocidade * deltaTime();
-
-    if (parameters.X + queue.Peek().Width < 0)
-    {
-        parameters.X += queue.Peek().Width;
-        queue.Dequeue();
-    }
-}
 
 
     private float deltaTime()
