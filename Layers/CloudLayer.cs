@@ -7,7 +7,7 @@ public class  CloudLayer: Layer
     public CloudLayer(float velocidade) : base(velocidade)
     {
         this.Planos.AddRange(
-            Directory.GetFiles("./Image/Clound")
+            Directory.GetFiles("./Image/Cloud")
             .Select(path => 
             {
                 int y = Random.Shared.Next(30, 70 + 1);

@@ -12,6 +12,7 @@ public class Game : Form
     private BreakImg breakImg;
     private Player player;
     private Pause pause;
+    private RainLayer rain;
     private bool moveLeft, moveRight, moveUp, moveDown;
     private bool isPaused = false;
     public string PlayerName { get; }
@@ -33,6 +34,7 @@ public class Game : Form
         foodLanche = new FoodLanche(gameHUD);
         breakImg = new BreakImg(gameHUD);
         pause = new Pause();
+        rain = new RainLayer(5000);
         pause.ResumeGame += (sender, e) => ResumeGame();
 
         parallax.Layers.Add(new SkyLayer());
@@ -69,7 +71,10 @@ public class Game : Form
                 breakImg.Draw(g);
                 player.Draw(g);
                 gameHUD.Draw(g);
+                rain.Draw(g);
+                rain.Update();
                 pb.Refresh();
+
             }
         };
 
