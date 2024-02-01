@@ -46,17 +46,17 @@ public class Menu : Form
 
     private Button CriarBotao(string imagemPath)
     {
-        var imagem = Image.FromFile(imagemPath);
         var botao = new Button
         {
             BackColor = Color.Transparent,
             FlatStyle = FlatStyle.Flat,
             FlatAppearance = { BorderSize = 0 },
-            TextAlign = ContentAlignment.MiddleCenter,
-
-            BackgroundImage = new Bitmap(imagem),
-            BackgroundImageLayout = ImageLayout.Stretch,
+            TextAlign = ContentAlignment.MiddleCenter
         };
+
+        var imagem = Image.FromFile(imagemPath);
+        botao.BackgroundImage = new Bitmap(imagem);
+        botao.BackgroundImageLayout = ImageLayout.Stretch;
 
         botao.FlatAppearance.MouseOverBackColor = Color.Transparent;
         botao.FlatAppearance.MouseDownBackColor = Color.Transparent;
@@ -101,18 +101,19 @@ public class Menu : Form
         );
     }
 
-private void PlayButtonClick(object sender, EventArgs e)
-{
-    using (PlayerNameForm playerNameForm = new PlayerNameForm())
+    private void PlayButtonClick(object sender, EventArgs e)
     {
-        if (playerNameForm.ShowDialog() == DialogResult.OK)
+        using (PlayerNameForm playerNameForm = new PlayerNameForm())
         {
-            Game game = new Game(playerNameForm.PlayerName);
-            this.Hide();
-            game.Show();
+            if (playerNameForm.ShowDialog() == DialogResult.OK)
+            {
+                Game game = new Game(playerNameForm.PlayerName);
+                this.Hide();
+                game.Show();
+                
+            }
         }
     }
-}
 
     private void OpcoesButtonClick(object sender, EventArgs e)
     {

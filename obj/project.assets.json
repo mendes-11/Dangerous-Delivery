@@ -7,17 +7,14 @@
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": []
   },
-  "packageFolders": {
-    "C:\\Users\\G3MEOS\\.nuget\\packages\\": {}
-  },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\G3MEOS\\Desktop\\Para\\Dangerous-Delivery\\jogo.csproj",
+      "projectUniqueName": "C:\\Users\\G3MEOS\\Desktop\\Para\\Dangerous-Delivery\\jogo.csproj",
       "projectName": "jogo",
-      "projectPath": "c:\\Users\\G3MEOS\\Desktop\\Para\\Dangerous-Delivery\\jogo.csproj",
+      "projectPath": "C:\\Users\\G3MEOS\\Desktop\\Para\\Dangerous-Delivery\\jogo.csproj",
       "packagesPath": "C:\\Users\\G3MEOS\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\G3MEOS\\Desktop\\Para\\Dangerous-Delivery\\obj\\",
+      "outputPath": "C:\\Users\\G3MEOS\\Desktop\\Para\\Dangerous-Delivery\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\G3MEOS\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -65,5 +62,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema ao ler o arquivo de cache C:\\Users\\G3MEOS\\Desktop\\Para\\Dangerous-Delivery\\obj\\project.nuget.cache: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

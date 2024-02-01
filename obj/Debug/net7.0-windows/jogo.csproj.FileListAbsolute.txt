@@ -276,6 +276,7 @@ C:\Users\renato\Desktop\ga\Dangerous-Delivery\obj\Debug\net7.0-windows\refint\jo
 C:\Users\renato\Desktop\ga\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.pdb
 C:\Users\renato\Desktop\ga\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.genruntimeconfig.cache
 C:\Users\renato\Desktop\ga\Dangerous-Delivery\obj\Debug\net7.0-windows\ref\jogo.dll
+<<<<<<< HEAD
 C:\Users\G3MEOS\Desktop\Para\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.exe
 C:\Users\G3MEOS\Desktop\Para\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.deps.json
 C:\Users\G3MEOS\Desktop\Para\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.runtimeconfig.json
@@ -291,3 +292,20 @@ C:\Users\G3MEOS\Desktop\Para\Dangerous-Delivery\obj\Debug\net7.0-windows\refint\
 C:\Users\G3MEOS\Desktop\Para\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.pdb
 C:\Users\G3MEOS\Desktop\Para\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.genruntimeconfig.cache
 C:\Users\G3MEOS\Desktop\Para\Dangerous-Delivery\obj\Debug\net7.0-windows\ref\jogo.dll
+=======
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.exe
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.deps.json
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.runtimeconfig.json
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.dll
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\bin\Debug\net7.0-windows\jogo.pdb
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.AssemblyInfoInputs.cache
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.AssemblyInfo.cs
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.csproj.CoreCompileInputs.cache
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.sourcelink.json
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.dll
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\obj\Debug\net7.0-windows\refint\jogo.dll
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.pdb
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.genruntimeconfig.cache
+C:\Users\renato\Desktop\Play\Dangerous-Delivery\obj\Debug\net7.0-windows\ref\jogo.dll
+>>>>>>> efda439de1ae52bca8554042d9631bcd51b4b7a0

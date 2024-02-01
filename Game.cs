@@ -43,6 +43,7 @@ public class Game : Form
         parallax.Layers.Add(new RuasLayer(210));
         parallax.Layers.Add(new CalcadasLayer(180));
         gameHUD.Player(playerName);
+        parallax.Layers.Add(new RainLayer(10));
 
         this.Load += (sender, e) =>
         {
