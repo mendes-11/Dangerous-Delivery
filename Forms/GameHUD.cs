@@ -12,7 +12,6 @@ public class GameHUD
     public int boloCount = 0;
     public int frangoCount = 0;
     private Font hudFont;
-    private Control parentControl;
 
     public GameHUD(Control parent)
     {
@@ -53,6 +52,5 @@ public class GameHUD
     public void DecrementMacarraoCount() => macarraoCount--;
     public void DecrementBoloCount() => boloCount--; 
     public void DecrementFrangoCount() => frangoCount--; 
-    private void UpdateHUD() => parentControl.Invalidate(); 
     
 }
