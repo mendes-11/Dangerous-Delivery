@@ -9,31 +9,43 @@ public class Layer : BaseLayer
     private Queue<IPlano> nextQueue = new();
     private Queue<IPlano> queue = new();
     private DateTime lastFrame = DateTime.Now;
+    private DrawPlanoParameters parameters = new DrawPlanoParameters { X = 0, Y = 0 };
     public float Velocidade { get; set; }
-
-    private DrawPlanoParameters parameters = new DrawPlanoParameters { X = 0 };
 
     public Layer(float velocidade)
         => this.Velocidade = velocidade;
+
     public override void Draw(Graphics g)
+{
+    refillQueue();
+
+    float currentX = parameters.X;
+
+    foreach (var plano in queue)
     {
-        refillQueue();
-
-        parameters.X -= Velocidade * deltaTime();
-        float currentX = parameters.X;
-
-        foreach (var plano in queue) 
+        if (plano is Rain rainPlano)
         {
-            plano.Draw(g, new DrawPlanoParameters { X = currentX });
+            // Desenhe a chuva verticalmente
+            parameters.Y = rainPlano.Y; // Use a posição Y original da chuva
+            rainPlano.Draw(g, parameters);
+        }
+        else
+        {
+            // Desenhe outros planos horizontalmente
+            plano.Draw(g, new DrawPlanoParameters { X = currentX, Y = parameters.Y });
             currentX += plano.Width - 1;
         }
-
-        if (parameters.X + queue.Peek().Width < 0)
-        {
-            parameters.X += queue.Peek().Width;
-            queue.Dequeue();
-        }
     }
+
+    parameters.X -= Velocidade * deltaTime();
+
+    if (parameters.X + queue.Peek().Width < 0)
+    {
+        parameters.X += queue.Peek().Width;
+        queue.Dequeue();
+    }
+}
+
 
     private float deltaTime()
     {
