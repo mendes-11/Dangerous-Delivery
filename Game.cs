@@ -10,6 +10,7 @@ public class Game : Form
     private Parallax parallax;
     private FoodLanche foodLanche;
     private BreakImg breakImg;
+    private ObjectLayer objectLayer;
     private Player player;
     private Pause pause;
     private bool moveLeft, moveRight, moveUp, moveDown;
@@ -30,6 +31,7 @@ public class Game : Form
         gameHUD = new GameHUD(this);
         player = new Player(gameHUD);
         parallax = new Parallax();
+        objectLayer = new ObjectLayer(10);
         foodLanche = new FoodLanche(gameHUD);
         breakImg = new BreakImg(gameHUD);
         pause = new Pause();
@@ -65,6 +67,7 @@ public class Game : Form
                 UpdatePlayerMovement();
 
                 parallax.Draw(g);
+                objectLayer.Draw(g);
                 foodLanche.Draw(g);
                 breakImg.Draw(g);
                 player.Draw(g);
