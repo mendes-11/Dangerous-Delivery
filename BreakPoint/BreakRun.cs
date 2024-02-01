@@ -10,7 +10,11 @@ public class BreakRun
     private Queue<BreakPoint> nextQueue = new();
     private Queue<BreakPoint> queue = new();
     private DateTime lastFrame = DateTime.Now;
+    private Player player;
     private DateTime nextSpawnTime = DateTime.Now.AddSeconds(1);
+
+    public BreakRun(GameHUD hud)
+        => player = new Player(hud);
 
     public void Draw(Graphics g)
     {
@@ -20,7 +24,7 @@ public class BreakRun
             refillQueue();
 
         if (queue.Any())
-        {
+        {       
             foreach (var breakP in queue)
             {
                 if (queue.Any())
@@ -28,11 +32,11 @@ public class BreakRun
                     breakP.Draw(g);
                     breakP.X -= 180 * deltaTime();
 
-                    if (Collision.Current.CheckCollisions(breakP))
+                    if (Collision.Current.CheckCollisions(breakP) && player.DecrementHUDCounter(breakP))
                     {
-                        
                         breakP.X = 2000;
                     }
+
                     else if (breakP.X + breakP.Width < 0)
                     {
                         breakP.X = 2000;
@@ -81,7 +85,7 @@ public class BreakRun
 
     private void SetNextSpawnTime()
     {
-        int seconds = Random.Shared.Next(1, 3);
+        int seconds = Random.Shared.Next(0, 2);
         nextSpawnTime = DateTime.Now.AddSeconds(seconds);
     }
 

@@ -9,13 +9,14 @@ public class Food
     public List<Lanche> Lanches { get; set; } = new List<Lanche>();
     private Queue<Lanche> nextQueue = new();
     private Queue<Lanche> queue = new();
-    private Player player = new Player();
-    private GameHUD gameHUD = new GameHUD();
+    private Player player;
     private DateTime nextSpawnTime = DateTime.Now.AddSeconds(1);
 
+
+    public Food(GameHUD hud)
+        => player = new Player(hud);
     public void Draw(Graphics g)
     {
-        gameHUD.Draw(g);
         Queue<Lanche> newQueue = new Queue<Lanche>();
 
         if (!newQueue.Any())
@@ -28,7 +29,7 @@ public class Food
                 lanche.Draw(g);
                 lanche.X -= 15;
 
-                if (Collision.Current.CheckCollisions(lanche) && HandleCollision(lanche))
+                if (Collision.Current.CheckCollisions(lanche) && player.IncrementHUDCounter(lanche))
                 {
                     lanche.X = 2000;
                 }
@@ -84,74 +85,6 @@ public class Food
             nextQueue.Enqueue(lanche);
             initialX += Random.Shared.Next(300, 600);
         }
-    }
-
-    private bool HandleCollision(Lanche lanche)
-    {
-        switch (lanche.Type)
-        {
-            case "pizza":
-                if (gameHUD.pizzaCount < 5)
-                {
-                    gameHUD.IncrementPizzaCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case "sushi":
-                if (gameHUD.sushiCount < 5)
-                {
-                    gameHUD.IncrementSushiCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case "sorvete":
-                if (gameHUD.sorveteCount < 5)
-                {
-                    gameHUD.IncrementSorveteCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case "macarrao":
-                if (gameHUD.macarraoCount < 5)
-                {
-                    gameHUD.IncrementMacarraoCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case "frango":
-                if (gameHUD.frangoCount < 5)
-                {
-                    gameHUD.IncrementFrangoCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case "bolo":
-                if (gameHUD.boloCount < 5)
-                {
-                    gameHUD.IncrementBoloCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-        }
-        return false;
     }
 
     public void AddFood(Lanche lanche) => this.Lanches.Add(lanche);

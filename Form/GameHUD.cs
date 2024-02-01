@@ -12,8 +12,9 @@ public class GameHUD
     public int boloCount = 0;
     public int frangoCount = 0;
     private Font hudFont;
+    private Control parentControl;
 
-    public GameHUD()
+    public GameHUD(Control parent)
     {
         var pFontCollection = new PrivateFontCollection();
         pFontCollection.AddFontFile("Fonts/BrokenConsole.ttf");
@@ -35,57 +36,23 @@ public class GameHUD
         g.DrawString("Sorvete: " + sorveteCount + "/5", hudFont, brush, 10, 190);
     }
 
-
     public void Player(string playerName)
     {
         this.playerName = playerName;
     }
 
-    public void IncrementPizzaCount()
-    {
-        if (pizzaCount < 5)
-        {
-            pizzaCount++;
-        }
-    }
-
-    public void IncrementSushiCount()
-    {
-        if (sushiCount < 5)
-        {
-            sushiCount++;
-        }
-    }
-
-    public void IncrementFrangoCount()
-    {
-        if (frangoCount < 5)
-        {
-            frangoCount++;
-        }
-    }
-
-    public void IncrementBoloCount()
-    {
-        if (boloCount < 5)
-        {
-            boloCount++;
-        }
-    }
-
-    public void IncrementMacarraoCount()
-    {
-        if (macarraoCount < 5)
-        {
-            macarraoCount++;
-        }
-    }
-
-    public void IncrementSorveteCount()
-    {
-        if (sorveteCount < 5)
-        {
-            sorveteCount++;
-        }
-    }
+    public void IncrementPizzaCount() => pizzaCount++;
+    public void IncrementSushiCount() => sushiCount++; 
+    public void IncrementSorveteCount() => sorveteCount++; 
+    public void IncrementMacarraoCount() => macarraoCount++; 
+    public void IncrementBoloCount() => boloCount++;
+    public void IncrementFrangoCount() => frangoCount++;
+    public void DecrementPizzaCount() => pizzaCount--;
+    public void DecrementSushiCount() => sushiCount--;
+    public void DecrementSorveteCount() => sorveteCount--;
+    public void DecrementMacarraoCount() => macarraoCount--;
+    public void DecrementBoloCount() => boloCount--; 
+    public void DecrementFrangoCount() => frangoCount--; 
+    private void UpdateHUD() => parentControl.Invalidate(); 
+    
 }

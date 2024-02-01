@@ -2,9 +2,9 @@ using System;
 using System.IO;
 using System.Linq;
 
-public class  BreakImg: BreakRun
+public class BreakImg: BreakRun
 {
-    public BreakImg()
+    public BreakImg(GameHUD hud) : base(hud)
     {
         this.BreakPoints.AddRange(
             Directory.GetFiles("./Image/BreakPoint")

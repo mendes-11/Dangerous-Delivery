@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 public class Player : ObjBox
@@ -11,6 +12,7 @@ public class Player : ObjBox
     private const int LimiteInferiorY = 770;
     private const int LimiteDireitaX = 1450;
     private const int LimiteEsquerdaX = 100;
+    private GameHUD gameHUD;
     private List<Image> playerImages = new List<Image>();
     private Timer animationTimer;
     private int posX = 500;
@@ -21,18 +23,17 @@ public class Player : ObjBox
     private float velocidadeX = 0;
     private float velocidadeY = 0;
     private int frameAtual = 0;
-    public Queue<Lanche> BagLanche = new();
     private float centerScreen;
 
     public override RectangleF Box { get; set; }
 
-    public Player()
+    public Player(GameHUD hud)
     {
         foreach (var filePath in Directory.GetFiles("Image/Entregador"))
         {
             playerImages.Add(Image.FromFile(filePath));
         }
-
+        gameHUD = hud;
         centerScreen = Screen.PrimaryScreen.Bounds.Width / 2f;
         Collision.Current.AddObjBox(this);
         animationTimer = new Timer { Interval = 100, Enabled = true };
@@ -106,21 +107,143 @@ public class Player : ObjBox
         g.DrawImage(currentImage, destino);
     }
 
-    public void CheckedCollision()
+
+    public bool IncrementHUDCounter(Lanche lanche)
     {
-        if (Collision.Current.CheckCollisions(this))
+        switch (lanche.Type)
         {
-            MessageBox.Show(
-                "Collision detected!",
-                "Collision Alert",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Warning
-            );
+            case "pizza":
+                if (gameHUD.pizzaCount < 5)
+                {
+                    gameHUD.IncrementPizzaCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "sushi":
+                if (gameHUD.sushiCount < 5)
+                {
+                    gameHUD.IncrementSushiCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "sorvete":
+                if (gameHUD.sorveteCount < 5)
+                {
+                    gameHUD.IncrementSorveteCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "macarrao":
+                if (gameHUD.macarraoCount < 5)
+                {
+                    gameHUD.IncrementMacarraoCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "frango":
+                if (gameHUD.frangoCount < 5)
+                {
+                    gameHUD.IncrementFrangoCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "bolo":
+                if (gameHUD.boloCount < 5)
+                {
+                    gameHUD.IncrementBoloCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
         }
+        return false;
     }
 
-    public void AddFoodBag(Lanche lanche)
+
+    public bool DecrementHUDCounter(BreakPoint breakP)
     {
-        BagLanche.Enqueue(lanche);
+        switch (breakP.Type)
+        {
+            case "pizza":
+                if (gameHUD.pizzaCount > 0)
+                {
+                    gameHUD.DecrementPizzaCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "sushi":
+                if (gameHUD.sushiCount > 0)
+                {
+                    gameHUD.DecrementSushiCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "sorvete":
+                if (gameHUD.sorveteCount > 0)
+                {
+                    gameHUD.DecrementSorveteCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "macarrao":
+                if (gameHUD.macarraoCount > 0)
+                {
+                    gameHUD.DecrementMacarraoCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "frango":
+                if (gameHUD.frangoCount > 0)
+                {
+                    gameHUD.DecrementFrangoCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "bolo":
+                if (gameHUD.boloCount > 0)
+                {
+                    gameHUD.DecrementBoloCount();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+        }
+        return false;
     }
+
+
 }

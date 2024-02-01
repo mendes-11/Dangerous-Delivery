@@ -4,7 +4,7 @@ using System.Linq;
 
 public class  FoodLanche: Food
 {
-    public FoodLanche()
+    public FoodLanche(GameHUD hud) : base(hud)
     {
         this.Lanches.AddRange(
             Directory.GetFiles("./Image/Food")

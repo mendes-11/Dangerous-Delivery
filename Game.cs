@@ -27,11 +27,11 @@ public class Game : Form
         var pb = new PictureBox { Dock = DockStyle.Fill };
         var timer = new Timer { Interval = 1000 / 60, };
 
-        gameHUD = new GameHUD();
+        gameHUD = new GameHUD(this);
+        player = new Player(gameHUD);
         parallax = new Parallax();
-        foodLanche = new FoodLanche();
-        breakImg = new BreakImg();
-        player = new Player();
+        foodLanche = new FoodLanche(gameHUD);
+        breakImg = new BreakImg(gameHUD);
         pause = new Pause();
         pause.ResumeGame += (sender, e) => ResumeGame();
 
@@ -48,7 +48,7 @@ public class Game : Form
         {
             bmp = new Bitmap(pb.Width, pb.Height);
             g = Graphics.FromImage(bmp);
-            
+
             g.SmoothingMode = SmoothingMode.HighSpeed;
             g.CompositingQuality = CompositingQuality.AssumeLinear;
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
@@ -68,6 +68,7 @@ public class Game : Form
                 foodLanche.Draw(g);
                 breakImg.Draw(g);
                 player.Draw(g);
+                gameHUD.Draw(g);
                 pb.Refresh();
             }
         };
