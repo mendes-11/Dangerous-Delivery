@@ -14,8 +14,8 @@ public class Object : ObjBox
 
     public Object(List<Image> frames, float y)
     {
-        this.Y = y;
         animationFrames = frames;
+        this.Y = y;
         Width = animationFrames[0].Width;
         Height = animationFrames[0].Height;
     }
@@ -25,7 +25,7 @@ public class Object : ObjBox
         Image currentFrame = animationFrames[currentFrameIndex];
         g.DrawImage(currentFrame, X, Y, Width, Height);
         CreateHitbox(X, Y, Width, Height);
-        g.DrawRectangle(Pens.Red, Box);
+        // g.DrawRectangle(Pens.Red, Box);
         Collision.Current.AddObjBox(this);
     }
 

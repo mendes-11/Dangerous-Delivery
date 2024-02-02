@@ -11,9 +11,14 @@ public class ObjectCollision : BaseLayer
     private DateTime lastFrame = DateTime.Now;
     private DrawPlanoParameters parameters = new DrawPlanoParameters { X = 0 };
     private DateTime nextSpawnTime = DateTime.Now.AddSeconds(1);
+    private Game game;
     public float Velocidade { get; set; }
 
-    public ObjectCollision(float velocidade) => this.Velocidade = velocidade;
+    public ObjectCollision(float velocidade, Game game) 
+    {
+        this.Velocidade = velocidade;
+        this.game = game; 
+    }
 
     public override void Draw(Graphics g)
     {
@@ -28,11 +33,12 @@ public class ObjectCollision : BaseLayer
             {
                 obj.UpdateAnimation();
                 obj.Draw(g);
-                obj.X -= Velocidade;
+                obj.X -= Velocidade * deltaTime();
 
                 if (Collision.Current.CheckCollisions(obj))
                 {
                     obj.X = 2000;
+                    game.TogglePause();
                 }
                 else if (obj.X + obj.Width < 0)
                 {
@@ -53,6 +59,7 @@ public class ObjectCollision : BaseLayer
         int seconds = Random.Shared.Next(1, 3);
         nextSpawnTime = DateTime.Now.AddSeconds(seconds);
     }
+
     private float deltaTime()
     {
         var newFrame = DateTime.Now;
@@ -65,7 +72,7 @@ public class ObjectCollision : BaseLayer
     private void refillQueue()
     {
         int objectsCount = Objects.Count;
-        while (queue.Count < objectsCount)
+        while (queue.Count < 1)
         {
             if (nextQueue.Count == 0)
                 genNextQueue();
@@ -77,8 +84,16 @@ public class ObjectCollision : BaseLayer
 
     private void genNextQueue()
     {
-        foreach (var objects in Objects.OrderBy(p => Random.Shared.Next()))
-            nextQueue.Enqueue(objects);
+        int initialX = Random.Shared.Next(2000, 3000);;
+        int y = Random.Shared.Next(700, 900);
+
+        foreach (var obj in Objects.OrderBy(p => Random.Shared.Next()))
+        {
+            obj.Y = y;
+            obj.X = initialX;
+            nextQueue.Enqueue(obj);
+            initialX += Random.Shared.Next(300, 600);
+        }
     }
 
     public void AddCollisions(Object objects) => this.Objects.Add(objects);

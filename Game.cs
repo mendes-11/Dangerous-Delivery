@@ -8,9 +8,9 @@ public class Game : Form
     private Bitmap bmp;
     private Graphics g;
     private Parallax parallax;
+    private ObjectsLayers objectsLayers;
     private FoodLanche foodLanche;
     private BreakImg breakImg;
-    private ObjectLayer objectLayer;
     private Player player;
     private Pause pause;
     private RainLayer rain;
@@ -32,7 +32,7 @@ public class Game : Form
         gameHUD = new GameHUD(this);
         player = new Player(gameHUD);
         parallax = new Parallax();
-        objectLayer = new ObjectLayer(10);
+        objectsLayers = new ObjectsLayers();
         foodLanche = new FoodLanche(gameHUD);
         breakImg = new BreakImg(gameHUD);
         pause = new Pause();
@@ -46,6 +46,9 @@ public class Game : Form
         parallax.Layers.Add(new CasasLayer(150));
         parallax.Layers.Add(new RuasLayer(210));
         parallax.Layers.Add(new CalcadasLayer(180));
+
+        // objectsLayers.Objects.Add(new PneuLayer(200, this));
+        objectsLayers.Objects.Add(new OleoLayer(210, this));
         gameHUD.Player(playerName);
 
         this.Load += (sender, e) =>
@@ -69,15 +72,14 @@ public class Game : Form
                 UpdatePlayerMovement();
 
                 parallax.Draw(g);
-                objectLayer.Draw(g);
                 foodLanche.Draw(g);
                 breakImg.Draw(g);
+                objectsLayers.Draw(g);
                 player.Draw(g);
                 gameHUD.Draw(g);
                 rain.Draw(g);
                 rain.Update();
                 pb.Refresh();
-
             }
         };
 
@@ -144,10 +146,14 @@ public class Game : Form
 
     private void UpdatePlayerMovement()
     {
-        if (moveLeft) player.MoveLeft();
-        if (moveRight) player.MoveRight();
-        if (moveUp) player.MoveUp();
-        if (moveDown) player.MoveDown();
+        if (moveLeft)
+            player.MoveLeft();
+        if (moveRight)
+            player.MoveRight();
+        if (moveUp)
+            player.MoveUp();
+        if (moveDown)
+            player.MoveDown();
     }
 
     private void ResumeGame()
@@ -156,7 +162,7 @@ public class Game : Form
         pause.HidePause();
     }
 
-    private void TogglePause()
+    public void TogglePause()
     {
         isPaused = !isPaused;
 
