@@ -5,34 +5,36 @@ public class SkyLayer : BaseLayer
 {
     DateTime start = DateTime.Now;
 
+
+
     public override void Draw(Graphics g)
     {
         var time = DateTime.Now - start;
         var secs = (float)time.TotalSeconds;
-        var factor = (MathF.Cos(secs * 0.1f) + 1) / 2;
+        var cycleDuration  = 80f; 
+        var factor = (secs % cycleDuration) / cycleDuration ;
 
-        float[][] colors = new float[][]
+        Color[] colors = new Color[]
         {
-        new float[] {200, 50, 95},  
-        new float[] {199, 100, 3},
-        // new float[] {200, 94, 18},
-        // new float[] {240, 94, 10},
-        // new float[] {280, 50, 25}
+            Color.FromArgb(135, 206, 250),
+            Color.FromArgb(24, 157, 240),
+            Color.FromArgb(245, 147, 27),
+            Color.FromArgb(2, 2, 46),
+            Color.FromArgb(135, 206, 250)
+
         };
 
-        int currentTransition = (int)(factor * (colors.Length - 1));
-        int nextTransition = (currentTransition + 1) % colors.Length;
 
-        float[] currentColor = colors[currentTransition];
-        float[] nextColor = colors[nextTransition];
+        int index = (int)(factor * (colors.Length - 1));
+        float localFactor = factor * (colors.Length - 1) - index;
 
-        float hue = Calc(nextColor[0], currentColor[0], factor);
-        float saturation = Calc(nextColor[1], currentColor[1], factor);
-        float value = Calc(nextColor[2], currentColor[2], factor);
+        Color startColor = colors[index];
+        Color endColor = colors[index + 1];
+        int r = (int)Calc(startColor.R, endColor.R, localFactor);
+        int gg = (int)Calc(startColor.G, endColor.G, localFactor);
+        int b = (int)Calc(startColor.B, endColor.B, localFactor);
 
-        g.Clear(
-             hsvToColor(255 * 200 / 360, (int)(255 * saturation / 100), (int)(255 * value / 100))
-        );
+        g.Clear(Color.FromArgb(r, gg, b));
     }
 
     private float Calc(float start, float end, float factor)
@@ -42,7 +44,6 @@ public class SkyLayer : BaseLayer
 
     private Color hsvToColor(int h, int s, int v)
     {
-
         h = Math.Max(0, Math.Min(360, h));
         s = Math.Max(0, Math.Min(255, s));
         v = Math.Max(0, Math.Min(255, v));
@@ -100,8 +101,10 @@ public class SkyLayer : BaseLayer
                 break;
         }
 
+
         return Color.FromArgb(LimitColor(r), LimitColor(g), LimitColor(b));
     }
+
 
     private byte LimitColor(int value)
     {
