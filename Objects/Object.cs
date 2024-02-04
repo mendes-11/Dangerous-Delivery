@@ -12,10 +12,11 @@ public class Object : ObjBox
     public string Type { get; set; }
     public override RectangleF Box { get; set; }
 
-    public Object(List<Image> frames, float y)
+    public Object(List<Image> frames, float y, string type)
     {
         animationFrames = frames;
         this.Y = y;
+        this.Type = type;
         Width = animationFrames[0].Width;
         Height = animationFrames[0].Height;
     }

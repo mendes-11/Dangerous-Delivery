@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Media;
 
 public class Game : Form
 {
@@ -14,6 +15,7 @@ public class Game : Form
     private Player player;
     private Pause pause;
     private RainLayer rain;
+    private SoundPlayer backgroundMusicPlayer;
     private bool moveLeft, moveRight, moveUp, moveDown;
     private bool isPaused = false;
     public string PlayerName { get; }
@@ -28,6 +30,10 @@ public class Game : Form
 
         var pb = new PictureBox { Dock = DockStyle.Fill };
         var timer = new Timer { Interval = 1000 / 60, };
+
+        backgroundMusicPlayer = new SoundPlayer("Music\\1.wav");
+        backgroundMusicPlayer.Load();
+        backgroundMusicPlayer.PlayLooping();
 
         gameHUD = new GameHUD(this);
         player = new Player(gameHUD);

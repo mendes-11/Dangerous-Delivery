@@ -16,7 +16,7 @@ public class OleoLayer : ObjectCollision
         {
             frames.Add(Image.FromFile(imagePath));
         }
-        Object obj = new Object(frames, 650);
+        Object obj = new Object(frames, 650, "Oleo");
         Objects.Add(obj);
     }
 }

@@ -16,7 +16,7 @@ public class PneuLayer : ObjectCollision
         {
             frames.Add(Image.FromFile(imagePath));
         }
-        Object obj = new Object(frames, 650);
+        Object obj = new Object(frames, 650, "Pneu");
         Objects.Add(obj);
     }
 }

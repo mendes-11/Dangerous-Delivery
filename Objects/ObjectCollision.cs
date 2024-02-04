@@ -85,7 +85,7 @@ public class ObjectCollision : BaseLayer
     private void genNextQueue()
     {
         int initialX = Random.Shared.Next(2000, 3000);;
-        int y = Random.Shared.Next(700, 900);
+        int y = Random.Shared.Next(730, 740);
 
         foreach (var obj in Objects.OrderBy(p => Random.Shared.Next()))
         {

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Media;
 
 public class BreakRun
 {
@@ -12,9 +12,13 @@ public class BreakRun
     private DateTime lastFrame = DateTime.Now;
     private Player player;
     private DateTime nextSpawnTime = DateTime.Now.AddSeconds(1);
+    private SoundPlayer deliverySoundPlayer = new SoundPlayer("./Music\\entrega.wav");
 
     public BreakRun(GameHUD hud)
-        => player = new Player(hud);
+    {
+        player = new Player(hud);
+        deliverySoundPlayer.Load();
+    }
 
     public void Draw(Graphics g)
     {
@@ -24,7 +28,7 @@ public class BreakRun
             refillQueue();
 
         if (queue.Any())
-        {       
+        {
             foreach (var breakP in queue)
             {
                 if (queue.Any())
@@ -35,6 +39,7 @@ public class BreakRun
                     if (Collision.Current.CheckCollisions(breakP) && player.DecrementHUDCounter(breakP))
                     {
                         breakP.X = 2000;
+                        deliverySoundPlayer.Play();
                     }
 
                     else if (breakP.X + breakP.Width < 0)
