@@ -11,7 +11,7 @@ public class SkyLayer : BaseLayer
     {
         var time = DateTime.Now - start;
         var secs = (float)time.TotalSeconds;
-        var cycleDuration  = 80f; 
+        var cycleDuration  = 400f; 
         var factor = (secs % cycleDuration) / cycleDuration ;
 
         Color[] colors = new Color[]

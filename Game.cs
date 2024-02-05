@@ -60,6 +60,9 @@ public class Game : Form
 
         objectsLayers.Objects.Add(new OleoLayer(320, this, gameHUD));
         objectsLayers.Objects.Add(new PneuLayer(400, this, gameHUD));
+        objectsLayers.Objects.Add(new PneuLayer(200, this, gameHUD));
+        objectsLayers.Objects.Add(new OleoLayer(210, this, gameHUD));
+
         gameHUD.Player(playerName);
 
         this.Load += (sender, e) =>
