@@ -33,7 +33,7 @@ public class Game : Form
 
         backgroundMusicPlayer = new SoundPlayer("Music\\1.wav");
         backgroundMusicPlayer.Load();
-        backgroundMusicPlayer.PlayLooping();
+        // backgroundMusicPlayer.PlayLooping();
 
         gameHUD = new GameHUD(this);
         player = new Player(gameHUD);
@@ -54,8 +54,8 @@ public class Game : Form
         parallax.Layers.Add(new CalcadasLayer(180));
 
         // objectsLayers.Objects.Add(new PneuLayer(200, this));
-        objectsLayers.Objects.Add(new OleoLayer(210, this));
-        gameHUD.Player(playerName);
+        // objectsLayers.Objects.Add(new OleoLayer(210, this));
+        // gameHUD.Player(playerName);
 
         this.Load += (sender, e) =>
         {
@@ -78,11 +78,11 @@ public class Game : Form
                 UpdatePlayerMovement();
 
                 parallax.Draw(g);
-                foodLanche.Draw(g);
-                breakImg.Draw(g);
-                objectsLayers.Draw(g);
-                player.Draw(g);
-                gameHUD.Draw(g);
+                // foodLanche.Draw(g);
+                // breakImg.Draw(g);
+                // objectsLayers.Draw(g);
+                // player.Draw(g);
+                // gameHUD.Draw(g);
                 rain.Draw(g);
                 rain.Update();
                 pb.Refresh();
