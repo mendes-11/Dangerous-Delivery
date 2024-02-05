@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using System.Media;
+using System.Collections.Generic;
 
 public class Game : Form
 {
@@ -16,7 +17,10 @@ public class Game : Form
     private Pause pause;
     private RainLayer rain;
     private SoundPlayer backgroundMusicPlayer;
-    private bool moveLeft, moveRight, moveUp, moveDown;
+    private bool moveLeft,
+        moveRight,
+        moveUp,
+        moveDown;
     private bool isPaused = false;
     public string PlayerName { get; }
     private GameHUD gameHUD;
@@ -27,7 +31,7 @@ public class Game : Form
 
         this.WindowState = FormWindowState.Maximized;
         this.Text = "Dangerous Delivery";
-
+        this.KeyPreview = true;
         var pb = new PictureBox { Dock = DockStyle.Fill };
         var timer = new Timer { Interval = 1000 / 60, };
 
@@ -36,6 +40,7 @@ public class Game : Form
         backgroundMusicPlayer.PlayLooping();
 
         gameHUD = new GameHUD(this);
+        gameHUD.LoadRankingsFromFile("rankings.json");
         player = new Player(gameHUD);
         parallax = new Parallax();
         objectsLayers = new ObjectsLayers();
@@ -50,11 +55,11 @@ public class Game : Form
         parallax.Layers.Add(new CityLayer(70));
         parallax.Layers.Add(new SlumLayer(110));
         parallax.Layers.Add(new CasasLayer(150));
-        parallax.Layers.Add(new RuasLayer(210));
+        parallax.Layers.Add(new RuasLayer(320));
         parallax.Layers.Add(new CalcadasLayer(180));
 
-        // objectsLayers.Objects.Add(new PneuLayer(200, this));
-        objectsLayers.Objects.Add(new OleoLayer(210, this));
+        objectsLayers.Objects.Add(new OleoLayer(320, this, gameHUD));
+        objectsLayers.Objects.Add(new PneuLayer(400, this, gameHUD));
         gameHUD.Player(playerName);
 
         this.Load += (sender, e) =>
@@ -99,9 +104,9 @@ public class Game : Form
             {
                 TogglePause();
             }
-            else if (isPaused && e.KeyCode == Keys.P)
+            else if (!isPaused && e.KeyCode == Keys.G)
             {
-                TogglePause();
+                player.UsingGrauImages = !player.UsingGrauImages;
             }
             else if (!isPaused)
             {

@@ -9,15 +9,17 @@ public class ObjectCollision : BaseLayer
     private Queue<Object> nextQueue = new();
     private Queue<Object> queue = new();
     private DateTime lastFrame = DateTime.Now;
+    private GameHUD gameHUD;
     private DrawPlanoParameters parameters = new DrawPlanoParameters { X = 0 };
     private DateTime nextSpawnTime = DateTime.Now.AddSeconds(1);
     private Game game;
     public float Velocidade { get; set; }
 
-    public ObjectCollision(float velocidade, Game game) 
+    public ObjectCollision(float velocidade, Game game, GameHUD gameHUD) 
     {
         this.Velocidade = velocidade;
         this.game = game; 
+        this.gameHUD = gameHUD;
     }
 
     public override void Draw(Graphics g)
@@ -38,6 +40,7 @@ public class ObjectCollision : BaseLayer
                 if (Collision.Current.CheckCollisions(obj))
                 {
                     obj.X = 2000;
+                    gameHUD.Save();
                     game.TogglePause();
                 }
                 else if (obj.X + obj.Width < 0)
@@ -83,18 +86,28 @@ public class ObjectCollision : BaseLayer
     }
 
     private void genNextQueue()
-    {
-        int initialX = Random.Shared.Next(2000, 3000);;
-        int y = Random.Shared.Next(730, 740);
+{
+    int initialX = Random.Shared.Next(2000, 3000);
+    int yO = Random.Shared.Next(735, 955);
+    int yP = Random.Shared.Next(650, 900);
 
-        foreach (var obj in Objects.OrderBy(p => Random.Shared.Next()))
+    foreach (var obj in Objects.OrderBy(p => Random.Shared.Next()))
+    {
+        switch (obj.Type)
         {
-            obj.Y = y;
-            obj.X = initialX;
-            nextQueue.Enqueue(obj);
-            initialX += Random.Shared.Next(300, 600);
+            case "Oleo":
+                obj.Y = yO;
+                break; 
+            case "Pneu":
+                obj.Y = yP;
+                break;
         }
+        obj.X = initialX;
+        nextQueue.Enqueue(obj);
+        initialX += Random.Shared.Next(300, 600);
     }
+}
+
 
     public void AddCollisions(Object objects) => this.Objects.Add(objects);
 }

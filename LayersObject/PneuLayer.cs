@@ -6,8 +6,8 @@ using System;
 
 public class PneuLayer : ObjectCollision
 {
-    public PneuLayer(float velocidade, Game game)
-        : base(velocidade, game)
+    public PneuLayer(float velocidade, Game game, GameHUD gameHUD)
+        : base(velocidade, game, gameHUD)
     {
         List<Image> frames = new List<Image>();
         string[] imagePaths = Directory.GetFiles("./Image/Pneu");

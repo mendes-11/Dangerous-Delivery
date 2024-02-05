@@ -1,11 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 public class Menu : Form
 {
     private PictureBox pbBackground;
-    private Button playButton, opcoesButton, exitButton;
+    private Button playButton,
+        opcoesButton,
+        exitButton,
+        rankingButton;
 
     public Menu()
     {
@@ -22,15 +26,18 @@ public class Menu : Form
         playButton = CriarBotao("./Image/Menu/jogarButton.png");
         opcoesButton = CriarBotao("./Image/Menu/opcoesButton.png");
         exitButton = CriarBotao("./Image/Menu/sairButton.png");
+        rankingButton = CriarBotao("./Image/Menu/sairButton.png");
 
         playButton.Click += PlayButtonClick;
         opcoesButton.Click += OpcoesButtonClick;
         exitButton.Click += ExitButtonClick;
+        rankingButton.Click += RankingButtonClick;
 
         this.Controls.Add(pbBackground);
 
         pbBackground.Controls.Add(playButton);
         pbBackground.Controls.Add(opcoesButton);
+        pbBackground.Controls.Add(rankingButton);
         pbBackground.Controls.Add(exitButton);
 
         this.Load += (o, e) =>
@@ -74,10 +81,12 @@ public class Menu : Form
         AjustarTamanhoBotao(playButton, larguraDisponivel, 400);
         AjustarTamanhoBotao(opcoesButton, larguraDisponivel, 400);
         AjustarTamanhoBotao(exitButton, larguraDisponivel, 400);
+        AjustarTamanhoBotao(rankingButton, larguraDisponivel, 400);
 
         CentralizarBotao(playButton, -larguraDisponivel / 2 - espacamentoEntreBotoes);
         CentralizarBotao(opcoesButton, 0);
-        CentralizarBotao(exitButton, larguraDisponivel / 2 + espacamentoEntreBotoes);
+        CentralizarBotao(rankingButton, larguraDisponivel / 2 + espacamentoEntreBotoes);
+        CentralizarBotao(exitButton, larguraDisponivel / (float)1.18 + espacamentoEntreBotoes);
     }
 
     private void AjustarTamanhoBotao(Button botao, int larguraDisponivel, int tamanhoInicial)
@@ -93,12 +102,14 @@ public class Menu : Form
         }
     }
 
-    private void CentralizarBotao(Button botao, int posicaoVertical)
+    private void CentralizarBotao(Button botao, float posicaoVertical)
     {
-        botao.Location = new Point(
-            (pbBackground.ClientSize.Width - botao.Width) / 2,
-            (pbBackground.ClientSize.Height - botao.Height) / 2 + posicaoVertical
+        int x = (pbBackground.ClientSize.Width - botao.Width) / 2;
+        int y = (int)(
+            ((float)pbBackground.ClientSize.Height - (float)botao.Height) / 2.5 + posicaoVertical
         );
+
+        botao.Location = new Point(x, y);
     }
 
     private void PlayButtonClick(object sender, EventArgs e)
@@ -110,7 +121,6 @@ public class Menu : Form
                 Game game = new Game(playerNameForm.PlayerName);
                 this.Hide();
                 game.Show();
-                
             }
         }
     }
@@ -124,5 +134,14 @@ public class Menu : Form
     private void ExitButtonClick(object sender, EventArgs e)
     {
         Application.Exit();
+    }
+
+    private void RankingButtonClick(object sender, EventArgs e)
+    {
+        GameHUD gameHUD = new GameHUD(this);
+        gameHUD.LoadRankingsFromFile("rankings.json");
+        List<PlayerScore> sortedRankings = gameHUD.GetSortedRankings(); 
+        RankingForm rankingForm = new RankingForm(sortedRankings);
+        rankingForm.ShowDialog();
     }
 }

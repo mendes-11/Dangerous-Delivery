@@ -14,11 +14,13 @@ public class Player : ObjBox
     private const int LimiteEsquerdaX = 100;
     private GameHUD gameHUD;
     private List<Image> playerImages = new List<Image>();
+    private List<Image> playerImagesGrau = new List<Image>();
     private Timer animationTimer;
     private int posX = 500;
     private int posY = 650;
     private float velocidadeMax = 17f;
     private float aceleracao = 2f;
+    public bool UsingGrauImages { get; set; } = false;
     private float desaceleracao = 1.8f;
     private float velocidadeX = 0;
     private float velocidadeY = 0;
@@ -32,6 +34,10 @@ public class Player : ObjBox
         foreach (var filePath in Directory.GetFiles("Image/Entregador"))
         {
             playerImages.Add(Image.FromFile(filePath));
+        }
+        foreach (var filePath in Directory.GetFiles("Image/EntregadorGrau"))
+        {
+            playerImagesGrau.Add(Image.FromFile(filePath));
         }
         gameHUD = hud;
         centerScreen = Screen.PrimaryScreen.Bounds.Width / 2f;
@@ -93,7 +99,33 @@ public class Player : ObjBox
 
     public void Draw(Graphics g)
     {
-        Image currentImage = playerImages[frameAtual];
+        List<Image> images = UsingGrauImages ? playerImagesGrau : playerImages;
+
+        int frameToUse = frameAtual;
+        if (UsingGrauImages)
+        {
+            int startFrameGrau = 6;
+            int endFrameGrau = playerImagesGrau.Count - 1; 
+
+        
+            if (frameAtual < startFrameGrau)
+            {
+                frameToUse = startFrameGrau;
+            }
+            else
+            {
+            
+                int range = endFrameGrau - startFrameGrau + 1;
+                frameToUse = startFrameGrau + (frameAtual - startFrameGrau) % range;
+            }
+        }
+        else
+        {
+        
+            frameToUse = frameAtual % images.Count;
+        }
+
+        Image currentImage = images[frameToUse];
         float deltaY = -posY / 500f;
         float scaleFactor = 0.2f - deltaY * 0.7f;
 
@@ -107,9 +139,9 @@ public class Player : ObjBox
         g.DrawImage(currentImage, destino);
     }
 
-
     public bool IncrementHUDCounter(Lanche lanche)
     {
+        gameHUD.IncrementFoodScore();
         switch (lanche.Type)
         {
             case "pizza":
@@ -176,9 +208,9 @@ public class Player : ObjBox
         return false;
     }
 
-
     public bool DecrementHUDCounter(BreakPoint breakP)
     {
+        gameHUD.DecrementFoodScore();
         switch (breakP.Type)
         {
             case "pizza":
@@ -244,6 +276,4 @@ public class Player : ObjBox
         }
         return false;
     }
-
-
 }

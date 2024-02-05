@@ -6,8 +6,8 @@ using System;
 
 public class OleoLayer : ObjectCollision
 {
-    public OleoLayer(float velocidade, Game game)
-        : base(velocidade, game)
+    public OleoLayer(float velocidade, Game game, GameHUD gameHUD)
+        : base(velocidade, game, gameHUD)
     {
         List<Image> frames = new List<Image>();
         string[] imagePaths = Directory.GetFiles("./Image/Oleo");
