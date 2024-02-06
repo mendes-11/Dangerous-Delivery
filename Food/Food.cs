@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Media;
 
 public class Food
 {
@@ -10,10 +11,13 @@ public class Food
     private Queue<Lanche> queue = new();
     private Player player;
     private DateTime nextSpawnTime = DateTime.Now.AddSeconds(1);
-  
+    private SoundPlayer collectSoundPlayer = new SoundPlayer("./Music\\captura.wav");
+
+
     public Food(GameHUD hud)
     {
         player = new Player(hud);
+        collectSoundPlayer.Load();
     }
     public void Draw(Graphics g)
     {
@@ -32,6 +36,7 @@ public class Food
                 if (Collision.Current.CheckCollisions(lanche) && player.IncrementHUDCounter(lanche))
                 {
                     lanche.X = 2000;
+                    collectSoundPlayer.Play();
                 }
                 else if (lanche.X + lanche.Width < 0)
                 {

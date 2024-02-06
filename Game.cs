@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using NAudio.Wave;
-using NAudio.CoreAudioApi;
 
 public class Game : Form
 {
@@ -22,6 +21,7 @@ public class Game : Form
         moveDown;
     private bool isPaused = false;
     public string PlayerName { get; }
+    private AudioManager audioManager;
     private GameHUD gameHUD;
 
     public Game(string playerName)
@@ -33,6 +33,9 @@ public class Game : Form
         this.KeyPreview = true;
         var pb = new PictureBox { Dock = DockStyle.Fill };
         var timer = new Timer { Interval = 1000 / 60, };
+
+        audioManager = new AudioManager();
+        audioManager.PlayMusic("Music/1.mp3");
 
         gameHUD = new GameHUD(this);
         gameHUD.LoadRankingsFromFile("rankings.json");
