@@ -20,7 +20,6 @@ public class PlayerNameForm : Form
         nameTextBox = new TextBox();
         okButton = new Button();
 
-        // Configuração dos controles
         nameLabel.Text = "Digite seu nome:";
         nameLabel.Location = new System.Drawing.Point(10, 10);
 
@@ -31,15 +30,12 @@ public class PlayerNameForm : Form
         okButton.Location = new System.Drawing.Point(10, 60);
         okButton.Click += OkButtonClick;
 
-        // Adiciona controles ao formulário
         Controls.Add(nameLabel);
         Controls.Add(nameTextBox);
         Controls.Add(okButton);
 
-        // Configurações do formulário
-        Text = "Informe seu nome";
-        Size = new System.Drawing.Size(240, 120);
-        FormBorderStyle = FormBorderStyle.FixedDialog;
+        Size = new System.Drawing.Size(600, 300);
+        FormBorderStyle = FormBorderStyle.None;
         StartPosition = FormStartPosition.CenterScreen;
     }
 

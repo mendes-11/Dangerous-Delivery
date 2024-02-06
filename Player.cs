@@ -18,16 +18,16 @@ public class Player : ObjBox
     private Timer animationTimer;
     private int posX = 500;
     private int posY = 650;
-    public bool isGrauLoopActive = false;
-
     private float velocidadeMax = 17f;
     private float aceleracao = 2f;
-    public bool UsingGrauImages { get; set; } = false;
     private float desaceleracao = 1.8f;
     private float velocidadeX = 0;
-    private float velocidadeY = 0;
-    public int frameAtual = 4;
     private float centerScreen;
+    private float velocidadeY = 0;
+    public bool isGrauLoopActive { get; set; } = false;
+    public bool UsingGrauImages { get; set; } = false;
+    public bool ReverseAnimation { get; set; } = false;
+    public int frameAtual { get; set; } = 0;
 
     public override RectangleF Box { get; set; }
 
@@ -98,34 +98,51 @@ public class Player : ObjBox
     {
         if (UsingGrauImages)
         {
-            if (!isGrauLoopActive && frameAtual >= 7)
-            {
-                isGrauLoopActive = true;
-            }
-            if (isGrauLoopActive)
-            {
-                frameAtual++;
-                if (frameAtual >= playerImagesGrau.Count) 
+            if (!ReverseAnimation)
+            {                
+                if (!isGrauLoopActive && frameAtual >= 7)
                 {
-                    frameAtual = 8;
+                    isGrauLoopActive = true;
+                }
+                if (isGrauLoopActive)
+                {
+                    frameAtual++;
+                    if (frameAtual >= playerImagesGrau.Count)
+                    {
+                        frameAtual = 8;
+                    }
+                }
+                else
+                {
+                    frameAtual = (frameAtual + 1) % playerImagesGrau.Count;
                 }
             }
             else
             {
-                frameAtual = (frameAtual + 1) % playerImagesGrau.Count;
+                frameAtual--;
+                if (frameAtual == 2)
+                    frameAtual = 0;
+                if (frameAtual < 0)
+                {
+                    frameAtual = 0;
+                    ReverseAnimation = false;
+                    UsingGrauImages = false;
+                }
             }
         }
         else
         {
             frameAtual = (frameAtual + 1) % playerImages.Count;
             isGrauLoopActive = false;
+            ReverseAnimation = false;
         }
     }
-
 
     public void Draw(Graphics g)
     {
         List<Image> images = UsingGrauImages ? playerImagesGrau : playerImages;
+        if(frameAtual == 1)
+            frameAtual = 3;
         Image currentImage = images[frameAtual];
         float deltaY = -posY / 500f;
         float scaleFactor = 0.2f - deltaY * 0.7f;
@@ -139,7 +156,6 @@ public class Player : ObjBox
         g.DrawRectangle(Pens.White, Box);
         g.DrawImage(currentImage, destino);
     }
-
 
     public bool IncrementHUDCounter(Lanche lanche)
     {
@@ -212,13 +228,13 @@ public class Player : ObjBox
 
     public bool DecrementHUDCounter(BreakPoint breakP)
     {
-        gameHUD.DecrementFoodScore();
         switch (breakP.Type)
         {
             case "pizza":
                 if (gameHUD.pizzaCount > 0)
                 {
                     gameHUD.DecrementPizzaCount();
+                    gameHUD.DecrementFoodScore();
                     return true;
                 }
                 else
@@ -229,6 +245,7 @@ public class Player : ObjBox
                 if (gameHUD.sushiCount > 0)
                 {
                     gameHUD.DecrementSushiCount();
+                    gameHUD.DecrementFoodScore();
                     return true;
                 }
                 else
@@ -238,6 +255,7 @@ public class Player : ObjBox
             case "sorvete":
                 if (gameHUD.sorveteCount > 0)
                 {
+                    gameHUD.DecrementFoodScore();
                     gameHUD.DecrementSorveteCount();
                     return true;
                 }
@@ -248,6 +266,7 @@ public class Player : ObjBox
             case "macarrao":
                 if (gameHUD.macarraoCount > 0)
                 {
+                    gameHUD.DecrementFoodScore();
                     gameHUD.DecrementMacarraoCount();
                     return true;
                 }
@@ -258,6 +277,7 @@ public class Player : ObjBox
             case "frango":
                 if (gameHUD.frangoCount > 0)
                 {
+                    gameHUD.DecrementFoodScore();
                     gameHUD.DecrementFrangoCount();
                     return true;
                 }
@@ -268,6 +288,7 @@ public class Player : ObjBox
             case "bolo":
                 if (gameHUD.boloCount > 0)
                 {
+                    gameHUD.DecrementFoodScore();
                     gameHUD.DecrementBoloCount();
                     return true;
                 }

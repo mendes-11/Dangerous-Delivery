@@ -87,7 +87,7 @@ public class ObjectCollision : BaseLayer
 
     private void genNextQueue()
 {
-    int initialX = Random.Shared.Next(2000, 3000);
+    int initialX = Random.Shared.Next(1920, 5000);
     int yO = Random.Shared.Next(735, 955);
     int yP = Random.Shared.Next(650, 900);
 

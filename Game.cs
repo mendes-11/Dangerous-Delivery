@@ -2,8 +2,8 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using System.Media;
-using System.Collections.Generic;
+using NAudio.Wave;
+using NAudio.CoreAudioApi;
 
 public class Game : Form
 {
@@ -16,7 +16,6 @@ public class Game : Form
     private Player player;
     private Pause pause;
     private RainLayer rain;
-    private SoundPlayer backgroundMusicPlayer;
     private bool moveLeft,
         moveRight,
         moveUp,
@@ -34,10 +33,6 @@ public class Game : Form
         this.KeyPreview = true;
         var pb = new PictureBox { Dock = DockStyle.Fill };
         var timer = new Timer { Interval = 1000 / 60, };
-
-        backgroundMusicPlayer = new SoundPlayer("Music\\1.wav");
-        backgroundMusicPlayer.Load();
-        backgroundMusicPlayer.PlayLooping();
 
         gameHUD = new GameHUD(this);
         gameHUD.LoadRankingsFromFile("rankings.json");
@@ -109,11 +104,14 @@ public class Game : Form
             }
             if (e.KeyCode == Keys.G)
             {
-                player.UsingGrauImages = !player.UsingGrauImages;
-                if (!player.UsingGrauImages)
+                if (player.UsingGrauImages && player.isGrauLoopActive)
                 {
-                    player.isGrauLoopActive = false;
+                    player.ReverseAnimation = !player.ReverseAnimation;
+                }
+                else
+                {
                     player.frameAtual = 0;
+                    player.UsingGrauImages = !player.UsingGrauImages;
                 }
             }
             else if (!isPaused)
