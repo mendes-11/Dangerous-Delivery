@@ -22,7 +22,7 @@ public class Player : ObjBox
 
     private float velocidadeMax = 17f;
     private float aceleracao = 2f;
-    public bool UsingGrauImages { get; set; } = true;
+    public bool UsingGrauImages { get; set; } = false;
     private float desaceleracao = 1.8f;
     private float velocidadeX = 0;
     private float velocidadeY = 0;
@@ -96,45 +96,37 @@ public class Player : ObjBox
 
     private void Animate()
     {
-        // if (UsingGrauImages)
-        // {
-        //     if (!isGrauLoopActive && frameAtual >= 7) // Se chegou no frame 8 e o loop especial ainda não está ativo
-        //     {
-        //         isGrauLoopActive = true; // Ativa o loop especial
-        //     }
-
-        //     if (isGrauLoopActive)
-        //     {
-        //         // Loop do frame 8 até o último frame
-        //         frameAtual++;
-        //         if (frameAtual >= playerImagesGrau.Count) // Se exceder o último frame, volta para o frame 8
-        //         {
-        //             frameAtual = 8;
-        //         }
-        //     }
-        //     else
-        //     {
-        //         // Animação normal até ativar o loop especial
-        //         frameAtual = (frameAtual + 1) % playerImagesGrau.Count;
-        //     }
-        // }
-        // else
-        // {
-        //     // Animação normal para playerImages
-        //     frameAtual = (frameAtual + 1) % playerImages.Count;
-        //     isGrauLoopActive = false; // Desativa o loop especial quando não estiver usando playerImagesGrau
-        // }
+        if (UsingGrauImages)
+        {
+            if (!isGrauLoopActive && frameAtual >= 7)
+            {
+                isGrauLoopActive = true;
+            }
+            if (isGrauLoopActive)
+            {
+                frameAtual++;
+                if (frameAtual >= playerImagesGrau.Count) 
+                {
+                    frameAtual = 8;
+                }
+            }
+            else
+            {
+                frameAtual = (frameAtual + 1) % playerImagesGrau.Count;
+            }
+        }
+        else
+        {
+            frameAtual = (frameAtual + 1) % playerImages.Count;
+            isGrauLoopActive = false;
+        }
     }
 
 
     public void Draw(Graphics g)
     {
         List<Image> images = UsingGrauImages ? playerImagesGrau : playerImages;
-        // A lógica para escolher o frame já foi tratada no método Animate,
-        // então apenas usamos o frameAtual diretamente aqui.
         Image currentImage = images[frameAtual];
-
-        // Cálculos para ajustar o tamanho e a posição da imagem com base na posição do jogador e em outros fatores.
         float deltaY = -posY / 500f;
         float scaleFactor = 0.2f - deltaY * 0.7f;
 

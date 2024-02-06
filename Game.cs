@@ -110,6 +110,11 @@ public class Game : Form
             if (e.KeyCode == Keys.G)
             {
                 player.UsingGrauImages = !player.UsingGrauImages;
+                if (!player.UsingGrauImages)
+                {
+                    player.isGrauLoopActive = false;
+                    player.frameAtual = 0;
+                }
             }
             else if (!isPaused)
             {
