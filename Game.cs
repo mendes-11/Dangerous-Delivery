@@ -88,7 +88,7 @@ public class Game : Form
                 parallax.Draw(g);
                 foodLanche.Draw(g);
                 breakImg.Draw(g);
-                objectsLayers.Draw(g);
+                // objectsLayers.Draw(g);
                 player.Draw(g);
                 gameHUD.Draw(g);
                 rain.Draw(g);
@@ -107,7 +107,7 @@ public class Game : Form
             {
                 TogglePause();
             }
-            else if (!isPaused && e.KeyCode == Keys.G)
+            if (e.KeyCode == Keys.G)
             {
                 player.UsingGrauImages = !player.UsingGrauImages;
             }
