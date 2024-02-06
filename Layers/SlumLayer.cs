@@ -11,7 +11,7 @@ public class  SlumLayer: Layer
             .Select(path => 
             {
                 int height = Random.Shared.Next(270, 340 + 1);
-                int y = (300 - height) + 373;
+                int y = 300 - height;
                 return new Casa(path, y, 270, height);
             })
         );

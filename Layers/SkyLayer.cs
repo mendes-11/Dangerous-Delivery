@@ -7,7 +7,7 @@ public class SkyLayer : BaseLayer
 
 
 
-    public override void Draw(Graphics g)
+    public override void Draw(Graphics g, SizeF size)
     {
         var time = DateTime.Now - start;
         var secs = (float)time.TotalSeconds;

@@ -44,7 +44,7 @@ public class RainLayer : BaseLayer
         chuvaReiniciada = true;
     }
 
-    public override void Draw(Graphics g)
+    public override void Draw(Graphics g, SizeF size)
     {
         foreach (var rectangle in rainRectangles)
         {

@@ -386,3 +386,6 @@ C:\Users\MateusLeite\Desktop\PARALLAZX\Dangerous-Delivery\obj\Debug\net7.0-windo
 C:\Users\MateusLeite\Desktop\PARALLAZX\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.pdb
 C:\Users\MateusLeite\Desktop\PARALLAZX\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.genruntimeconfig.cache
 C:\Users\MateusLeite\Desktop\PARALLAZX\Dangerous-Delivery\obj\Debug\net7.0-windows\ref\jogo.dll
+C:\Users\disrct\Desktop\game\Dangerous-Delivery\bin\Debug\net7.0-windows\Newtonsoft.Json.dll
+C:\Users\disrct\Desktop\game\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.csproj.AssemblyReference.cache
+C:\Users\disrct\Desktop\game\Dangerous-Delivery\obj\Debug\net7.0-windows\jogo.csproj.CopyComplete

@@ -24,7 +24,7 @@ public class Game : Form
     private bool isPaused = false;
     public string PlayerName { get; }
     private GameHUD gameHUD;
-
+    public PictureBox Pb;
     public Game(string playerName)
     {
         PlayerName = playerName;
@@ -32,12 +32,12 @@ public class Game : Form
         this.WindowState = FormWindowState.Maximized;
         this.Text = "Dangerous Delivery";
         this.KeyPreview = true;
-        var pb = new PictureBox { Dock = DockStyle.Fill };
+        this.Pb = new PictureBox { Dock = DockStyle.Fill };
         var timer = new Timer { Interval = 1000 / 60, };
 
         backgroundMusicPlayer = new SoundPlayer("Music\\1.wav");
         backgroundMusicPlayer.Load();
-        backgroundMusicPlayer.PlayLooping();
+        // backgroundMusicPlayer.PlayLooping();
 
         gameHUD = new GameHUD(this);
         gameHUD.LoadRankingsFromFile("rankings.json");
@@ -51,23 +51,23 @@ public class Game : Form
         pause.ResumeGame += (sender, e) => ResumeGame();
 
         parallax.Layers.Add(new SkyLayer());
-        parallax.Layers.Add(new CloudLayer(40));
-        parallax.Layers.Add(new CityLayer(70));
+        // parallax.Layers.Add(new CloudLayer(40));
+        // parallax.Layers.Add(new CityLayer(70));
         parallax.Layers.Add(new SlumLayer(110));
         parallax.Layers.Add(new CasasLayer(150));
-        parallax.Layers.Add(new RuasLayer(320));
+        // parallax.Layers.Add(new RuasLayer(320));
         parallax.Layers.Add(new CalcadasLayer(180));
 
-        objectsLayers.Objects.Add(new OleoLayer(320, this, gameHUD));
-        objectsLayers.Objects.Add(new PneuLayer(400, this, gameHUD));
-        objectsLayers.Objects.Add(new PneuLayer(200, this, gameHUD));
-        objectsLayers.Objects.Add(new OleoLayer(210, this, gameHUD));
+        // objectsLayers.Objects.Add(new OleoLayer(320, this, gameHUD));
+        // objectsLayers.Objects.Add(new PneuLayer(400, this, gameHUD));
+        // objectsLayers.Objects.Add(new PneuLayer(200, this, gameHUD));
+        // objectsLayers.Objects.Add(new OleoLayer(210, this, gameHUD));
 
         gameHUD.Player(playerName);
 
         this.Load += (sender, e) =>
         {
-            bmp = new Bitmap(pb.Width, pb.Height);
+            bmp = new Bitmap(Pb.Width, Pb.Height);
             g = Graphics.FromImage(bmp);
 
             g.SmoothingMode = SmoothingMode.HighSpeed;
@@ -75,7 +75,7 @@ public class Game : Form
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
 
             g.Clear(Color.Black);
-            pb.Image = bmp;
+            Pb.Image = bmp;
             timer.Start();
         };
 
@@ -85,15 +85,15 @@ public class Game : Form
             {
                 UpdatePlayerMovement();
 
-                parallax.Draw(g);
-                foodLanche.Draw(g);
-                breakImg.Draw(g);
+                parallax.Draw(g, Pb.Size);
+                // foodLanche.Draw(g);
+                // breakImg.Draw(g);
                 // objectsLayers.Draw(g);
-                player.Draw(g);
-                gameHUD.Draw(g);
-                rain.Draw(g);
-                rain.Update();
-                pb.Refresh();
+                // player.Draw(g);
+                // gameHUD.Draw(g);
+                // rain.Draw(g);
+                // rain.Update();
+                Pb.Refresh();
             }
         };
 
@@ -160,7 +160,7 @@ public class Game : Form
             Application.Exit();
         };
 
-        this.Controls.Add(pb);
+        this.Controls.Add(Pb);
     }
 
     private void UpdatePlayerMovement()

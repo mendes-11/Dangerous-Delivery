@@ -14,7 +14,7 @@ public class Layer : BaseLayer
 
     public Layer(float velocidade) => this.Velocidade = velocidade;
 
-    public override void Draw(Graphics g)
+    public override void Draw(Graphics g, SizeF size)
     {
         refillQueue();
 
@@ -23,7 +23,7 @@ public class Layer : BaseLayer
 
         foreach (var plano in queue)
         {
-            plano.Draw(g, new DrawPlanoParameters { X = currentX});
+            plano.Draw(g, new DrawPlanoParameters { X = currentX, Size = size});
             currentX += plano.Width - 1;
         }
 

@@ -4,8 +4,8 @@ public class Rua : IPlano
 {
      private Image Img;
     private float Y;
-
     private float Height;
+    public float Width { get; set; }
 
     public Rua(string imagePath, float y, float width, float height)
     {
@@ -16,10 +16,20 @@ public class Rua : IPlano
         this.Height = (int)height;
     }
 
-    public float Width { get; set; }
-
     public void Draw(Graphics g, DrawPlanoParameters parameters)
-    {
-         g.DrawImage(Img, parameters.X, Y);
-    }
+{
+    float scaleX = parameters.Size.Width / 1920f;
+    float scaleY = parameters.Size.Height / 1080f;
+
+    float temp = 3f;
+
+    RectangleF destino = new(
+        parameters.X * scaleX,
+        Y * scaleY,
+        temp * parameters.Size.Width * scaleX,
+        Height * scaleY);
+
+    g.DrawImage(Img, destino);
+}
+
 }

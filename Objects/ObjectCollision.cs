@@ -22,7 +22,7 @@ public class ObjectCollision : BaseLayer
         this.gameHUD = gameHUD;
     }
 
-    public override void Draw(Graphics g)
+    public override void Draw(Graphics g, SizeF size)
     {
         Queue<Object> newQueue = new Queue<Object>();
 

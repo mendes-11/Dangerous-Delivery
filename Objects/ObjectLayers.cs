@@ -5,9 +5,9 @@ public class ObjectsLayers
 {
     public List<BaseLayer> Objects { get; set; } = new();
 
-    public void Draw(Graphics g)
+    public void Draw(Graphics g, SizeF size)
     {
         foreach (var objects in Objects)
-            objects.Draw(g);
+            objects.Draw(g, size);
     }
 }

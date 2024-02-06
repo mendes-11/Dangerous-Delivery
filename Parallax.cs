@@ -5,9 +5,9 @@ public class Parallax
 {
     public List<BaseLayer> Layers { get; set; } = new();
 
-    public void Draw(Graphics g)
+    public void Draw(Graphics g, SizeF size)
     {
         foreach (var layer in Layers)
-            layer.Draw(g);
+            layer.Draw(g, size);
     }
 }
