@@ -32,7 +32,7 @@ public class Game : Form
         this.WindowState = FormWindowState.Maximized;
         this.Text = "Dangerous Delivery";
         this.KeyPreview = true;
-        this.Pb = new PictureBox { Dock = DockStyle.Fill };
+        this.Pb = new PictureBox { Dock = DockStyle.Fill, BackColor = Color.RebeccaPurple };
         var timer = new Timer { Interval = 1000 / 60, };
 
         backgroundMusicPlayer = new SoundPlayer("Music\\1.wav");
@@ -51,12 +51,12 @@ public class Game : Form
         pause.ResumeGame += (sender, e) => ResumeGame();
 
         parallax.Layers.Add(new SkyLayer());
-        parallax.Layers.Add(new CloudLayer(40));
-        parallax.Layers.Add(new CityLayer(70));
-        parallax.Layers.Add(new SlumLayer(110));
-        parallax.Layers.Add(new CasasLayer(150));
-        parallax.Layers.Add(new RuasLayer(320));
-        parallax.Layers.Add(new CalcadasLayer(180));
+        parallax.Layers.Add(new CloudLayer(0.02f));
+        parallax.Layers.Add(new CityLayer(0.03f));
+        // parallax.Layers.Add(new SlumLayer(110));
+        // parallax.Layers.Add(new CasasLayer(150));
+        // parallax.Layers.Add(new RuasLayer(320));
+        // parallax.Layers.Add(new CalcadasLayer(180));
 
         // objectsLayers.Objects.Add(new OleoLayer(320, this, gameHUD));
         // objectsLayers.Objects.Add(new PneuLayer(400, this, gameHUD));
@@ -67,7 +67,7 @@ public class Game : Form
 
         this.Load += (sender, e) =>
         {
-            bmp = new Bitmap(Pb.Width, Pb.Height);
+            bmp = new Bitmap(2 * Pb.Width, 2 * Pb.Height);
             g = Graphics.FromImage(bmp);
 
             g.SmoothingMode = SmoothingMode.HighSpeed;

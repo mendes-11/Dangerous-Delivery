@@ -19,8 +19,8 @@ public class Slum : IPlano
 
      public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
-        float temp = 0.09f;
-        float temp2 = parameters.X * 3f / 1920;
+        float temp = 0.15f;
+        float temp2 = parameters.X * 7f / 1920;
         float temp3 = Y * 2.5f / 1080;
         float ratio = parameters.Size.Width / parameters.Size.Height;
         RectangleF destiny =

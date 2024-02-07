@@ -2,34 +2,42 @@ using System.Drawing;
 
 public class Cloud : IPlano
 {
+    private Image ImgOriginal;
     private Image Img;
     private float Y;
-    private float Height;
+    private float ratio;
 
-    public Cloud(string imagePath, float y, float width, float height)
+    public Cloud(string imagePath, float y, float width)
     {
-        this.Img = Image.FromFile(imagePath)
-            .GetThumbnailImage((int)width, (int)height, null, nint.Zero);
+        this.ImgOriginal = this.Img = Image.FromFile(imagePath);
+        this.ratio = ImgOriginal.Height / (float)ImgOriginal.Width;
         this.Y = y;
-        this.Width = (int)width;
-        this.Height = (int)height;
+        this.Width = width;
     }
 
     public float Width { get; set; }
-
-     public void Draw(Graphics g, DrawPlanoParameters parameters)
+    Rectangle lastDest = Rectangle.Empty;
+    public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
-        float temp = 0.2f;
-        float temp2 = parameters.X * 2 / 1920;
-        float temp3 = Y  / 1080;
-        float ratio = parameters.Size.Width / parameters.Size.Height;
-        RectangleF destiny =
+        float wid = parameters.Size.Width;
+        float hei = parameters.Size.Height;
+        
+        Rectangle destiny =
             new(
-                parameters.Size.Width * temp2,
-                parameters.Size.Height * temp3,
-                parameters.Size.Width * temp * ratio,
-                Height * ratio
+                (int)(parameters.X * wid),
+                (int)(this.Y * hei),
+                (int)(this.Width * wid),
+                (int)(this.Width * wid * this.ratio)
             );
+        
+        if (destiny != lastDest)
+        {
+            Img = ImgOriginal.GetThumbnailImage(
+                destiny.Width, destiny.Height, null, nint.Zero
+            );
+            lastDest = destiny;
+        }
+
         g.DrawImage(Img, destiny);
     }
 }

@@ -12,7 +12,7 @@ public class  SlumLayer: Layer
             {
                 int height = Random.Shared.Next(170, 220 + 1);
                 int y = 380 - height;
-                return new Casa(path, y, 370, height);
+                return new Casa(path, y, 390, height);
             })
         );
     }

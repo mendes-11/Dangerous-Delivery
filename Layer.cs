@@ -24,7 +24,7 @@ public class Layer : BaseLayer
         foreach (var plano in queue)
         {
             plano.Draw(g, new DrawPlanoParameters { X = currentX, Size = size});
-            currentX += plano.Width - 1;
+            currentX += plano.Width;
         }
 
         if (parameters.X + queue.Peek().Width < 0)

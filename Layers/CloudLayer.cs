@@ -10,9 +10,8 @@ public class  CloudLayer: Layer
             Directory.GetFiles("./Image/Cloud")
             .Select(path => 
             {
-                int y = Random.Shared.Next(30, 70 + 1);
-                int height = (50 - y) + 400;
-                return new Cloud(path, y, 300, height);
+                float y = Random.Shared.NextSingle() * .3f + .7f;
+                return new Cloud(path, 1f - y, 0.30f);
             })
         );
     }
