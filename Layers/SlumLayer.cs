@@ -10,9 +10,9 @@ public class  SlumLayer: Layer
             Directory.GetFiles("./Image/Favelas")
             .Select(path => 
             {
-                int height = Random.Shared.Next(270, 340 + 1);
-                int y = 300 - height;
-                return new Casa(path, y, 270, height);
+                int height = Random.Shared.Next(170, 220 + 1);
+                int y = 380 - height;
+                return new Casa(path, y, 370, height);
             })
         );
     }

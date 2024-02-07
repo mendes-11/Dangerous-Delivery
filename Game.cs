@@ -51,11 +51,11 @@ public class Game : Form
         pause.ResumeGame += (sender, e) => ResumeGame();
 
         parallax.Layers.Add(new SkyLayer());
-        // parallax.Layers.Add(new CloudLayer(40));
-        // parallax.Layers.Add(new CityLayer(70));
+        parallax.Layers.Add(new CloudLayer(40));
+        parallax.Layers.Add(new CityLayer(70));
         parallax.Layers.Add(new SlumLayer(110));
         parallax.Layers.Add(new CasasLayer(150));
-        // parallax.Layers.Add(new RuasLayer(320));
+        parallax.Layers.Add(new RuasLayer(320));
         parallax.Layers.Add(new CalcadasLayer(180));
 
         // objectsLayers.Objects.Add(new OleoLayer(320, this, gameHUD));
@@ -89,7 +89,7 @@ public class Game : Form
                 // foodLanche.Draw(g);
                 // breakImg.Draw(g);
                 // objectsLayers.Draw(g);
-                // player.Draw(g);
+                player.Draw(g);
                 // gameHUD.Draw(g);
                 // rain.Draw(g);
                 // rain.Update();

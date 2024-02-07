@@ -17,13 +17,19 @@ public class Slum : IPlano
 
     public float Width { get; set; }
 
-    public void Draw(Graphics g, DrawPlanoParameters parameters)
+     public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
-        float temp = 0.2f;
-        float temp2 = parameters.X / 1920;
-        float temp3 = Y / 1080;
-        float ratio = parameters.Size.Width/parameters.Size.Height;
-        RectangleF destiny = new(parameters.Size.Width * temp2, parameters.Size.Height * temp3, parameters.Size.Width * temp, Height* ratio);
+        float temp = 0.09f;
+        float temp2 = parameters.X * 3f / 1920;
+        float temp3 = Y * 2.5f / 1080;
+        float ratio = parameters.Size.Width / parameters.Size.Height;
+        RectangleF destiny =
+            new(
+                parameters.Size.Width * temp2,
+                parameters.Size.Height * temp3,
+                parameters.Size.Width * temp * ratio,
+                Height * ratio
+            );
         g.DrawImage(Img, destiny);
     }
 }

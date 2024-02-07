@@ -5,6 +5,7 @@ public class City : IPlano
     private Image Img;
     private float Y;
     private float Height;
+    public float Width { get; set; }
 
     public City(string imagePath, float y, float width, float height)
     {
@@ -15,10 +16,20 @@ public class City : IPlano
         this.Height = (int)height;
     }
 
-    public float Width { get; set; }
 
-    public void Draw(Graphics g, DrawPlanoParameters parameters)
+     public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
-        g.DrawImage(Img, parameters.X, Y);
+        float temp = 0.3f;
+        float temp2 = parameters.X * 1.8f / 1920;
+        float temp3 = Y / 1080;
+        float ratio = parameters.Size.Width / parameters.Size.Height;
+        RectangleF destiny =
+            new(
+                parameters.Size.Width * temp2,
+                parameters.Size.Height * temp3,
+                parameters.Size.Width * temp,
+                Height * ratio
+            );
+        g.DrawImage(Img, destiny);
     }
 }

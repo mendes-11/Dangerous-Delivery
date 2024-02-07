@@ -5,6 +5,7 @@ public class Calcada : IPlano
     private Image Img;
     private float Y;
     private float Height;
+    public float Width { get; set; }
  
 
     public Calcada(string imagePath, float y, float width, float height)
@@ -15,8 +16,6 @@ public class Calcada : IPlano
         this.Width = (int)width;
         this.Height = (int)height;
     }
-
-    public float Width { get; set; }
 
     public void Draw(Graphics g, DrawPlanoParameters parameters)
     {

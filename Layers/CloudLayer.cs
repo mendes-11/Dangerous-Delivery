@@ -12,7 +12,7 @@ public class  CloudLayer: Layer
             {
                 int y = Random.Shared.Next(30, 70 + 1);
                 int height = (50 - y) + 400;
-                return new Sky(path, y, 800, height);
+                return new Cloud(path, y, 300, height);
             })
         );
     }
