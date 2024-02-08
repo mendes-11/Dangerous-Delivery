@@ -3,24 +3,42 @@ using System.Drawing;
 public class Sky : IPlano
 {
     private Image Img;
+    private Image ImgOriginal;
     private float Y;
-
     private float Height;
+    public float Width { get; set; }
  
 
     public Sky(string imagePath, float y, float width, float height)
     {
-        this.Img = Image.FromFile(imagePath)
-            .GetThumbnailImage((int)width, (int)height, null, nint.Zero);
+        this.ImgOriginal = this.Img = Image.FromFile(imagePath);
         this.Y = y;
-        this.Width = (int)width;
-        this.Height = (int)height;
+        this.Width = width;
+        this.Height = height;
     }
 
-    public float Width { get; set; }
 
     public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
-        g.DrawImage(Img, parameters.X, Y);
+        float wid = parameters.Size.Width;
+        float hei = parameters.Size.Height;
+
+        Rectangle destiny =
+            new(
+                (int)(parameters.X * wid),
+                (int)(this.Y * hei),
+                (int)(this.Width * wid),
+                (int)(this.Height * hei)
+            );
+
+        // if (destiny != lastDest)
+        // {
+        //     Img = ImgOriginal.GetThumbnailImage(
+        //         destiny.Width, destiny.Height, null, nint.Zero
+        //     );
+        //     lastDest = destiny;
+        // }
+
+        g.DrawImage(Img, destiny);
     }
 }

@@ -5,6 +5,7 @@ public class Landscape : IPlano
     private Image Img;
     private float Y;
     private float Height;
+    public float Width { get; set; }
 
     public Landscape(string imagePath, float y, float width, float height)
     {
@@ -15,7 +16,6 @@ public class Landscape : IPlano
         this.Height = (int)height;
     }
 
-    public float Width { get; set; }
 
     public void Draw(Graphics g, DrawPlanoParameters parameters)
     {

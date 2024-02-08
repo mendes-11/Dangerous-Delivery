@@ -88,10 +88,10 @@ public class Game : Form
                 parallax.Draw(g, Pb.Size);
                 // foodLanche.Draw(g);
                 // breakImg.Draw(g);
-                // objectsLayers.Draw(g);
+                // objectsLayers.Draw(g, Pb.Size);
                 player.Draw(g);
                 // gameHUD.Draw(g);
-                // rain.Draw(g);
+                // rain.Draw(g, Pb.Size);
                 // rain.Update();
                 Pb.Refresh();
             }

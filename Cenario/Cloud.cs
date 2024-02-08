@@ -6,6 +6,7 @@ public class Cloud : IPlano
     private Image Img;
     private float Y;
     private float ratio;
+    public float Width { get; set; }
 
     public Cloud(string imagePath, float y, float width)
     {
@@ -15,7 +16,6 @@ public class Cloud : IPlano
         this.Width = width;
     }
 
-    public float Width { get; set; }
     Rectangle lastDest = Rectangle.Empty;
     public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
@@ -30,13 +30,13 @@ public class Cloud : IPlano
                 (int)(this.Width * wid * this.ratio)
             );
         
-        if (destiny != lastDest)
-        {
-            Img = ImgOriginal.GetThumbnailImage(
-                destiny.Width, destiny.Height, null, nint.Zero
-            );
-            lastDest = destiny;
-        }
+        // if (destiny != lastDest)
+        // {
+        //     Img = ImgOriginal.GetThumbnailImage(
+        //         destiny.Width, destiny.Height, null, nint.Zero
+        //     );
+        //     lastDest = destiny;
+        // }
 
         g.DrawImage(Img, destiny);
     }
