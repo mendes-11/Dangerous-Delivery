@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "X8oMJzFFkFK4gnFjCSEvxryBxYUdwSHcYfzMJqSB5zuvAMDSb3GNXetYslcm6SNz+9OpUYN60cxpYo3/3d6lGQ==",
+  "dgSpecHash": "5/pGCd5x7HXA5UkXENk9taF8ceeFjhhKITNlnTfX8xtW6lkpWkq9eelBPxbEStC4GjMBV1sBzbggUr7M3iNfQw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\disrct\\Desktop\\PARALLAX29.01\\Dangerous-Delivery\\jogo.csproj",
+  "projectFilePath": "C:\\Users\\disrct\\Desktop\\gma11\\Dangerous-Delivery\\jogo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\disrct\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\disrct\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

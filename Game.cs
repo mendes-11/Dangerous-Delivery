@@ -86,7 +86,7 @@ public class Game : Form
                 parallax.Draw(g);
                 foodLanche.Draw(g);
                 breakImg.Draw(g);
-                // objectsLayers.Draw(g);
+                objectsLayers.Draw(g);
                 player.Draw(g);
                 gameHUD.Draw(g);
                 rain.Draw(g);
@@ -195,4 +195,12 @@ public class Game : Form
             ResumeGame();
         }
     }
+
+    public void GG()
+{
+    GameOver gameOver = new GameOver();
+    isPaused = true;
+    gameOver.ShowPause();
+}
+
 }
