@@ -10,13 +10,14 @@ public class Food
     private Queue<Lanche> nextQueue = new();
     private Queue<Lanche> queue = new();
     private Player player;
+    public bool notGrau = false;
     private DateTime nextSpawnTime = DateTime.Now.AddSeconds(1);
     private SoundPlayer collectSoundPlayer = new SoundPlayer("./Music\\captura.wav");
 
 
     public Food(GameHUD hud)
     {
-        player = new Player(hud);
+        player = new Player(hud, this);
         collectSoundPlayer.Load();
     }
     public void Draw(Graphics g)
@@ -33,7 +34,7 @@ public class Food
                 lanche.Draw(g);
                 lanche.X -= 15;
 
-                if (Collision.Current.CheckCollisions(lanche) && player.IncrementHUDCounter(lanche))
+                if (Collision.Current.CheckCollisions(lanche) && player.IncrementHUDCounter(lanche) && !notGrau)
                 {
                     lanche.X = 2000;
                     collectSoundPlayer.Play();
@@ -73,6 +74,12 @@ public class Food
             }
         }
     }
+
+    public void Grau()
+        => notGrau = true;
+    
+    public void NotFood()
+        => notGrau = false;
 
     private void SetNextSpawnTime()
     {

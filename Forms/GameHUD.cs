@@ -11,6 +11,7 @@ public class GameHUD
     private string playerName;
     public int pizzaCount = 0;
     public int sushiCount = 0;
+    public bool notFood = false;
     public int sorveteCount = 0;
     public int score = 0;
     public int macarraoCount = 0;
@@ -122,7 +123,6 @@ public class GameHUD
 
     public void IncrementGrau() => grauTimer.Start();
     public void StopGrau() => grauTimer.Stop();
-
     public void IncrementPizzaCount() => pizzaCount++;
 
     public void IncrementSushiCount() => sushiCount++;

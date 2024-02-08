@@ -39,11 +39,11 @@ public class Game : Form
 
         gameHUD = new GameHUD(this);
         gameHUD.LoadRankingsFromFile("rankings.json");
-        player = new Player(gameHUD);
+        foodLanche = new FoodLanche(gameHUD);
+        player = new Player(gameHUD, foodLanche);
         parallax = new Parallax();
         objectsLayers = new ObjectsLayers();
-        foodLanche = new FoodLanche(gameHUD);
-        breakImg = new BreakImg(gameHUD);
+        breakImg = new BreakImg(gameHUD, foodLanche);
         pause = new Pause();
         rain = new RainLayer(5000);
         pause.ResumeGame += (sender, e) => ResumeGame();
@@ -86,7 +86,7 @@ public class Game : Form
                 parallax.Draw(g);
                 foodLanche.Draw(g);
                 breakImg.Draw(g);
-                // objectsLayers.Draw(g);
+                objectsLayers.Draw(g);
                 player.Draw(g);
                 gameHUD.Draw(g);
                 rain.Draw(g);

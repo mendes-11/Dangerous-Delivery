@@ -22,6 +22,7 @@ public class Player : ObjBox
     private float aceleracao = 2f;
     private float desaceleracao = 1.8f;
     private float velocidadeX = 0;
+    private Food food;
     private float centerScreen;
     private float velocidadeY = 0;
     public bool isGrauLoopActive { get; set; } = false;
@@ -31,7 +32,7 @@ public class Player : ObjBox
 
     public override RectangleF Box { get; set; }
 
-    public Player(GameHUD hud)
+    public Player(GameHUD hud, Food food)
     {
         foreach (var filePath in Directory.GetFiles("Image/Entregador"))
         {
@@ -42,6 +43,7 @@ public class Player : ObjBox
             playerImagesGrau.Add(Image.FromFile(filePath));
         }
         gameHUD = hud;
+        this.food = food;
         centerScreen = Screen.PrimaryScreen.Bounds.Width / 2f;
         Collision.Current.AddObjBox(this);
         animationTimer = new Timer { Interval = 100, Enabled = true };
@@ -99,7 +101,7 @@ public class Player : ObjBox
         if (UsingGrauImages)
         {
             if (!ReverseAnimation)
-            {                
+            {
                 if (!isGrauLoopActive && frameAtual >= 7)
                 {
                     isGrauLoopActive = true;
@@ -141,10 +143,17 @@ public class Player : ObjBox
     public void Draw(Graphics g)
     {
         List<Image> images = UsingGrauImages ? playerImagesGrau : playerImages;
-        if(UsingGrauImages)
+        if (UsingGrauImages)
+        {
             gameHUD.IncrementGrau();
-        gameHUD.StopGrau();
-        if(frameAtual == 1)
+            food.Grau();
+        }
+        else
+        {
+            gameHUD.StopGrau();
+            food.NotFood();
+        }
+        if (frameAtual == 1)
             frameAtual = 3;
         Image currentImage = images[frameAtual];
         float deltaY = -posY / 500f;
@@ -155,77 +164,86 @@ public class Player : ObjBox
         int adjustedY = posY + (TamanhoJogador - adjustedSize) / 2;
 
         Rectangle destino = new Rectangle(adjustedX, adjustedY, adjustedSize, adjustedSize);
-        CreateHitbox(adjustedX, posY + 143, adjustedSize, adjustedSize / 3f);
+        CreateHitbox(adjustedX+25, posY + 143, adjustedSize - 45, adjustedSize / 3f);
         g.DrawRectangle(Pens.White, Box);
         g.DrawImage(currentImage, destino);
     }
 
     public bool IncrementHUDCounter(Lanche lanche)
     {
-        gameHUD.IncrementFoodScore();
-        switch (lanche.Type)
+        if (food.notGrau == false)
         {
-            case "pizza":
-                if (gameHUD.pizzaCount < 5)
-                {
-                    gameHUD.IncrementPizzaCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case "sushi":
-                if (gameHUD.sushiCount < 5)
-                {
-                    gameHUD.IncrementSushiCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case "sorvete":
-                if (gameHUD.sorveteCount < 5)
-                {
-                    gameHUD.IncrementSorveteCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case "macarrao":
-                if (gameHUD.macarraoCount < 5)
-                {
-                    gameHUD.IncrementMacarraoCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case "frango":
-                if (gameHUD.frangoCount < 5)
-                {
-                    gameHUD.IncrementFrangoCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            case "bolo":
-                if (gameHUD.boloCount < 5)
-                {
-                    gameHUD.IncrementBoloCount();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+            switch (lanche.Type)
+            {
+                case "pizza":
+                    if (gameHUD.pizzaCount < 5)
+                    {
+                        gameHUD.IncrementPizzaCount();
+                        gameHUD.IncrementFoodScore();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case "sushi":
+                    if (gameHUD.sushiCount < 5)
+                    {
+                        gameHUD.IncrementSushiCount();
+                        gameHUD.IncrementFoodScore();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case "sorvete":
+                    if (gameHUD.sorveteCount < 5)
+                    {
+                        gameHUD.IncrementSorveteCount();
+                        gameHUD.IncrementFoodScore();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case "macarrao":
+                    if (gameHUD.macarraoCount < 5)
+                    {
+                        gameHUD.IncrementMacarraoCount();
+                        gameHUD.IncrementFoodScore();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case "frango":
+                    if (gameHUD.frangoCount < 5)
+                    {
+                        gameHUD.IncrementFrangoCount();
+                        gameHUD.IncrementFoodScore();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case "bolo":
+                    if (gameHUD.boloCount < 5)
+                    {
+                        gameHUD.IncrementBoloCount();
+                        gameHUD.IncrementFoodScore();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+            }
         }
+
         return false;
     }
 
