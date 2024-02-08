@@ -4,21 +4,21 @@ using System.Windows.Forms;
 
 public class PlayerNameForm : Form
 {
-    private Label nameLabel;
     private TextBox nameTextBox;
     private PictureBox pbBackground;
     private Button okButton;
+    private Panel textPanel;
 
     public string PlayerName { get; private set; }
 
     public PlayerNameForm()
     {
         InitializeComponent();
+        Resize += new EventHandler(FormResized);
     }
 
     private void InitializeComponent()
     {
-        // Configurar o PictureBox para ser o plano de fundo
         pbBackground = new PictureBox
         {
             Dock = DockStyle.Fill,
@@ -28,35 +28,52 @@ public class PlayerNameForm : Form
         };
         Controls.Add(pbBackground);
 
-        nameLabel = new Label();
-        nameLabel.Text = "Digite seu nome:";
-        nameLabel.Location = new Point(10, 10);
-        pbBackground.Controls.Add(nameLabel);
+        textPanel = new Panel();
+        textPanel.BackColor = Color.FromArgb(50, 255, 255, 255);
 
         nameTextBox = new TextBox();
-        nameTextBox.Location = new Point(10, 30);
-        nameTextBox.Size = new Size(200, 20);
-        pbBackground.Controls.Add(nameTextBox);
+        nameTextBox.Dock = DockStyle.Fill;
+        nameTextBox.BackColor = Color.White;
+        nameTextBox.BorderStyle = BorderStyle.None;
 
         okButton = new Button();
-        okButton.Text = "OK";
-        okButton.Location = new Point(10, 60);
+        okButton.Location = new Point(630, 300); 
+        okButton.Size = new Size(70, 73); 
+        okButton.Image = Image.FromFile("./Image/Menu/star.png");
+        okButton.ImageAlign = ContentAlignment.MiddleCenter;
+        okButton.TextImageRelation = TextImageRelation.ImageAboveText;
+        okButton.Text = "";
+        okButton.FlatStyle = FlatStyle.Flat;
+        okButton.FlatAppearance.BorderSize = 0;
+        okButton.BackColor = Color.Transparent;
+        okButton.FlatAppearance.MouseOverBackColor = okButton.BackColor;
+        okButton.FlatAppearance.MouseDownBackColor = okButton.BackColor; 
         okButton.Click += OkButtonClick;
         pbBackground.Controls.Add(okButton);
+        ;
 
-        // Configurações do formulário
-        Size = new Size(900, 450);
+        textPanel.Controls.Add(nameTextBox);
+        pbBackground.Controls.Add(textPanel);
+
+        Size = new Size(783, 438);
         FormBorderStyle = FormBorderStyle.None;
         StartPosition = FormStartPosition.CenterScreen;
-
-        // Definir cor de fundo transparente
-        this.TransparencyKey = Color.FromArgb(0, 0, 1);
-        this.BackColor = Color.FromArgb(0, 0, 1);
+        TransparencyKey = Color.FromArgb(0, 0, 1);
+        BackColor = Color.FromArgb(0, 0, 1);
     }
 
     private void OkButtonClick(object sender, EventArgs e)
     {
         PlayerName = nameTextBox.Text;
         DialogResult = DialogResult.OK;
+    }
+
+    private void FormResized(object sender, EventArgs e)
+    {
+        textPanel.Location = new Point(
+            (this.ClientSize.Width - textPanel.Width) / 2,
+            (int)(this.ClientSize.Height * 0.85)
+        );
+        textPanel.Size = new Size(200, 20);
     }
 }

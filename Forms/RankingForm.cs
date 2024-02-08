@@ -1,40 +1,83 @@
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 public class RankingForm : Form
 {
-    private DataGridView dataGridViewRankings;
+    private List<Label> rankingLabels = new List<Label>();
+    private PictureBox pbBackground;
 
     public RankingForm(List<PlayerScore> rankings)
     {
         InitializeComponent();
         LoadRankings(rankings);
+        this.KeyPreview = true;
+        this.KeyDown += new KeyEventHandler(Form_KeyDown);
+    }
+
+    private void Form_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Escape)
+        {
+            this.Close();
+        }
     }
 
     private void InitializeComponent()
     {
-        this.dataGridViewRankings = new DataGridView
+        this.pbBackground = new PictureBox
         {
-            Location = new Point(10, 10),
-            Size = new Size(280, 400),
-            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+            Dock = DockStyle.Fill,
+            ImageLocation = "./Image/Menu/ran.png",
+            SizeMode = PictureBoxSizeMode.StretchImage
         };
+        this.Controls.Add(this.pbBackground);
 
-        this.Controls.Add(this.dataGridViewRankings);
-        this.Size = new Size(300, 450);
+        this.Size = new Size(458, 533);
         this.Text = "Rankings";
+        this.StartPosition = FormStartPosition.CenterScreen;
+        TransparencyKey = Color.FromArgb(0, 0, 1);
+        BackColor = Color.FromArgb(0, 0, 1);
+        this.FormBorderStyle = FormBorderStyle.None;
     }
 
     private void LoadRankings(List<PlayerScore> rankings)
     {
-        dataGridViewRankings.Columns.Clear();
-        dataGridViewRankings.Columns.Add("PlayerName", "Player");
-        dataGridViewRankings.Columns.Add("Score", "Score");
+        int startY = 108;
+        int spaceBetween = 42;
 
-        foreach (var score in rankings)
+        var topRankings = rankings.OrderByDescending(r => r.Score).Take(5);
+
+        foreach (var score in topRankings)
         {
-            dataGridViewRankings.Rows.Add(score.Name, score.Score);
+            // Label para o nome
+            Label rankingLabel = new Label
+            {
+                Text = $"{score.Name}",
+                Location = new Point(110, startY),
+                Size = new Size(180, 30),
+                Font = new Font("Arial", 18, FontStyle.Bold),
+                ForeColor = Color.Orange,
+                BackColor = Color.Transparent,
+                Parent = pbBackground,
+            };
+            pbBackground.Controls.Add(rankingLabel);
+
+            Label rankingLabelScore = new Label
+            {
+                Text = $"{score.Score}",
+                Location = new Point(300, startY),
+                Size = new Size(100, 30),
+                Font = new Font("Arial", 18, FontStyle.Bold),
+                ForeColor = Color.Orange,
+                BackColor = Color.Transparent,
+                Parent = pbBackground,
+            };
+            pbBackground.Controls.Add(rankingLabelScore);
+
+            startY += rankingLabel.Height + spaceBetween;
         }
     }
 }

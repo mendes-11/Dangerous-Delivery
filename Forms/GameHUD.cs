@@ -18,7 +18,10 @@ public class GameHUD
     public int frangoCount = 0;
     private List<PlayerScore> rankings = new List<PlayerScore>();
     private Timer scoreTimer;
+    private Timer grauTimer;
     private Font hudFont;
+    private Image hudImage;
+    private Image hudImage2;
 
     public GameHUD(Control parent)
     {
@@ -32,20 +35,29 @@ public class GameHUD
         scoreTimer.Interval = 1000;
         scoreTimer.Tick += ScoreTimer_Tick;
         scoreTimer.Start();
+
+        grauTimer = new Timer();
+        grauTimer.Interval = 1000;
+        grauTimer.Tick += GrauTimer_Tick;
+
+        hudImage = Image.FromFile("./Image/Menu/hud.png");
+        hudImage2 = Image.FromFile("./Image/Menu/score.png");
     }
 
     public void Draw(Graphics g)
     {
         Brush brush = Brushes.White;
-
-        g.DrawString("Jogador: " + playerName, hudFont, brush, 10, 10);
-        g.DrawString("Pizza: " + pizzaCount + "/5", hudFont, brush, 10, 40);
-        g.DrawString("Sushi: " + sushiCount + "/5", hudFont, brush, 10, 70);
-        g.DrawString("Frango: " + frangoCount + "/5", hudFont, brush, 10, 100);
-        g.DrawString("Macarrão: " + macarraoCount + "/5", hudFont, brush, 10, 130);
-        g.DrawString("Bolo: " + boloCount + "/5", hudFont, brush, 10, 160);
-        g.DrawString("Sorvete: " + sorveteCount + "/5", hudFont, brush, 10, 190);
-        g.DrawString("Score: " + score, hudFont, brush, 700, 10);
+        Brush brush2 = Brushes.Orange;
+        g.DrawImage(hudImage, 5, 5, 654, 182);
+        g.DrawImage(hudImage2, 1550, 70, 340, 91);
+        g.DrawString(playerName, hudFont, brush, 265, 150);
+        g.DrawString("X" + pizzaCount, hudFont, brush2, 235, 110);
+        g.DrawString("X" + sushiCount, hudFont, brush2, 310, 110);
+        g.DrawString("X" + frangoCount, hudFont, brush2, 390, 110);
+        g.DrawString("X" + macarraoCount, hudFont, brush2, 455, 110);
+        g.DrawString("X" + boloCount, hudFont, brush2, 533, 110);
+        g.DrawString("X" + sorveteCount, hudFont, brush2, 605, 110);
+        g.DrawString("X" + score, hudFont, brush2, 1710, 90);
     }
 
     public void Player(string playerName)
@@ -56,6 +68,11 @@ public class GameHUD
     private void ScoreTimer_Tick(object sender, EventArgs e)
     {
         score++;
+    }
+
+    private void GrauTimer_Tick(object sender, EventArgs e)
+    {
+        score += 3;
     }
 
     public void SaveRankingsToFile(string filePath)
@@ -102,6 +119,9 @@ public class GameHUD
     }
 
     public void IncrementFoodScore() => score += 5;
+
+    public void IncrementGrau() => grauTimer.Start();
+    public void StopGrau() => grauTimer.Stop();
 
     public void IncrementPizzaCount() => pizzaCount++;
 

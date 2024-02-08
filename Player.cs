@@ -141,6 +141,9 @@ public class Player : ObjBox
     public void Draw(Graphics g)
     {
         List<Image> images = UsingGrauImages ? playerImagesGrau : playerImages;
+        if(UsingGrauImages)
+            gameHUD.IncrementGrau();
+        gameHUD.StopGrau();
         if(frameAtual == 1)
             frameAtual = 3;
         Image currentImage = images[frameAtual];
