@@ -19,7 +19,7 @@ public class Food
         player = new Player(hud);
         collectSoundPlayer.Load();
     }
-    public void Draw(Graphics g)
+    public void Draw(Graphics g,  SizeF size)
     {
         Queue<Lanche> newQueue = new Queue<Lanche>();
 
@@ -30,17 +30,17 @@ public class Food
         {
             foreach (var lanche in queue)
             {
-                lanche.Draw(g);
-                lanche.X -= 15;
+                lanche.Draw(g, new DrawPlanoParameters {Size = size });
+                lanche.X -= 0.02f;
 
                 if (Collision.Current.CheckCollisions(lanche) && player.IncrementHUDCounter(lanche))
                 {
-                    lanche.X = 2000;
+                    lanche.X = 1.05f;
                     collectSoundPlayer.Play();
                 }
                 else if (lanche.X + lanche.Width < 0)
                 {
-                    lanche.X = 2000;
+                    lanche.X = 1.05f;
                 }
                 else
                 {
@@ -82,13 +82,13 @@ public class Food
 
     private void genNextQueue()
     {
-        int initialX = 2000;
+        float initialX = 1.05f;
 
         foreach (var lanche in Lanches.OrderBy(p => Random.Shared.Next()))
         {
             lanche.X = initialX;
             nextQueue.Enqueue(lanche);
-            initialX += Random.Shared.Next(300, 600);
+            initialX += Random.Shared.NextSingle() * 0.15f + 0.35f;
         }
     }
 

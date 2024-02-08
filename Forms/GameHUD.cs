@@ -34,7 +34,7 @@ public class GameHUD
         scoreTimer.Start();
     }
 
-    public void Draw(Graphics g)
+    public void Draw(Graphics g, SizeF size)
     {
         Brush brush = Brushes.White;
 

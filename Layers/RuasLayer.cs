@@ -12,7 +12,7 @@ public class  RuasLayer: Layer
             {
                 float height = .3f;
                 float y = 1.005f - height;
-                return new Rua(path, y, .7f, height);
+                return new Rua(path, y, .72f, height);
 
 
             })

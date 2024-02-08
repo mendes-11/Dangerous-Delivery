@@ -18,11 +18,23 @@ public class Lanche : ObjBox
         this.Height = Img.Height;
     }
 
-    public void Draw(Graphics g)
+    public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
-        g.DrawImage(Img, X, Y, Width, Height);
+        float wid = parameters.Size.Width;
+        float hei = parameters.Size.Height;
+
+        Rectangle destiny =
+            new(
+                (int)(parameters.X * wid),
+                (int)(this.Y * hei),
+                (int)(this.Width * wid),
+                (int)(this.Height * hei)
+            );
+
+
+        g.DrawImage(Img, destiny);
         CreateHitbox(X, Y, this.Width, this.Height);
-        g.DrawRectangle(Pens.Red, Box);
+        // g.DrawRectangle(Pens.Red, Box);
         Collision.Current.AddObjBox(this);
     }
 }

@@ -12,7 +12,7 @@ public class CalcadasLayer : Layer
             {
                 float height = .33f;
                 float y = .71f - height;
-                return new Rua(path, y, .7f, height);
+                return new Rua(path, y, .68f, height);
 
 
             })

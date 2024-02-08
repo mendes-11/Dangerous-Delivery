@@ -10,7 +10,7 @@ public class  FoodLanche: Food
             Directory.GetFiles("./Image/Food")
             .Select(path => 
             {
-                int y = Random.Shared.Next(735, 950);
+                float y = Random.Shared.NextSingle() * 0.1f + 5F;
                 Lanche lanche = new Lanche(path, y);
                 lanche.Type = ExtractFoodTypeFromPath(path);
                 return lanche;

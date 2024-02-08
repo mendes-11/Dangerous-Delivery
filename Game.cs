@@ -86,13 +86,13 @@ public class Game : Form
                 UpdatePlayerMovement();
 
                 parallax.Draw(g, Pb.Size);
-                // foodLanche.Draw(g);
-                // breakImg.Draw(g);
-                // objectsLayers.Draw(g, Pb.Size);
-                player.Draw(g);
-                // gameHUD.Draw(g);
-                // rain.Draw(g, Pb.Size);
-                // rain.Update();
+                foodLanche.Draw(g, Pb.Size);
+                breakImg.Draw(g, Pb.Size);
+                objectsLayers.Draw(g, Pb.Size);
+                player.Draw(g, Pb.Size);
+                gameHUD.Draw(g, Pb.Size);
+                rain.Draw(g, Pb.Size);
+                rain.Update();
                 Pb.Refresh();
             }
         };

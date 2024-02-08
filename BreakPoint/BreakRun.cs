@@ -20,7 +20,7 @@ public class BreakRun
         deliverySoundPlayer.Load();
     }
 
-    public void Draw(Graphics g)
+    public void Draw(Graphics g, SizeF size)
     {
         Queue<BreakPoint> newQueue = new Queue<BreakPoint>();
 

@@ -123,7 +123,7 @@ public class Player : ObjBox
     }
 
 
-    public void Draw(Graphics g)
+    public void Draw(Graphics g, SizeF size)
     {
         List<Image> images = UsingGrauImages ? playerImagesGrau : playerImages;
         Image currentImage = images[frameAtual];

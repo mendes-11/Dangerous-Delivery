@@ -15,7 +15,7 @@ public class CasasLayer : Layer
             float height = Random.Shared.NextSingle() * .1f + .38f;
             float y =  0.65f - height;
             
-            return new Casa(path, y, .28f, height);
+            return new Casa(path, y, .20f, height);
         })
     );
 }
