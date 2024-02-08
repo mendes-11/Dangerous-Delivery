@@ -164,7 +164,10 @@ public class Player : ObjBox
         int adjustedY = posY + (TamanhoJogador - adjustedSize) / 2;
 
         Rectangle destino = new Rectangle(adjustedX, adjustedY, adjustedSize, adjustedSize);
-        CreateHitbox(adjustedX+25, posY + 143, adjustedSize - 45, adjustedSize / 3f);
+        if(food.notGrau == false)
+            CreateHitbox(adjustedX+25, posY + 143, adjustedSize - 45, adjustedSize / 3f);
+        else
+            CreateHitbox(adjustedX+50, posY + 143, adjustedSize - 150, adjustedSize / 3f);
         g.DrawRectangle(Pens.White, Box);
         g.DrawImage(currentImage, destino);
     }
