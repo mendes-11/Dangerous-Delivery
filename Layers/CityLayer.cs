@@ -10,9 +10,9 @@ public class  CityLayer: Layer
             Directory.GetFiles("./Image/City")
             .Select(path => 
             {
-                float height = Random.Shared.NextSingle() * 0.07f + .23f;
-                float y = 0.5f - height;
-                return new City(path, y, .3f, height);
+                float height = Random.Shared.NextSingle() * .1f + .39f;
+                float y = 0.655f - height;
+                return new City(path, y, .22f, height);
             })
         );
     }

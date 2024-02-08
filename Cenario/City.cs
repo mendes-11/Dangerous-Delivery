@@ -18,11 +18,11 @@ public class City : IPlano
     }
 
 
-     public void Draw(Graphics g, DrawPlanoParameters parameters)
+    public void Draw(Graphics g, DrawPlanoParameters parameters)
     {
         float wid = parameters.Size.Width;
         float hei = parameters.Size.Height;
-        
+
         Rectangle destiny =
             new(
                 (int)(parameters.X * wid),
@@ -30,14 +30,14 @@ public class City : IPlano
                 (int)(this.Width * wid),
                 (int)(this.Height * hei)
             );
-        
-        if (destiny != lastDest)
-        {
-            Img = ImgOriginal.GetThumbnailImage(
-                destiny.Width, destiny.Height, null, nint.Zero
-            );
-            lastDest = destiny;
-        }
+
+        // if (destiny != lastDest)
+        // {
+        //     Img = ImgOriginal.GetThumbnailImage(
+        //         destiny.Width, destiny.Height, null, nint.Zero
+        //     );
+        //     lastDest = destiny;
+        // }
 
         g.DrawImage(Img, destiny);
     }

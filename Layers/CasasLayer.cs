@@ -12,10 +12,10 @@ public class CasasLayer : Layer
         .Select(path => 
         {
 
-            int height = Random.Shared.Next(180, 250 + 1);
-            int y =  353 - height;
+            float height = Random.Shared.NextSingle() * .1f + .38f;
+            float y =  0.65f - height;
             
-            return new Casa(path, y, 490, height);
+            return new Casa(path, y, .28f, height);
         })
     );
 }

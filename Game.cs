@@ -53,10 +53,10 @@ public class Game : Form
         parallax.Layers.Add(new SkyLayer());
         parallax.Layers.Add(new CloudLayer(0.02f));
         parallax.Layers.Add(new CityLayer(0.03f));
-        // parallax.Layers.Add(new SlumLayer(110));
-        // parallax.Layers.Add(new CasasLayer(150));
-        // parallax.Layers.Add(new RuasLayer(320));
-        // parallax.Layers.Add(new CalcadasLayer(180));
+        parallax.Layers.Add(new SlumLayer(0.04F));
+        parallax.Layers.Add(new CasasLayer(0.05F));
+        parallax.Layers.Add(new RuasLayer(0.07f));
+        parallax.Layers.Add(new CalcadasLayer(0.06f));
 
         // objectsLayers.Objects.Add(new OleoLayer(320, this, gameHUD));
         // objectsLayers.Objects.Add(new PneuLayer(400, this, gameHUD));

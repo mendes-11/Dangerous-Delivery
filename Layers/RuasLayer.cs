@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 
@@ -6,7 +7,15 @@ public class  RuasLayer: Layer
     public RuasLayer(float velocidade) : base(velocidade)
     {
         this.Planos.AddRange(
-            Directory.GetFiles("./Image/Street").Select(path => new Rua(path, 762 , 1000, 160))
+            Directory.GetFiles("./Image/Street")
+            .Select(path =>
+            {
+                float height = .3f;
+                float y = 1.005f - height;
+                return new Rua(path, y, .7f, height);
+
+
+            })
         );
     }
 }

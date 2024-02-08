@@ -7,7 +7,18 @@ public class CalcadasLayer : Layer
         : base(velocidade)
     {
         this.Planos.AddRange(
-            Directory.GetFiles("./Image/Sidewalk").Select(path => new Calcada(path, 466, 1000, 150))
+            Directory.GetFiles("./Image/Sidewalk")
+            .Select(path => 
+            {
+                float height = .33f;
+                float y = .71f - height;
+                return new Rua(path, y, .7f, height);
+
+
+            })
+            
+            
+            // new Calcada(path, 466, 1000, 150))
         );
     }
 }
