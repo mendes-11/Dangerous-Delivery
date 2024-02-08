@@ -14,9 +14,9 @@ public class BreakRun
     private DateTime nextSpawnTime = DateTime.Now.AddSeconds(1);
     private SoundPlayer deliverySoundPlayer = new SoundPlayer("./Music\\entrega.wav");
 
-    public BreakRun(GameHUD hud)
+    public BreakRun(GameHUD hud, Food food)
     {
-        player = new Player(hud);
+        player = new Player(hud, food);
         deliverySoundPlayer.Load();
     }
 

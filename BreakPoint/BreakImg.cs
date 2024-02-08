@@ -4,7 +4,7 @@ using System.Linq;
 
 public class BreakImg: BreakRun
 {
-    public BreakImg(GameHUD hud) : base(hud)
+    public BreakImg(GameHUD hud, Food food) : base(hud, food)
     {
         this.BreakPoints.AddRange(
             Directory.GetFiles("./Image/BreakPoint")
