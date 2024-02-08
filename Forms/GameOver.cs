@@ -24,7 +24,7 @@ public class GameOver
         var label = new Label
         {
             Text = "GAME OVER",
-            AutoSize = true, // Mudança para AutoSize
+            AutoSize = true,
             Location = new Point((gameOverForm.Width - 150) / 2, 50),
             Font = new Font("Arial", 26, FontStyle.Bold),
             BackColor = Color.Transparent,
@@ -35,16 +35,18 @@ public class GameOver
 
         var backButton = new Button
         {
-            Size = new Size(190, 75), // Ajustado para melhor acomodar a imagem + texto
+            Size = new Size(190, 75),
             Location = new Point(200, 300),
             Image = buttonImage,
             ImageAlign = ContentAlignment.MiddleLeft,
             TextAlign = ContentAlignment.MiddleRight,
             TextImageRelation = TextImageRelation.ImageBeforeText,
             FlatStyle = FlatStyle.Flat,
-            BackColor = Color.Transparent, // Para botão transparente
+            BackColor = Color.Transparent,
         };
         backButton.FlatAppearance.BorderSize = 0;
+        backButton.FlatAppearance.MouseOverBackColor = Color.Transparent;
+        backButton.FlatAppearance.MouseDownBackColor = Color.Transparent;
 
         // var exitButton = new Button
         // {
@@ -56,7 +58,6 @@ public class GameOver
         backButton.Click += BackToMenuButtonClick;
         // exitButton.Click += ExitGameButtonClick;
 
-        // Adiciona os controles ao Form
         gameOverForm.Controls.Add(label);
         gameOverForm.Controls.Add(backButton);
         // gameOverForm.Controls.Add(exitButton);
@@ -76,8 +77,7 @@ public class GameOver
 
     private void BackToMenuButtonClick(object sender, EventArgs e)
     {
-        // Adicione lógica para voltar para o menu
-        // Por exemplo: menuForm.Show();
+        Application.Exit();
     }
 
     private void ExitGameButtonClick(object sender, EventArgs e)
