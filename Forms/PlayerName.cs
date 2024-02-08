@@ -28,22 +28,21 @@ public class PlayerNameForm : Form
         };
         Controls.Add(pbBackground);
 
-        // Configurar os controles de entrada
-        // nameLabel = new Label();
-        // nameLabel.Text = "Digite seu nome:";
-        // nameLabel.Location = new Point(10, 10);
-        // pbBackground.Controls.Add(nameLabel);
+        nameLabel = new Label();
+        nameLabel.Text = "Digite seu nome:";
+        nameLabel.Location = new Point(10, 10);
+        pbBackground.Controls.Add(nameLabel);
 
-        // nameTextBox = new TextBox();
-        // nameTextBox.Location = new Point(10, 30);
-        // nameTextBox.Size = new Size(200, 20);
-        // pbBackground.Controls.Add(nameTextBox);
+        nameTextBox = new TextBox();
+        nameTextBox.Location = new Point(10, 30);
+        nameTextBox.Size = new Size(200, 20);
+        pbBackground.Controls.Add(nameTextBox);
 
-        // okButton = new Button();
-        // okButton.Text = "OK";
-        // okButton.Location = new Point(10, 60);
-        // okButton.Click += OkButtonClick;
-        // pbBackground.Controls.Add(okButton);
+        okButton = new Button();
+        okButton.Text = "OK";
+        okButton.Location = new Point(10, 60);
+        okButton.Click += OkButtonClick;
+        pbBackground.Controls.Add(okButton);
 
         // Configurações do formulário
         Size = new Size(900, 450);

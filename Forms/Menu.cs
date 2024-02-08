@@ -19,24 +19,21 @@ public class Menu : Form
         pbBackground = new PictureBox
         {
             Dock = DockStyle.Fill,
-            Image = Image.FromFile("./Image/Menu/Menu.jpg"),
+            Image = Image.FromFile("./Image/Menu/Menu.png"),
             SizeMode = PictureBoxSizeMode.StretchImage
         };
 
         playButton = CriarBotao("./Image/Menu/jogarButton.png");
-        opcoesButton = CriarBotao("./Image/Menu/opcoesButton.png");
         exitButton = CriarBotao("./Image/Menu/sairButton.png");
         rankingButton = CriarBotao("./Image/Menu/sairButton.png");
-
         playButton.Click += PlayButtonClick;
-        opcoesButton.Click += OpcoesButtonClick;
+
         exitButton.Click += ExitButtonClick;
         rankingButton.Click += RankingButtonClick;
 
         this.Controls.Add(pbBackground);
 
         pbBackground.Controls.Add(playButton);
-        pbBackground.Controls.Add(opcoesButton);
         pbBackground.Controls.Add(rankingButton);
         pbBackground.Controls.Add(exitButton);
 
@@ -79,14 +76,12 @@ public class Menu : Form
         int espacamentoEntreBotoes = (int)(larguraDisponivel * proporcaoEspacamento);
 
         AjustarTamanhoBotao(playButton, larguraDisponivel, 400);
-        AjustarTamanhoBotao(opcoesButton, larguraDisponivel, 400);
         AjustarTamanhoBotao(exitButton, larguraDisponivel, 400);
         AjustarTamanhoBotao(rankingButton, larguraDisponivel, 400);
 
         CentralizarBotao(playButton, -larguraDisponivel / 2 - espacamentoEntreBotoes);
-        CentralizarBotao(opcoesButton, 0);
-        CentralizarBotao(rankingButton, larguraDisponivel / 2 + espacamentoEntreBotoes);
-        CentralizarBotao(exitButton, larguraDisponivel / (float)1.18 + espacamentoEntreBotoes);
+        CentralizarBotao(rankingButton, 0);
+        CentralizarBotao(exitButton, larguraDisponivel / 2 + espacamentoEntreBotoes);
     }
 
     private void AjustarTamanhoBotao(Button botao, int larguraDisponivel, int tamanhoInicial)
@@ -104,12 +99,13 @@ public class Menu : Form
 
     private void CentralizarBotao(Button botao, float posicaoVertical)
     {
-        int x = (pbBackground.ClientSize.Width - botao.Width) / 2;
+        float x = (float)((float)pbBackground.ClientSize.Width - (float)botao.Width) / 1.25f;
         int y = (int)(
-            ((float)pbBackground.ClientSize.Height - (float)botao.Height) / 2.5 + posicaoVertical
+            ((float)pbBackground.ClientSize.Height - (float)botao.Height) / 2 + posicaoVertical
         );
 
-        botao.Location = new Point(x, y);
+        botao.Location = new Point((int)x, y);
+
     }
 
     private void PlayButtonClick(object sender, EventArgs e)
@@ -140,7 +136,7 @@ public class Menu : Form
     {
         GameHUD gameHUD = new GameHUD(this);
         gameHUD.LoadRankingsFromFile("rankings.json");
-        List<PlayerScore> sortedRankings = gameHUD.GetSortedRankings(); 
+        List<PlayerScore> sortedRankings = gameHUD.GetSortedRankings();
         RankingForm rankingForm = new RankingForm(sortedRankings);
         rankingForm.ShowDialog();
     }
