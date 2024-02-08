@@ -25,11 +25,29 @@ public class GameOver
             Font = new Font("Arial", 26, FontStyle.Bold),
         };
 
+        var backButton = new Button
+        {
+            Text = "Voltar para o Menu",
+            Size = new Size(150, 30),
+            Location = new Point(50, 300),
+        };
+
+        var exitButton = new Button
+        {
+            Text = "Sair do Jogo",
+            Size = new Size(150, 30),
+            Location = new Point(400, 300),
+        };
+
+        backButton.Click += BackToMenuButtonClick;
+        exitButton.Click += ExitGameButtonClick;
+
         gameOverForm.Controls.Add(label);
+        gameOverForm.Controls.Add(backButton);
+        gameOverForm.Controls.Add(exitButton);
         gameOverForm.KeyPreview = true;
     }
 
-  
     public void ShowPause()
     {
         gameOverForm.ShowDialog();
@@ -38,5 +56,16 @@ public class GameOver
     public void HidePause()
     {
         gameOverForm.Hide();
+    }
+
+    private void BackToMenuButtonClick(object sender, EventArgs e)
+    {
+        // Adicione lógica para voltar para o menu
+        // Por exemplo: menuForm.Show();
+    }
+
+    private void ExitGameButtonClick(object sender, EventArgs e)
+    {
+        Application.Exit();
     }
 }
