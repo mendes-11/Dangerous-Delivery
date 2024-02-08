@@ -195,4 +195,12 @@ public class Game : Form
             ResumeGame();
         }
     }
+
+    public void GG()
+{
+    GameOver gameOver = new GameOver();
+    isPaused = true;
+    gameOver.ShowPause();
+}
+
 }

@@ -25,7 +25,7 @@ public class Menu : Form
 
         playButton = CriarBotao("./Image/Menu/jogarButton.png");
         exitButton = CriarBotao("./Image/Menu/sairButton.png");
-        rankingButton = CriarBotao("./Image/Menu/sairButton.png");
+        rankingButton = CriarBotao("./Image/Menu/RANK.png");
         playButton.Click += PlayButtonClick;
 
         exitButton.Click += ExitButtonClick;
