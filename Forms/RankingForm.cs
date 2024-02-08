@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -34,6 +35,10 @@ public class RankingForm : Form
             SizeMode = PictureBoxSizeMode.StretchImage
         };
         this.Controls.Add(this.pbBackground);
+        var pFontCollection = new PrivateFontCollection();
+        pFontCollection.AddFontFile("Fonts/BrokenConsole.ttf");
+        FontFamily family = pFontCollection.Families[0];
+        // hudFont = new Font(family, 14f, FontStyle.Bold);
 
         this.Size = new Size(458, 533);
         this.Text = "Rankings";
@@ -45,6 +50,9 @@ public class RankingForm : Form
 
     private void LoadRankings(List<PlayerScore> rankings)
     {
+        var pFontCollection = new PrivateFontCollection();
+        pFontCollection.AddFontFile("Fonts/BrokenConsole.ttf");
+        FontFamily family = pFontCollection.Families[0];
         int startY = 108;
         int spaceBetween = 42;
 
@@ -55,10 +63,11 @@ public class RankingForm : Form
             // Label para o nome
             Label rankingLabel = new Label
             {
+                
                 Text = $"{score.Name}",
                 Location = new Point(110, startY),
                 Size = new Size(180, 30),
-                Font = new Font("Arial", 18, FontStyle.Bold),
+                Font = new Font(family, 18, FontStyle.Bold),
                 ForeColor = Color.Orange,
                 BackColor = Color.Transparent,
                 Parent = pbBackground,
@@ -70,7 +79,7 @@ public class RankingForm : Form
                 Text = $"{score.Score}",
                 Location = new Point(300, startY),
                 Size = new Size(100, 30),
-                Font = new Font("Arial", 18, FontStyle.Bold),
+                Font = new Font(family, 18, FontStyle.Bold),
                 ForeColor = Color.Orange,
                 BackColor = Color.Transparent,
                 Parent = pbBackground,
