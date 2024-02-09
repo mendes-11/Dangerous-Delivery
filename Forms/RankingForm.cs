@@ -35,10 +35,6 @@ public class RankingForm : Form
             SizeMode = PictureBoxSizeMode.StretchImage
         };
         this.Controls.Add(this.pbBackground);
-        var pFontCollection = new PrivateFontCollection();
-        pFontCollection.AddFontFile("Fonts/BrokenConsole.ttf");
-        FontFamily family = pFontCollection.Families[0];
-        // hudFont = new Font(family, 14f, FontStyle.Bold);
 
         this.Size = new Size(458, 533);
         this.Text = "Rankings";
@@ -60,10 +56,8 @@ public class RankingForm : Form
 
         foreach (var score in topRankings)
         {
-            // Label para o nome
             Label rankingLabel = new Label
             {
-                
                 Text = $"{score.Name}",
                 Location = new Point(110, startY),
                 Size = new Size(180, 30),

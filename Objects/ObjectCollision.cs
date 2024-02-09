@@ -41,7 +41,7 @@ public class ObjectCollision : BaseLayer
                 {
                     obj.X = 2000;
                     gameHUD.Save();
-                     game.GG();
+                    game.GG();
                 }
                 else if (obj.X + obj.Width < 0)
                 {

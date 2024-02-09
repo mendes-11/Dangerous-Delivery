@@ -197,10 +197,14 @@ public class Game : Form
     }
 
     public void GG()
-{
-    GameOver gameOver = new GameOver();
-    isPaused = true;
-    gameOver.ShowPause();
-}
+    {
+        GameOver gameOver = new GameOver(this);
+        isPaused = true;
+        gameOver.ShowPause();
+    }
+    public void EndGame()
+    {
+        this.Close();
+    }
 
 }

@@ -2,12 +2,14 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-public class GameOver
+public class GameOver : Form
 {
     private Form gameOverForm;
+    private Game game;
 
-    public GameOver()
+    public GameOver(Game game)
     {
+        this.game = game;
         gameOverForm = new Form
         {
             Text = "GAME OVER",
@@ -35,8 +37,8 @@ public class GameOver
 
         var backButton = new Button
         {
-            Size = new Size(190, 75),
-            Location = new Point(200, 300),
+            Size = new Size(300, 75),
+            Location = new Point(220, 300),
             Image = buttonImage,
             ImageAlign = ContentAlignment.MiddleLeft,
             TextAlign = ContentAlignment.MiddleRight,
@@ -77,6 +79,7 @@ public class GameOver
 
     private void BackToMenuButtonClick(object sender, EventArgs e)
     {
+        System.Diagnostics.Process.Start(Application.ExecutablePath);
         Application.Exit();
     }
 

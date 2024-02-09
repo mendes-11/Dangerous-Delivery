@@ -168,7 +168,7 @@ public class Player : ObjBox
             CreateHitbox(adjustedX+25, posY + 143, adjustedSize - 45, adjustedSize / 3f);
         else
             CreateHitbox(adjustedX+50, posY + 143, adjustedSize - 150, adjustedSize / 3f);
-        g.DrawRectangle(Pens.White, Box);
+        // g.DrawRectangle(Pens.White, Box);
         g.DrawImage(currentImage, destino);
     }
 

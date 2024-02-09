@@ -26,7 +26,7 @@ public class Object : ObjBox
         Image currentFrame = animationFrames[currentFrameIndex];
         g.DrawImage(currentFrame, X, Y, Width, Height);
         CreateHitbox(X, Y, Width, Height);
-        g.DrawRectangle(Pens.Red, Box);
+        // g.DrawRectangle(Pens.Red, Box);
         Collision.Current.AddObjBox(this);
     }
 

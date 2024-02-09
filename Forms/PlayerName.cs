@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Text;
+using System.Linq;
 using System.Windows.Forms;
 
 public class PlayerNameForm : Form
@@ -27,14 +30,21 @@ public class PlayerNameForm : Form
             SizeMode = PictureBoxSizeMode.StretchImage
         };
         Controls.Add(pbBackground);
+        var pFontCollection = new PrivateFontCollection();
+        pFontCollection.AddFontFile("Fonts/BrokenConsole.ttf");
+        FontFamily family = pFontCollection.Families[0];
 
         textPanel = new Panel();
         textPanel.BackColor = Color.FromArgb(50, 255, 255, 255);
 
-        nameTextBox = new TextBox();
-        nameTextBox.Dock = DockStyle.Fill;
-        nameTextBox.BackColor = Color.White;
-        nameTextBox.BorderStyle = BorderStyle.None;
+        nameTextBox = new TextBox
+        {
+            BackColor = Color.White,
+            BorderStyle = BorderStyle.None,
+            Dock = DockStyle.Fill,
+        };
+        nameTextBox.Font = new Font(family, 20, FontStyle.Bold);
+        nameTextBox.ForeColor = Color.Orange;
 
         okButton = new Button();
         okButton.Location = new Point(630, 300); 
@@ -72,8 +82,8 @@ public class PlayerNameForm : Form
     {
         textPanel.Location = new Point(
             (this.ClientSize.Width - textPanel.Width) / 2,
-            (int)(this.ClientSize.Height * 0.85)
+            (int)(this.ClientSize.Height * 0.83)
         );
-        textPanel.Size = new Size(200, 20);
+        textPanel.Size = new Size(250, 20);
     }
 }

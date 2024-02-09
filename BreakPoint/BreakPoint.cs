@@ -23,7 +23,7 @@ public class BreakPoint : ObjBox
     {
         g.DrawImage(Img, X, Y, Width, Height);
         CreateHitbox(X, Y, this.Width, this.Height);
-        g.DrawRectangle(Pens.Red, Box);
+        // g.DrawRectangle(Pens.Red, Box);
         Collision.Current.AddObjBox(this);
     }
 }
